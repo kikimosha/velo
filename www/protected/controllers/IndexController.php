@@ -10,6 +10,25 @@ class IndexController extends CController
 	 */
 	public function actionIndex()
 	{
-        $this->render('index');
+        $model = new Sections();
+        $sections = $model->findAll();
+        $this->render('index', array('sections' => $sections));
 	}
+
+    /**
+     * Section action
+     */
+    public function actionSection()
+    {
+        $this->render('section');
+    }
+
+    /**
+     * Adventure action
+     */
+    public function actionAdventure()
+    {
+        $this->render('adventure');
+    }
+
 }
