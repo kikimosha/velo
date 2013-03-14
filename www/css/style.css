@@ -525,7 +525,7 @@ body {
     display: none;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 270px;
     width: 100%;
     height: 100%
 }
@@ -682,33 +682,35 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-#adventure-cords .cords {
-    display: block;
-    font-weight: bold;
-    margin: 0 0 5px
-}
+/*#adventure-cords .cords {*/
+    /*display: block;*/
+    /*font-weight: bold;*/
+    /*margin: 0 0 5px*/
+/*}*/
 
-#adventure-cords .no {
-    display: block;
-    width: 88px;
-    height: 97px;
-    background: url(../img/desktop/sprite_fx.png) no-repeat -192px 0;
-    text-indent: -999em;
-    margin: 0 0 10px
-}
+/*#adventure-cords .no {*/
+    /*display: block;*/
+    /*width: 88px;*/
+    /*height: 97px;*/
+    /*background: url(../img/desktop/sprite_fx.png) no-repeat -192px 0;*/
+    /*text-indent: -999em;*/
+    /*margin: 0 0 10px*/
+/*}*/
 
-#adventure-cords .number {
-    font: 142px/1 broad, arial;
+/*#adventure-cords .number {*/
+    /*font: 142px/1 broad, arial;*/
+    /*position: absolute;*/
+    /*top: 2px;*/
+    /*left: 94px;*/
+    /*letter-spacing: 2px*/
+/*}*/
+
+#adventure-cords .name {
+    font: 42px/1 broad, arial;
     position: absolute;
     top: 2px;
     left: 94px;
     letter-spacing: 2px
-}
-
-#adventure-cords .name {
-    font-size: 20px;
-    line-height: 1;
-    font-weight: bold
 }
 
 #indicator-line {

@@ -46,4 +46,44 @@ class Sections extends CActiveRecord
             array('name', 'length', 'max'=>128),
         );
     }
+
+    /**
+     * getNextId
+     *
+     * @static
+     * @param $currentId
+     * @return null
+     */
+    public static function getNextId($currentId)
+    {
+        $records = Sections::model()->findAll(
+            array('select'=>'id', 'order'=>"id ASC")
+        );
+
+        foreach($records as $i=>$r)
+            if($r->id == $currentId)
+                return isset($records[$i+1]->id) ? $records[$i+1]->id : "";
+
+        return "";
+    }
+
+    /**
+     * getPrevId
+     *
+     * @static
+     * @param $currentId
+     * @return null
+     */
+    public static function getPrevId($currentId)
+    {
+        $records = Sections::model()->findAll(
+            array('select'=>'id', 'order'=>"id DESC")
+        );
+
+        foreach($records as $i=>$r)
+            if($r->id == $currentId)
+                return isset($records[$i+1]->id) ? $records[$i+1]->id : "";
+
+        return "";
+    }
 }
