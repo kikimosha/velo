@@ -1,64 +1,8 @@
-﻿
-/** Cross-browser console log */
-window.log = function(){
-  log.history = log.history || [];   // store logs to an array for reference
-  log.history.push(arguments);
-  arguments.callee = arguments.callee.caller;  
-  if(this.console) console.log( Array.prototype.slice.call(arguments) );
-};
-// make it safe to use console.log always
-(function(b){function c(){}for(var d="assert,count,debug,dir,dirxml,error,exception,group,groupCollapsed,groupEnd,info,log,markTimeline,profile,profileEnd,time,timeEnd,trace,warn".split(","),a;a=d.pop();)b[a]=b[a]||c})(window.console=window.console||{});
-
-
-
-
-/** Copyright (c) 2010 Brandon Aaron (http://brandonaaron.net)
- * Licensed under the MIT License (LICENSE.txt).
- *
- * Thanks to: http://adomas.org/javascript-mouse-wheel/ for some pointers.
- * Thanks to: Mathias Bank(http://www.mathias-bank.de) for a scope bug fix.
- * Thanks to: Seamus Leahy for adding deltaX and deltaY
- *
- * Version: 3.0.4
- *
- * Requires: 1.2.2+
- */
-(function(c){var a=["DOMMouseScroll","mousewheel"];c.event.special.mousewheel={setup:function(){if(this.addEventListener){for(var d=a.length;d;){this.addEventListener(a[--d],b,false)}}else{this.onmousewheel=b}},teardown:function(){if(this.removeEventListener){for(var d=a.length;d;){this.removeEventListener(a[--d],b,false)}}else{this.onmousewheel=null}}};c.fn.extend({mousewheel:function(d){return d?this.bind("mousewheel",d):this.trigger("mousewheel")},unmousewheel:function(d){return this.unbind("mousewheel",d)}});function b(i){var g=i||window.event,f=[].slice.call(arguments,1),j=0,h=true,e=0,d=0;i=c.event.fix(g);i.type="mousewheel";if(i.wheelDelta){j=i.wheelDelta/120}if(i.detail){j=-i.detail/3}d=j;if(g.axis!==undefined&&g.axis===g.HORIZONTAL_AXIS){d=0;e=-1*j}if(g.wheelDeltaY!==undefined){d=g.wheelDeltaY/120}if(g.wheelDeltaX!==undefined){e=-1*g.wheelDeltaX/120}f.unshift(i,j,e,d);return c.event.handle.apply(this,f)}})(jQuery);
-
-
-
-
-/**
- * jQuery throttle / debounce - v1.1 - 3/7/2010
- * http://benalman.com/projects/jquery-throttle-debounce-plugin/
- * 
- * Copyright (c) 2010 "Cowboy" Ben Alman
- * Dual licensed under the MIT and GPL licenses.
- * http://benalman.com/about/license/
- */
-(function(b,c){var $=b.jQuery||b.Cowboy||(b.Cowboy={}),a;$.throttle=a=function(e,f,j,i){var h,d=0;if(typeof f!=="boolean"){i=j;j=f;f=c}function g(){var o=this,m=+new Date()-d,n=arguments;function l(){d=+new Date();j.apply(o,n)}function k(){h=c}if(i&&!h){l()}h&&clearTimeout(h);if(i===c&&m>e){l()}else{if(f!==true){h=setTimeout(i?k:l,i===c?e-m:e)}}}if($.guid){g.guid=j.guid=j.guid||$.guid++}return g};$.debounce=function(d,e,f){return f===c?a(d,e,false):a(d,f,e!==false)}})(this);
-
-
-
-
-/**
- * jQuery.Preload - Multifunctional preloader
- * Copyright (c) 2008 Ariel Flesler - aflesler(at)gmail(dot)com
- * Dual licensed under MIT and GPL.
- * Date: 3/25/2009
- * @author Ariel Flesler
- * @version 1.0.8
- */
-;(function($){var h=$.preload=function(c,d){if(c.split)c=$(c);d=$.extend({},h.defaults,d);var f=$.map(c,function(a){if(!a)return;if(a.split)return d.base+a+d.ext;var b=a.src||a.href;if(typeof d.placeholder=='string'&&a.src)a.src=d.placeholder;if(b&&d.find)b=b.replace(d.find,d.replace);return b||null}),data={loaded:0,failed:0,next:0,done:0,total:f.length};if(!data.total)return finish();var g=$(Array(d.threshold+1).join('<img/>')).load(handler).error(handler).bind('abort',handler).each(fetch);function handler(e){data.element=this;data.found=e.type=='load';data.image=this.src;data.index=this.index;var a=data.original=c[this.index];data[data.found?'loaded':'failed']++;data.done++;if(d.enforceCache)h.cache.push($('<img/>').attr('src',data.image)[0]);if(d.placeholder&&a.src)a.src=data.found?data.image:d.notFound||a.src;if(d.onComplete)d.onComplete(data);if(data.done<data.total)fetch(0,this);else{if(g&&g.unbind)g.unbind('load').unbind('error').unbind('abort');g=null;finish()}};function fetch(i,a,b){if(a.attachEvent&&data.next&&data.next%h.gap==0&&!b){setTimeout(function(){fetch(i,a,1)},0);return!1}if(data.next==data.total)return!1;a.index=data.next;a.src=f[data.next++];if(d.onRequest){data.index=a.index;data.element=a;data.image=a.src;data.original=c[data.next-1];d.onRequest(data)}};function finish(){if(d.onFinish)d.onFinish(data)}};h.gap=14;h.cache=[];h.defaults={threshold:2,base:'',ext:'',replace:''};$.fn.preload=function(a){h(this,a);return this}})(jQuery);
-
-
-
-
-//var GATracking = {
+﻿//var GATracking = {
 //
 //
 //    trackPageView: function (page) {
-//        _gaq.push(['_trackPageview', page + '/desktop']);
+//        //_gaq.push(['_trackPageview', page + '/desktop']);
 //    },
 //
 //
@@ -97,8 +41,6 @@ window.log = function(){
 //        GATracking.trackPageView('/tracking/' + lang + '/' + alias);
 //
 //	}
-//
-//
 //};
 
 var Scaling = {
@@ -245,9 +187,9 @@ var Scaling = {
             width: Scaling.windowDimensions.width
         });
 
-        if (Velo.settings.element) {
+        if (GoTrip.settings.element) {
 
-            Velo.settings.element.find('img').css({
+            GoTrip.settings.element.find('img').css({
                 width: percent * 180,
                 height: percent * 800
             })
@@ -286,7 +228,7 @@ var Scaling = {
                 height: Scaling.windowDimensions.height
             });
 
-            Velo.moveDescription(false);
+            GoTrip.moveDescription(false);
 
         }
 
@@ -423,8 +365,8 @@ var Scaling = {
         CoverFlow.setCenterLine();
         CoverFlow.adjustNavSpeed();
 
-        Velo.setCenterLine();
-        Velo.adjustNavSpeed();
+        GoTrip.setCenterLine();
+        GoTrip.adjustNavSpeed();
 
     }
 
@@ -432,7 +374,7 @@ var Scaling = {
 };
 
 
-var VeloXCHelpers = {
+var GoTripXCHelpers = {
 
 
     userAgentString: navigator.userAgent.toLowerCase(),
@@ -514,6 +456,7 @@ var VeloXCHelpers = {
         overlay.css({
             width: Scaling.windowDimensions.width,
             height: Scaling.windowDimensions.height,
+            left: 270,
             display: 'block'
         });
 
@@ -528,73 +471,10 @@ var VeloXCHelpers = {
     removeOverlay: function() {
         $('#overlay').unbind().removeClass().hide();
     },
-    
-	
-    movieElement: null,
-    
-	
-    playMovie: function(id, lang) {
 
-        var videoSrc = '/assets/movies/' + id + '_' + lang;
-
-        // #GATracking (lang, adventure-id, scene-id)
-        GATracking.trackAdventure(VeloXCHelpers.lang, CoverFlow.settings.element.find('.expand').index() + 1, 1);
-
-        VeloXCHelpers.addOverlay({ classname: 'transparent', click: VeloXCHelpers.closeMovie });
-
-        $('#videoplayer').addClass('active').css({
-            left: (Scaling.windowDimensions.width / 2) - (768 / 2),
-            top: (Scaling.windowDimensions.height / 2) - (432 / 2) + $(window).scrollTop()
-        });
-
-        if (!VeloXCHelpers.movieElement) {
-        
-            VeloXCHelpers.movieElement = new MediaElementPlayer('#mediaelement', {
-                success: function(video) {
-                    video.setSrc([{ src: videoSrc + '.mp4', type: 'video/mp4' }, { src: videoSrc + '.webm', type: 'video/webm' }]);
-                    video.load();
-                    video.play();
-
-                    // Chrome Fix... have to do this twice the first time
-                    if (VeloXCHelpers.userAgentString.indexOf('chrome') > -1) {
-                        setTimeout(function(){
-                            VeloXCHelpers.movieElement.setSrc([{ src: videoSrc + '.mp4', type: 'video/mp4' }, { src: videoSrc + '.webm', type: 'video/webm' }]);
-                            VeloXCHelpers.movieElement.load();
-                            VeloXCHelpers.movieElement.play();
-                        }, 1);	
-                    }
-
-                }
-            });
-        }
-        
-        else {
-        
-            VeloXCHelpers.movieElement.setSrc([{ src: videoSrc + '.mp4', type: 'video/mp4' }, { src: videoSrc + '.webm', type: 'video/webm' }]);
-            VeloXCHelpers.movieElement.load();
-            VeloXCHelpers.movieElement.play();
-            
-        }
-
-    },
-    
-	
-    closeMovie: function() {
-
-        $('#videoplayer').removeClass('active');
-        VeloXCHelpers.removeOverlay();
-
-        if (VeloXCHelpers.movieElement) {
-            VeloXCHelpers.movieElement.setCurrentTime(0);
-            VeloXCHelpers.movieElement.pause();
-        }
-
-    },
-    
-	
     cssAnimation: function(object, cssProperties, duration, callback, bodyClass) {
-    	//console.log(Modernizr.prefixed('transition'));
-        var transEndEventName = VeloXCHelpers.transEndEventNames[Modernizr.prefixed('transition')];
+
+        var transEndEventName = GoTripXCHelpers.transEndEventNames[Modernizr.prefixed('transition')];
 
         duration = duration || 500;
         bodyClass = bodyClass || false;
@@ -647,13 +527,13 @@ var VeloXCHelpers = {
 
         (function animateLoader() {
 
-            VeloXCHelpers.PNGLoaderTimeout = setTimeout(function() {
+            GoTripXCHelpers.PNGLoaderTimeout = setTimeout(function() {
                 if (left < -settings.reset) {
                     if (settings.loop) {
                         loader.css('backgroundPosition', '0 0');
                     }
                     else {
-                        clearTimeout(VeloXCHelpers.PNGLoaderTimeout);
+                        clearTimeout(GoTripXCHelpers.PNGLoaderTimeout);
                         return;
                     }
                 }
@@ -681,7 +561,7 @@ var VeloXCHelpers = {
             }
         }
 
-        clearTimeout(VeloXCHelpers.PNGLoaderTimeout);
+        clearTimeout(GoTripXCHelpers.PNGLoaderTimeout);
 
         if (loader.css('backgroundPosition')) {
             left = parseInt(loader.css('backgroundPosition').split(' ')[0], 10);
@@ -697,9 +577,9 @@ var VeloXCHelpers = {
 
         // If it's an animation that is not allowed to loop: Finish the animation, then hide
         (function animateLoader() {
-            VeloXCHelpers.PNGLoaderTimeout = setTimeout(function() {
+            GoTripXCHelpers.PNGLoaderTimeout = setTimeout(function() {
                 if (left < -settings.reset) {
-                    clearTimeout(VeloXCHelpers.PNGLoaderTimeout);
+                    clearTimeout(GoTripXCHelpers.PNGLoaderTimeout);
                     setTimeout(hideLoader, 200);
                     return;
                 }
@@ -742,10 +622,11 @@ var VeloXCHelpers = {
         $('#cover-flow a').removeClass('visible').slice(firstIndex, lastIndex).addClass('visible');
 
     },
-    
-	
+
+
     getNextScrollPosition: function(e) {
 
+        log('getNextScrollPosition');
         var scrollPos = $(window).scrollTop(),
             nextScrollPos;
 
@@ -768,7 +649,7 @@ var VeloXCHelpers = {
 	
     getPageTitle: function(type, id) {
 		
-        var prefix = 'Velo Travels',
+        var prefix = 'Go-Trip',
             separator = ' - ',
             title = prefix;
 
@@ -778,36 +659,23 @@ var VeloXCHelpers = {
             case 'open-page':
                 title += separator + $('#menu nav').find('a:nth-child(' + id + ')').text();
                 break;
-            case 'close-car':
-                title += separator + $('#menu').find('a:nth-child(2)').text();
+            case 'close-section':
                 break;
-            case 'open-car':
-                title += separator + $('#car-covers').find('li:nth-child(' + id + ') i').text();
+            case 'open-section':
+                title += separator + ' ' + $('#cover-flow').find('a:nth-child(' + id + ') i').text();
                 break;
-            case 'close-adventure':
+            case 'slide-section':
+                title += separator + ' ' + $('#cover-flow').find('a:nth-child(' + id + ') i').text();
                 break;
-            case 'open-adventure':
-                title += separator + 'No ' + id + ' ' + $('#cover-flow').find('a:nth-child(' + id + ') i:first').text() + ', ' + $('#cover-flow').find('a:nth-child(' + id + ') i:last').text();
-                break;
-            case 'slide-car':
-                title += separator + $('#car-covers').find('li:nth-child(' + (id) + ') i').text();
-                break;
-            case 'slide-adventure':
-                title += separator + 'No ' + id + ' ' + $('#cover-flow').find('a:nth-child(' + id + ') i:first').text() + ', ' + $('#cover-flow').find('a:nth-child(' + id + ') i:last').text();
-                break;
-            case 'map-to-adventure':
-                title += separator + 'No ' + id + ' ' + $('#cover-flow').find('a:nth-child(' + id + ') i:first').text() + ', ' + $('#cover-flow').find('a:nth-child(' + id + ') i:last').text();
+            case 'map-to-section':
+                title += separator + ' ' + $('#cover-flow').find('a:nth-child(' + id + ') i').text();
                 break;
         }
-
         return title;
-
     }
-    
-	
 };
 
-var VeloKeyNav = {
+var GoTripKeyNav = {
 
 
     coverFlowKeyCounter: 0,
@@ -817,9 +685,9 @@ var VeloKeyNav = {
         $(document).unbind('keydown keyup')
         .bind('keydown', function(e) {
         
-            if (e.which === 27 || e.which === 13 || (e.which >= 37 && e.which <= 40)) { 
+            if (e.which === 27 || e.which === 13 || (e.which >= 37 && e.which <= 40)) {
                 if (!$('#overlay').is(':visible')) {
-                    VeloXCHelpers.addOverlay({ mousemove: VeloXCHelpers.removeOverlay });	
+                    GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });	
                 }
                 e.preventDefault();
             }
@@ -827,15 +695,13 @@ var VeloKeyNav = {
         })
         .bind('keyup', function(e) {
 
-            var coverFlow = (settings.type === 'cars' || settings.type === 'v40cc')? Velo.settings.element : CoverFlow.settings.element,
+            var coverFlow = CoverFlow.settings.element,
                 activeCover = coverFlow.find('.active'),
                 scrollPos = coverFlow.scrollLeft(),
                 scrollPosMax = 180 * settings.covers - Scaling.windowDimensions.width + 270,
                 coversOnScreen = Math.floor((Scaling.windowDimensions.width - 270) / CoverFlow.settings.coverWidth),
                 startIndex = Math.ceil(scrollPos / 180),
                 index;
-
-
 
             if (coverFlow.is(':animated')) {
                 return;
@@ -846,97 +712,76 @@ var VeloKeyNav = {
                     //Enter
                     if (activeCover.length) {
                         index = activeCover.removeClass('active').index();
-                        if (settings.type === 'cars' || settings.type === 'v40cc') {
-                            if (index > 0) {
-                                History.pushState({ type: 'open-car', id: index, index: index }, VeloXCHelpers.getPageTitle('open-car', index + 1), '/' + settings.type + '/' + index);
-                            }
-                            else {
-                                window.location = activeCover.find('a').attr('href');
-                            }
-                        }
-                        else {
-                            History.pushState({ type: 'open-adventure', id: (index + 1), index: index }, VeloXCHelpers.getPageTitle('open-adventure', index + 1), '/section/' + (index + 1));
-                        }
+                        History.pushState({ type: 'open-adventure', id: (index + 1), index: index }, GoTripXCHelpers.getPageTitle('open-adventure', index + 1), '/section/' + (index + 1));
                     }
                     break;
                 case 37:
                     //Left
                     if (activeCover.length) {
                         if (activeCover.index() === 0) {
-                            VeloKeyNav.coverFlowKeyCounter = 0;
+                            GoTripKeyNav.coverFlowKeyCounter = 0;
                         }
                         else {
                             activeCover.removeClass('active').prev().addClass('active');
-                            VeloKeyNav.coverFlowKeyCounter -= 1;	
+                            GoTripKeyNav.coverFlowKeyCounter -= 1;	
                         }
                     }
                     else {
-                        if (settings.type === 'cars' || settings.type === 'v40cc') {
-                            coverFlow.find('li').eq(startIndex).addClass('active');
-                        }
-                        else {
-                            coverFlow.find('a').eq(startIndex).addClass('active');
-                        }
+                        coverFlow.find('a').eq(startIndex).addClass('active');
                     }
                     break;
                 case 39:
                     //Right
                     if (activeCover.length) {
                         if (activeCover.index() === (settings.covers - 1)) {
-                            VeloKeyNav.coverFlowKeyCounter = coversOnScreen - 1;
+                            GoTripKeyNav.coverFlowKeyCounter = coversOnScreen - 1;
                         }
                         else {
                             activeCover.removeClass('active').next().addClass('active');
-                            VeloKeyNav.coverFlowKeyCounter += 1;	
+                            GoTripKeyNav.coverFlowKeyCounter += 1;	
                         }
                     }
                     else {
-                        if (settings.type === 'cars' || settings.type === 'v40cc') {
-                            coverFlow.find('li').eq(startIndex).addClass('active');
-                        }
-                        else {
-                            coverFlow.find('a').eq(startIndex).addClass('active');
-                        }
+                        coverFlow.find('a').eq(startIndex).addClass('active');
                     }
                     break;
             }
 
-            //log('Before: ' + VeloKeyNav.coverFlowKeyCounter);
-            if (VeloKeyNav.coverFlowKeyCounter < 0) {
-                VeloXCHelpers.unbindOverlay();
+            log('Before: ' + GoTripKeyNav.coverFlowKeyCounter);
+            if (GoTripKeyNav.coverFlowKeyCounter < 0) {
+                GoTripXCHelpers.unbindOverlay();
                 coverFlow.animate({ scrollLeft: scrollPos - (coversOnScreen * 180) }, { 
                     duration: 500, 
                     easing: 'easeOutQuad', 
                     queue: false, 
                     complete: function() {
-                        VeloXCHelpers.addOverlay({ mousemove: VeloXCHelpers.removeOverlay });	
+                        GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });	
                         scrollPos = coverFlow.scrollLeft();
                         if (scrollPos === 0) {
-                            VeloKeyNav.coverFlowKeyCounter = activeCover.index();
+                            GoTripKeyNav.coverFlowKeyCounter = activeCover.index();
                         }
-                        VeloXCHelpers.setSeason();
+                        GoTripXCHelpers.setSeason();
                     }
                 });
-                VeloKeyNav.coverFlowKeyCounter = coversOnScreen - 1;
-            }
-            else if (VeloKeyNav.coverFlowKeyCounter >= coversOnScreen) {
-                VeloXCHelpers.unbindOverlay();
+                GoTripKeyNav.coverFlowKeyCounter = coversOnScreen - 1;
+            } else if (GoTripKeyNav.coverFlowKeyCounter >= coversOnScreen) {
+                GoTripXCHelpers.unbindOverlay();
                 coverFlow.animate({ scrollLeft: scrollPos + (coversOnScreen * 180) }, {
                     duration: 500, 
                     easing: 'easeOutQuad', 
                     queue: false, 
                     complete: function() {
-                        VeloXCHelpers.addOverlay({ mousemove: VeloXCHelpers.removeOverlay });	
+                        GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });	
                         scrollPos = coverFlow.scrollLeft();
                         if (scrollPos === scrollPosMax) {
-                            VeloKeyNav.coverFlowKeyCounter = coversOnScreen - 1 - ((settings.covers - 1) - activeCover.index());
+                            GoTripKeyNav.coverFlowKeyCounter = coversOnScreen - 1 - ((settings.covers - 1) - activeCover.index());
                         }
-                        VeloXCHelpers.setSeason();
+                        GoTripXCHelpers.setSeason();
                     } 
                 });
-                VeloKeyNav.coverFlowKeyCounter = 0;
+                GoTripKeyNav.coverFlowKeyCounter = 0;
             }
-            //log('After: ' + VeloKeyNav.coverFlowKeyCounter);	
+            log('After: ' + GoTripKeyNav.coverFlowKeyCounter);
         });
 	},
 	
@@ -949,9 +794,9 @@ var VeloKeyNav = {
         .bind('keyup', function(e) {
 
             var state = History.getState(),
-                id = (settings.type === 'cars' || settings.type === 'v40cc')? parseInt(state.cleanUrl.split('/' + settings.type + '/').pop(), 10) : parseInt(state.cleanUrl.split('/section/').pop(), 10),
+                id = parseInt(state.cleanUrl.split('/section/').pop(), 10),
                 scrollPos = $(window).scrollTop(),
-                nextScrollPos = VeloXCHelpers.getNextScrollPosition(e),
+                nextScrollPos = GoTripXCHelpers.getNextScrollPosition(e),
                 duration = nextScrollPos * 1.618;
 
             // Disable advenure-key-nav in these occasions
@@ -961,23 +806,15 @@ var VeloKeyNav = {
 
             switch (e.which) {
                 case 27:
-                    if (settings.type === 'cars' || settings.type === 'v40cc') {
-                        History.pushState({ type: 'close-car' }, VeloXCHelpers.getPageTitle('close-car'), '/' + settings.type);
-                    }
-                    else {
-                        History.pushState({ type: 'close-adventure' }, VeloXCHelpers.getPageTitle('close-adventure'), '/');
-                    }
+                    History.pushState({ type: 'close-section' }, GoTripXCHelpers.getPageTitle('close-section'), '/');
                     break;
                 case 37:
-                    if ((settings.type === 'cars' || settings.type === 'v40cc') && id > 1) {
-                        History.pushState({ type: 'slide-car', url: '/' + settings.type +'/' + (id - 1), direction: 'prev' }, VeloXCHelpers.getPageTitle('slide-car', id), '/' + settings.type + '/' + (id - 1));
-                    }
-                    else if (settings.type === 'adventure' && id > 1) {
-                        History.pushState({ type: 'slide-adventure', url: '/section/' + (id - 1), direction: 'prev' }, VeloXCHelpers.getPageTitle('slide-adventure', id - 1), '/section/' + (id - 1));
+                    if (id > 1) {
+                        History.pushState({ type: 'slide-section', url: '/section/' + (id - 1), direction: 'prev' }, GoTripXCHelpers.getPageTitle('slide-section', id - 1), '/section/' + (id - 1));
                     }
                     break;
                 case 38:
-                    if (settings.type === 'adventure' && scrollPos !== 0) { /* This check is needed on mac/safari */
+                    if (settings.type === 'section' && scrollPos !== 0) { /* This check is needed on mac/safari */
                         $('html, body').firstScrollable().stop().animate({ scrollTop: scrollPos - nextScrollPos }, { 
                             duration: duration, 
                             easing: 'easeInOutQuad', 
@@ -986,24 +823,12 @@ var VeloKeyNav = {
                     }
                     break;
                 case 39:
-                    if (settings.type === 'cars') {
-                        if (id < Scaling.carCoverOffsets.length - 1) {
-                            History.pushState({ type: 'slide-car', url: '/' + settings.type +'/' + (id + 1), direction: 'next' }, VeloXCHelpers.getPageTitle('slide-car', id + 2), '/' + settings.type + '/' + (id + 1));
-                        }
-                    }
-					else if (settings.type === 'v40cc') {
-                        if (id < Scaling.v40CoverOffsets.length - 1) {
-                            History.pushState({ type: 'slide-car', url: '/' + settings.type +'/' + (id + 1), direction: 'next' }, VeloXCHelpers.getPageTitle('slide-car', id + 2), '/' + settings.type + '/' + (id + 1));
-                        }
-                    }
-                    else {
-                        if ($('a#next').length) {
-                            History.pushState({ type: 'slide-adventure', url: '/section/' + (id + 1), direction: 'next' }, VeloXCHelpers.getPageTitle('slide-adventure', id + 1), '/section/' + (id + 1));
-                        }
+                    if ($('a#next').length) {
+                        History.pushState({ type: 'slide-section', url: '/section/' + (id + 1), direction: 'next' }, GoTripXCHelpers.getPageTitle('slide-section', id + 1), '/section/' + (id + 1));
                     }
                     break;
                 case 40:
-                    if (settings.type === 'adventure') {
+                    if (settings.type === 'section') {
                         $('html, body').firstScrollable().stop().animate({ scrollTop: scrollPos + nextScrollPos }, { 
                             duration: duration, 
                             easing: 'easeInOutQuad', 
@@ -1012,7 +837,7 @@ var VeloKeyNav = {
                     }
                     break;
                 case 84:
-                    if (settings.type === 'adventure' && scrollPos !== 0) { /* This check is needed on mac/safari */
+                    if (settings.type === 'section' && scrollPos !== 0) { /* This check is needed on mac/safari */
                         Adventure.scrollToTop();
                     }
                     break;
@@ -1025,7 +850,7 @@ var VeloKeyNav = {
     
 };
 
-var VeloCompability = {
+var GoTripCompability = {
 
 
     fixGeneratedContent: function() {
@@ -1048,14 +873,12 @@ var Page = {
     },
 
     open: function(page, cb) {
-		
-        
 
-        GATracking.trackPage(VeloXCHelpers.lang, page);
+        //GATracking.trackPage(GoTripXCHelpers.lang, page);
 
         $('body').addClass('loading-page');
-        VeloXCHelpers.showPNGLoader($('body'));
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.showPNGLoader($('body'));
+        GoTripXCHelpers.addOverlay();
 		
 		var req = $.ajax('/api/pageHTML/' + page, { 
 		dataType : 'html', 
@@ -1063,8 +886,8 @@ var Page = {
 		cache: false,
 		  error: function (xhr, ajaxOptions, thrownError) {
 			$('body').removeClass('loading-page');
-			VeloXCHelpers.hidePNGLoader();
-			VeloXCHelpers.removeOverlay();
+			GoTripXCHelpers.hidePNGLoader();
+			GoTripXCHelpers.removeOverlay();
 		  }
 		});
 		
@@ -1100,10 +923,10 @@ var Page = {
                 AdventureMap.init();
             }
             else if (page === 'cars') {
-                Velo.init('cars');
+                GoTrip.init('cars');
             }
             else if (page === 'v40cc') {
-                Velo.init('v40cc');
+                GoTrip.init('v40cc');
             }
             else if (page === 'offer') {
                 Offer.init();
@@ -1112,7 +935,7 @@ var Page = {
             $.preload('.page-content img', {
                 onFinish: function() {
                     $('body').removeClass('loading-page');
-                    VeloXCHelpers.hidePNGLoader();
+                    GoTripXCHelpers.hidePNGLoader();
                     Page.playIntro(page, cb);
                 }
             });
@@ -1156,18 +979,16 @@ var Page = {
         // Reset scrollLeft position if we load the map page
         $('#map-wrapper').scrollLeft((Scaling.scalingPercentage() * 1185) / 2);
 
-        console.log("playIntro");
-
-        //VeloXCHelpers.cssAnimation(Page.settings.element, {'transform': 'translateX(270px)'}, 450, function(){Page.introCallback();}, 'play-page-intro');
-        VeloXCHelpers.cssAnimation(Page.settings.element, { left: leftValue }, 450, function() {
-            VeloXCHelpers.removeOverlay();
+        //GoTripXCHelpers.cssAnimation(Page.settings.element, {'transform': 'translateX(270px)'}, 450, function(){Page.introCallback();}, 'play-page-intro');
+        GoTripXCHelpers.cssAnimation(Page.settings.element, { left: leftValue }, 450, function() {
+            GoTripXCHelpers.removeOverlay();
 
             if ($.isFunction(cb)) {
                 cb();
             }
 
             Page.settings.element.find('.page-close').bind('click', function(e) {
-                History.pushState({ type: 'close-page' }, VeloXCHelpers.getPageTitle('close-page'), '/');
+                History.pushState({ type: 'close-page' }, GoTripXCHelpers.getPageTitle('close-page'), '/');
                 e.preventDefault();
             });			
         }, 'play-page-intro');
@@ -1191,25 +1012,25 @@ var Page = {
                 Offer.out();
             }
 
-            //VeloXCHelpers.cssAnimation(Page.settings.element, {'transform': 'translateX('+(270 -(Scaling.windowDimensions.width - 270))+')'}, 450, function(){
-            VeloXCHelpers.cssAnimation(Page.settings.element, { left: 270 - (Scaling.windowDimensions.width - leftValue) }, 450, function() {
+            //GoTripXCHelpers.cssAnimation(Page.settings.element, {'transform': 'translateX('+(270 -(Scaling.windowDimensions.width - 270))+')'}, 450, function(){
+            GoTripXCHelpers.cssAnimation(Page.settings.element, { left: 270 - (Scaling.windowDimensions.width - leftValue) }, 450, function() {
                 Page.settings.element.empty().hide();
 
                 // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
-                if (parseInt(VeloXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
+                if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
 
                     scrollLeft = CoverFlow.settings.element.scrollLeft();
                     firstIndex = Math.floor(scrollLeft / 180);
 
                     if (CoverFlow.settings.element.find('.active').length) {
-                        VeloKeyNav.coverFlowKeyCounter = CoverFlow.settings.element.find('.active').index() - firstIndex - 1;
+                        GoTripKeyNav.coverFlowKeyCounter = CoverFlow.settings.element.find('.active').index() - firstIndex - 1;
                     }
 
-                    VeloKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
+                    GoTripKeyNav.coverFlowKeyNav({type: 'section', covers: 6});
 
                 }
 
-                VeloXCHelpers.removeOverlay();
+                GoTripXCHelpers.removeOverlay();
 
                 if ($.isFunction(cb)) { 
                     cb();
@@ -1223,7 +1044,7 @@ var Page = {
     
 };
 
-var Velo = {
+var GoTrip = {
 
 
     settings: {
@@ -1242,12 +1063,12 @@ var Velo = {
 	
 	
     setWrapperWidth: function() {
-        this.settings.coverWrapper.width(Velo.settings.coverCount * Velo.settings.coverWidth);
+        this.settings.coverWrapper.width(GoTrip.settings.coverCount * GoTrip.settings.coverWidth);
     },
 	
 	
     setCenterLine: function() {
-        Velo.settings.centerLine = (Scaling.windowDimensions.width - 270) / 2;
+        GoTrip.settings.centerLine = (Scaling.windowDimensions.width - 270) / 2;
     },
 	
 	
@@ -1255,12 +1076,12 @@ var Velo = {
 
         var stageWidth, maxScroll;
 
-        if (Velo.settings.coverWrapper) {
+        if (GoTrip.settings.coverWrapper) {
 
             stageWidth = Scaling.windowDimensions.width - 270;
-            maxScroll = Velo.settings.coverWrapper.width() - stageWidth;		
+            maxScroll = GoTrip.settings.coverWrapper.width() - stageWidth;		
 
-            Velo.settings.adjustedNavSpeed = Velo.settings.navSpeed * (1 + stageWidth / maxScroll);
+            GoTrip.settings.adjustedNavSpeed = GoTrip.settings.navSpeed * (1 + stageWidth / maxScroll);
 
         }
 
@@ -1269,15 +1090,15 @@ var Velo = {
 	
     moveCoverFlow: function(mousePos) {	
     
-        var delta = Math.abs(1 - mousePos / Velo.settings.centerLine);
+        var delta = Math.abs(1 - mousePos / GoTrip.settings.centerLine);
 
         (function moveCovers() {
-            Velo.settings.timer = setTimeout(function() {
-                if (mousePos > Velo.settings.centerLine) {
-                    Velo.settings.element[0].scrollLeft += (Velo.settings.adjustedNavSpeed * delta);
+            GoTrip.settings.timer = setTimeout(function() {
+                if (mousePos > GoTrip.settings.centerLine) {
+                    GoTrip.settings.element[0].scrollLeft += (GoTrip.settings.adjustedNavSpeed * delta);
                 }
                 else {
-                    Velo.settings.element[0].scrollLeft -= (Velo.settings.adjustedNavSpeed * delta);
+                    GoTrip.settings.element[0].scrollLeft -= (GoTrip.settings.adjustedNavSpeed * delta);
                 }
                 moveCovers();
             }, 11);
@@ -1288,17 +1109,17 @@ var Velo = {
     bindEvents: function() {
 
         this.settings.element.bind('mousemove', $.throttle(100, true, function(e) { 
-            clearTimeout(Velo.settings.timer);
-            Velo.moveCoverFlow(e.pageX - 270); 
+            clearTimeout(GoTrip.settings.timer);
+            GoTrip.moveCoverFlow(e.pageX - 270); 
         }))
         .bind('mouseenter mouseleave mousedown', function() { 
-            clearTimeout(Velo.settings.timer);
+            clearTimeout(GoTrip.settings.timer);
             $('.car-covers').find('.active').removeClass('active');
-            VeloKeyNav.coverFlowKeyCounter = 0;
+            GoTripKeyNav.coverFlowKeyCounter = 0;
         })
         .bind('mousewheel', function(e, delta){
             e.preventDefault();
-            clearTimeout(Velo.settings.timer);
+            clearTimeout(GoTrip.settings.timer);
             delta = (delta < 0)? -1 : 1;
             this.scrollLeft -= (delta * 20);
         })
@@ -1307,23 +1128,23 @@ var Velo = {
             id = cover.attr('href').split('/').pop(),
             index = cover.closest('li').index();
 
-            clearTimeout(Velo.settings.timer);
+            clearTimeout(GoTrip.settings.timer);
 
             if (index === 0) {
                 return;
             }
             else {
-                History.pushState({ type: 'open-car', id: id, index: index }, VeloXCHelpers.getPageTitle('open-car', parseInt(index, 10) + 1), '/' + Velo.settings.pagetype + '/' + id);
+                History.pushState({ type: 'open-car', id: id, index: index }, GoTripXCHelpers.getPageTitle('open-car', parseInt(index, 10) + 1), '/' + GoTrip.settings.pagetype + '/' + id);
             }
 
             e.preventDefault();
         });
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
-        if (parseInt(VeloXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
-            VeloKeyNav.coverFlowKeyCounter = 0;
+        if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
+            GoTripKeyNav.coverFlowKeyCounter = 0;
 
-            	VeloKeyNav.coverFlowKeyNav({type: Velo.settings.pagetype, covers: 11});
+            	GoTripKeyNav.coverFlowKeyNav({type: GoTrip.settings.pagetype, covers: 11});
         }
 
     },
@@ -1370,21 +1191,21 @@ var Velo = {
     open: function(car) {
         var id = car.id,
             index = car.index,
-            cover = Velo.settings.element.find('li').eq(index),
-            req = $.ajax('/api/' + Velo.settings.pagepath + '/' + id, { dataType : 'html', type : 'GET', cache: false }),
+            cover = GoTrip.settings.element.find('li').eq(index),
+            req = $.ajax('/api/' + GoTrip.settings.pagepath + '/' + id, { dataType : 'html', type : 'GET', cache: false }),
             percent = Scaling.scalingPercentage(),
             leftValue;
 
 
 
-        Velo.settings.scrollLeft = Velo.settings.element.scrollLeft();
-        leftValue = ((180 * index) + 270 - Velo.settings.scrollLeft) - ((percent * 1280) * Velo.settings.offsets[index]);
+        GoTrip.settings.scrollLeft = GoTrip.settings.element.scrollLeft();
+        leftValue = ((180 * index) + 270 - GoTrip.settings.scrollLeft) - ((percent * 1280) * GoTrip.settings.offsets[index]);
 
         // Prevent mousemove from hiding the overlay (webkit)
-        VeloXCHelpers.unbindOverlay();
+        GoTripXCHelpers.unbindOverlay();
 
         // If we open with click-event, the overlay has not been added yet.
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
 
         CoverFlow.settings.loader.detach().appendTo(cover).show().animate({ width: 180 }, { duration: 5000, queue: false, easing: 'easeInOutQuad' });
 
@@ -1398,7 +1219,7 @@ var Velo = {
                 left: leftValue
             });
 
-            VeloCompability.fixGeneratedContent();
+            GoTripCompability.fixGeneratedContent();
 
             //$.preload('.adventure-content img', {
             $('.car-content img').preload({ 
@@ -1410,7 +1231,7 @@ var Velo = {
                         complete: function() {
                             $('body').removeClass('loading-adventure');
                             CoverFlow.settings.loader.hide().width(0);
-                            Velo.playIntro(cover, index);
+                            GoTrip.playIntro(cover, index);
                         }
                     });
                 }
@@ -1424,8 +1245,8 @@ var Velo = {
     playIntro: function(cover, index) {
 
         var duration = 0.8 * 1000,
-            leftValue = (-180 * index) + Velo.settings.scrollLeft,
-            expandWidth = Velo.settings.coverWrapper.width() + Scaling.windowDimensions.width;
+            leftValue = (-180 * index) + GoTrip.settings.scrollLeft,
+            expandWidth = GoTrip.settings.coverWrapper.width() + Scaling.windowDimensions.width;
 
         $('#current-cover').show();
         cover.addClass('expand').find('img').hide();
@@ -1433,10 +1254,10 @@ var Velo = {
         // #HACK Make animations non-instant
         //$(window).scrollTop(0); 
 
-        VeloXCHelpers.cssAnimation(Velo.settings.coverWrapper, { left: leftValue, width: expandWidth }, duration);
-        VeloXCHelpers.cssAnimation(cover, { width: Scaling.windowDimensions.width }, duration);
-        VeloXCHelpers.cssAnimation($('#current-cover').find('.scene img'), { left: 0 }, duration, Velo.introCallback, 'play-car-intro');
-        VeloXCHelpers.cssAnimation($('#sidebar'), { left: -270 }, duration);
+        GoTripXCHelpers.cssAnimation(GoTrip.settings.coverWrapper, { left: leftValue, width: expandWidth }, duration);
+        GoTripXCHelpers.cssAnimation(cover, { width: Scaling.windowDimensions.width }, duration);
+        GoTripXCHelpers.cssAnimation($('#current-cover').find('.scene img'), { left: 0 }, duration, GoTrip.introCallback, 'play-car-intro');
+        GoTripXCHelpers.cssAnimation($('#sidebar'), { left: -270 }, duration);
 
     },
 	
@@ -1444,34 +1265,34 @@ var Velo = {
     playOutro: function() {
 
         var duration = 0.8 * 1000,
-            cover = Velo.settings.element.find('.expand'),
+            cover = GoTrip.settings.element.find('.expand'),
             index = cover.index(),
-            leftValue = ((180 * index) + 270 - Velo.settings.scrollLeft) - ((Scaling.scalingPercentage() * 1280) * Velo.settings.offsets[index]),
-            maxScroll = (Velo.settings.coverCount * 180) - (Scaling.windowDimensions.width - 270), /* (Scaling.windowDimensions.width - 270) */
-            coverWrapperWidth = Velo.settings.coverCount * Velo.settings.coverWidth;
+            leftValue = ((180 * index) + 270 - GoTrip.settings.scrollLeft) - ((Scaling.scalingPercentage() * 1280) * GoTrip.settings.offsets[index]),
+            maxScroll = (GoTrip.settings.coverCount * 180) - (Scaling.windowDimensions.width - 270), /* (Scaling.windowDimensions.width - 270) */
+            coverWrapperWidth = GoTrip.settings.coverCount * GoTrip.settings.coverWidth;
 
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
 
         // Fix for when user slides "prev" and the cover-wrapper has not scrolled past the first cover-item
-        if (Velo.settings.scrollLeft < 0 && VeloXCHelpers.prevHistoryState.data.direction === 'prev') {
-            leftValue += Velo.settings.scrollLeft;
+        if (GoTrip.settings.scrollLeft < 0 && GoTripXCHelpers.prevHistoryState.data.direction === 'prev') {
+            leftValue += GoTrip.settings.scrollLeft;
         }
 
         // Fix for when user slides "next" and the cover-wrapper has not scrolled past the last cover-item
-        if (Velo.settings.scrollLeft > maxScroll && VeloXCHelpers.prevHistoryState.data.direction === 'next') {
-            leftValue += Velo.settings.scrollLeft - maxScroll;
+        if (GoTrip.settings.scrollLeft > maxScroll && GoTripXCHelpers.prevHistoryState.data.direction === 'next') {
+            leftValue += GoTrip.settings.scrollLeft - maxScroll;
         }
 
         //Added to support playOutro after navigating sideways
         $('#current-cover').find('.car-content').css('zIndex', 3332);
 
-        Velo.settings.element.show().scrollLeft(Velo.settings.scrollLeft);
+        GoTrip.settings.element.show().scrollLeft(GoTrip.settings.scrollLeft);
         $('.car-content .description').hide();
 
-        VeloXCHelpers.cssAnimation(Velo.settings.coverWrapper, { left: 270, width: coverWrapperWidth }, duration);
-        VeloXCHelpers.cssAnimation(cover, { width: 180 }, duration);
-        VeloXCHelpers.cssAnimation($('#current-cover').find('.scene img'), { left: leftValue }, duration, Velo.outroCallback, 'play-car-outro');
-        VeloXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
+        GoTripXCHelpers.cssAnimation(GoTrip.settings.coverWrapper, { left: 270, width: coverWrapperWidth }, duration);
+        GoTripXCHelpers.cssAnimation(cover, { width: 180 }, duration);
+        GoTripXCHelpers.cssAnimation($('#current-cover').find('.scene img'), { left: leftValue }, duration, GoTrip.outroCallback, 'play-car-outro');
+        GoTripXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
 
     },
 	
@@ -1492,31 +1313,31 @@ var Velo = {
             height: Scaling.windowDimensions.height
         });
 
-        Velo.settings.element.hide();
-        VeloXCHelpers.removeOverlay();
-        Velo.initNav();
+        GoTrip.settings.element.hide();
+        GoTripXCHelpers.removeOverlay();
+        GoTrip.initNav();
 
     },
 	
 	
     outroCallback: function() {
 
-        var scrollLeft = Velo.settings.element.scrollLeft(),
+        var scrollLeft = GoTrip.settings.element.scrollLeft(),
             firstIndex = Math.floor(scrollLeft / 180);
 
         $('body').removeClass('car-view');
         $('#current-cover').empty().hide();
-        Velo.settings.element.find('.expand img').show().end().find('.expand').removeClass('expand').addClass('active').removeAttr('style');
+        GoTrip.settings.element.find('.expand img').show().end().find('.expand').removeClass('expand').addClass('active').removeAttr('style');
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
-        if (parseInt(VeloXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
-            VeloKeyNav.coverFlowKeyCounter = Velo.settings.element.find('.active').index() - firstIndex - 1;
-            VeloKeyNav.coverFlowKeyNav({type: Velo.settings.pagetype, covers: 11});
+        if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
+            GoTripKeyNav.coverFlowKeyCounter = GoTrip.settings.element.find('.active').index() - firstIndex - 1;
+            GoTripKeyNav.coverFlowKeyNav({type: GoTrip.settings.pagetype, covers: 11});
         }
 
-        //setTimeout(VeloXCHelpers.removeOverlay, 500);
-        Velo.settings.element[0].scrollLeft += 1; // Fix for older browsers
-        VeloXCHelpers.addOverlay({ mousemove: VeloXCHelpers.removeOverlay });
+        //setTimeout(GoTripXCHelpers.removeOverlay, 500);
+        GoTrip.settings.element[0].scrollLeft += 1; // Fix for older browsers
+        GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
 
     },
 	
@@ -1528,10 +1349,10 @@ var Velo = {
             index = id,
             delta = (direction === 'next')? -1 : 1,
             leftValue = (delta === -1)? Scaling.windowDimensions.width : 0,	
-            req = $.ajax('/api/' + Velo.settings.pagepath + '/' + id, { dataType: 'html', type: 'GET', cache: false });
+            req = $.ajax('/api/' + GoTrip.settings.pagepath + '/' + id, { dataType: 'html', type: 'GET', cache: false });
 
         // Disable the page while loading...
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
 
         req.success(function(resp) {
 
@@ -1540,25 +1361,25 @@ var Velo = {
 
             adventureWrapper.append(resp);
 
-            VeloCompability.fixGeneratedContent();
+            GoTripCompability.fixGeneratedContent();
 
             //Added to support playOutro after navigating sideways
-            Velo.settings.scrollLeft = Velo.settings.scrollLeft -(delta * 180);
-            Velo.settings.coverWrapper.css('left', (-180 * index) + Velo.settings.scrollLeft);
-            Velo.settings.element.find('.expand img').show()
+            GoTrip.settings.scrollLeft = GoTrip.settings.scrollLeft -(delta * 180);
+            GoTrip.settings.coverWrapper.css('left', (-180 * index) + GoTrip.settings.scrollLeft);
+            GoTrip.settings.element.find('.expand img').show()
             .end().find('.expand').removeClass('expand').removeAttr('style')
             .end().find('li').eq(index).addClass('expand').width(Scaling.windowDimensions.width).find('img').hide();
             // END
 
             adventureWrapper.find('.car-content:last').css({
                 zIndex: 1, /* Dont set to zero, will break in ie7 */
-                left: leftValue - ((Scaling.scalingPercentage() * 1280) * Velo.settings.offsets[index])
+                left: leftValue - ((Scaling.scalingPercentage() * 1280) * GoTrip.settings.offsets[index])
             }).end()
             .find('.car-content:first').css('zIndex', 3332);
 
             Scaling.resizeNextAdventure();
 
-            VeloXCHelpers.showPNGLoader($('#' + direction), {
+            GoTripXCHelpers.showPNGLoader($('#' + direction), {
                 size: 41,
                 reset: 4058,
                 loop: false,
@@ -1567,17 +1388,17 @@ var Velo = {
 
             $('.car-content:nth-child(2) img').preload({ 
                 onFinish: function() {
-                    VeloXCHelpers.hidePNGLoader(function() {
+                    GoTripXCHelpers.hidePNGLoader(function() {
                         $('body').removeClass('loading-next-adventure');
                         adventureWrapper.find('.car-content').removeClass('active');
 
-                        VeloXCHelpers.cssAnimation(adventureWrapper.find('.car-content:last'), { left: 0 }, 1000);
-                        VeloXCHelpers.cssAnimation(adventureWrapper.find('.car-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
+                        GoTripXCHelpers.cssAnimation(adventureWrapper.find('.car-content:last'), { left: 0 }, 1000);
+                        GoTripXCHelpers.cssAnimation(adventureWrapper.find('.car-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
                             adventureWrapper.find('.car-content:first').remove().end()
                             .find('.car-content img').css({
                                 left: 0 //Added to support playOutro after navigating sideways
                             });
-                            Velo.initNav();
+                            GoTrip.initNav();
                         }, 'slide-in-next-car');
                     });
                 }
@@ -1589,39 +1410,31 @@ var Velo = {
 	
 	
     initNav: function() {
-
+console.log(11);
         var adventureWrapper = $('#current-cover');
 
-        // #GATracking (lang, adventure-id, scene-id)
-		if(Velo.settings.pagetype === 'v40cc'){
-			GATracking.trackV40(VeloXCHelpers.lang, Velo.settings.element.find('.expand').index());
-		}
-		else{
-			GATracking.trackCar(VeloXCHelpers.lang, Velo.settings.element.find('.expand').index());
-		}
-		
 		adventureWrapper.find('.car-content:last').addClass('active');
 
-        Velo.moveDescription(false);
-
+        GoTrip.moveDescription(false);
+        console.log(0);
         $('.car-content .description').fadeIn(200);
 
-        VeloXCHelpers.removeOverlay();
-
+        GoTripXCHelpers.removeOverlay();
+        console.log(1);
         // Bind navigation events
         adventureWrapper.find('.adventure-nav').unbind('click').bind('click', function(e) {
             var id = this.href.split('/').pop();
 
             adventureWrapper.find('.adventure-nav').unbind('click');
-            History.pushState({ type: 'slide-car', url: this.href, direction: this.id }, VeloXCHelpers.getPageTitle('slide-car', parseInt(id, 10) + 1), '/' + Velo.settings.pagetype + '/' + id);
+            History.pushState({ type: 'slide-section', url: this.href, direction: this.id }, GoTripXCHelpers.getPageTitle('slide-section', parseInt(id, 10) + 1), '/' + GoTrip.settings.pagetype + '/' + id);
             e.preventDefault();
         }).end()
         .find('.to-coverflow').bind('click', function(e) {
-            History.pushState({ type: 'close-car' }, VeloXCHelpers.getPageTitle('close-car'), '/' + Velo.settings.pagetype);
+            History.pushState({ type: 'close-section' }, GoTripXCHelpers.getPageTitle('close-section'), '/' + GoTrip.settings.pagetype);
             e.preventDefault();
         });
 
-        VeloKeyNav.adventureKeyNav({type: Velo.settings.pagetype});
+        GoTripKeyNav.adventureKeyNav({type: GoTrip.settings.pagetype});
 
     },
 	
@@ -1629,20 +1442,20 @@ var Velo = {
     init: function(pagetype) {
 
     	if(pagetype === 'v40cc') {
-    		Velo.settings.pagepath = 'v40HTML';
-    		Velo.settings.offsets = Scaling.v40CoverOffsets;
+    		GoTrip.settings.pagepath = 'v40HTML';
+    		GoTrip.settings.offsets = Scaling.v40CoverOffsets;
         }
         else {
-			Velo.settings.pagepath = 'carHTML';
-			Velo.settings.offsets = Scaling.carCoverOffsets;
+			GoTrip.settings.pagepath = 'carHTML';
+			GoTrip.settings.offsets = Scaling.carCoverOffsets;
         }
 
-    	Velo.settings.pagetype = pagetype;
-        Velo.settings.element = $('.car-covers');
-        Velo.settings.coverWrapper = Velo.settings.element.find('ul');
-        Velo.settings.coverArray = Velo.settings.element.find('li');
-        Velo.settings.coverWidth = Velo.settings.coverArray.width();
-        Velo.settings.coverCount = Velo.settings.coverArray.length;
+    	GoTrip.settings.pagetype = pagetype;
+        GoTrip.settings.element = $('.car-covers');
+        GoTrip.settings.coverWrapper = GoTrip.settings.element.find('ul');
+        GoTrip.settings.coverArray = GoTrip.settings.element.find('li');
+        GoTrip.settings.coverWidth = GoTrip.settings.coverArray.width();
+        GoTrip.settings.coverCount = GoTrip.settings.coverArray.length;
 
         Scaling.windowResize();
         this.setWrapperWidth();
@@ -1668,7 +1481,7 @@ var Offer = {
 
         var videoSrc = $("#youtube");
 
-        VeloXCHelpers.addOverlay({ classname: 'transparent', click: Offer.closeMovie });
+        GoTripXCHelpers.addOverlay({ classname: 'transparent', click: Offer.closeMovie });
 
         $('#videoplayer').addClass('active').css({
             left: (Scaling.windowDimensions.width / 2) - (768 / 2),
@@ -1691,7 +1504,7 @@ var Offer = {
   	closeMovie: function() {
   		$("#youtube").detach().appendTo("#video");
         $('#videoplayer').removeClass('active');
-        VeloXCHelpers.removeOverlay();
+        GoTripXCHelpers.removeOverlay();
 		$("#youtube").hide();
     }
 };
@@ -1771,7 +1584,7 @@ var AdventureMap = {
         .bind('click', function(e) {
             if ($(e.target).is('a')) {
                 var id = parseInt($(e.target).text(), 10);
-                History.pushState({type: 'map-to-adventure', id: id, index: id-1 }, VeloXCHelpers.getPageTitle('map-to-adventure', id), '/section/' + id);
+                History.pushState({type: 'map-to-section', id: id, index: id-1 }, GoTripXCHelpers.getPageTitle('map-to-section', id), '/section/' + id);
                 e.preventDefault();				
             }
         });
@@ -1928,10 +1741,10 @@ var Adventure = {
         leftValue = ((180 * index) + 270 - CoverFlow.settings.scrollLeft) - ((percent * 1280) * Scaling.coverOffsets[index]);
 
         // Prevent mousemove from hiding the overlay (webkit)
-        VeloXCHelpers.unbindOverlay();
+        GoTripXCHelpers.unbindOverlay();
 
         // If we open with click-event, the overlay has not been added yet.
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
 
         CoverFlow.settings.loader.detach().appendTo(cover).show().animate({ width: 180 }, { duration: 5000, queue: false, easing: 'easeInOutQuad' });
 
@@ -1946,7 +1759,7 @@ var Adventure = {
             });
 
 
-            VeloCompability.fixGeneratedContent();
+            GoTripCompability.fixGeneratedContent();
 
             //$.preload('.adventure-content img', {
             $('.adventure-content #scene-1 img').preload({ 
@@ -1981,10 +1794,10 @@ var Adventure = {
         // #HACK Make animations non-instant
         $(window).scrollTop(0); 
 
-        VeloXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: leftValue, width: expandWidth }, duration);
-        VeloXCHelpers.cssAnimation(cover, { width: Scaling.windowDimensions.width }, duration);
-        VeloXCHelpers.cssAnimation($('#scene-1').find('img.scale'), { left: 0 }, duration, Adventure.introCallback, 'play-adventure-intro');
-        //VeloXCHelpers.cssAnimation($('#sidebar'), { left: -270 }, duration);
+        GoTripXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: leftValue, width: expandWidth }, duration);
+        GoTripXCHelpers.cssAnimation(cover, { width: Scaling.windowDimensions.width }, duration);
+        GoTripXCHelpers.cssAnimation($('#scene-1').find('img.scale'), { left: 0 }, duration, Adventure.introCallback, 'play-adventure-intro');
+        //GoTripXCHelpers.cssAnimation($('#sidebar'), { left: -270 }, duration);
 
     },
     
@@ -1998,15 +1811,15 @@ var Adventure = {
             maxScroll = (CoverFlow.settings.coverCount * 180) - (Scaling.windowDimensions.width - 270), /* (Scaling.windowDimensions.width - 270) */
             coverWrapperWidth = CoverFlow.settings.coverCount * CoverFlow.settings.coverWidth;
 
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
         
         // Fix for when user slides "prev" and the cover-wrapper has not scrolled past the first cover-item
-        if (CoverFlow.settings.scrollLeft < 0 && VeloXCHelpers.prevHistoryState.data.direction === 'prev') {
+        if (CoverFlow.settings.scrollLeft < 0 && GoTripXCHelpers.prevHistoryState.data.direction === 'prev') {
             leftValue += CoverFlow.settings.scrollLeft;
         }
 
         // Fix for when user slides "next" and the cover-wrapper has not scrolled past the last cover-item
-        if (CoverFlow.settings.scrollLeft > maxScroll && VeloXCHelpers.prevHistoryState.data.direction === 'next') {
+        if (CoverFlow.settings.scrollLeft > maxScroll && GoTripXCHelpers.prevHistoryState.data.direction === 'next') {
             leftValue += CoverFlow.settings.scrollLeft - maxScroll;
         }
 
@@ -2016,10 +1829,10 @@ var Adventure = {
         CoverFlow.settings.element.show().scrollLeft(CoverFlow.settings.scrollLeft);
         $('#scene-1').find('.figcaption').add('#indicator-line, #adventure-cords').hide();
 
-        VeloXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: 270, width: coverWrapperWidth }, duration);
-        VeloXCHelpers.cssAnimation(cover, { width: 180 }, duration);
-        VeloXCHelpers.cssAnimation($('#scene-1 img'), { left: leftValue }, duration, Adventure.outroCallback, 'play-adventure-outro');
-        VeloXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
+        GoTripXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: 270, width: coverWrapperWidth }, duration);
+        GoTripXCHelpers.cssAnimation(cover, { width: 180 }, duration);
+        GoTripXCHelpers.cssAnimation($('#scene-1 img'), { left: leftValue }, duration, Adventure.outroCallback, 'play-adventure-outro');
+        GoTripXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
 
     },
     
@@ -2030,7 +1843,7 @@ var Adventure = {
             langText = '',
             tip;
 
-        switch(VeloXCHelpers.lang) {
+        switch(GoTripXCHelpers.lang) {
             case 'ru':
                 langText = 'Навигация с помощью<br /> клавиш со стрелками';
                 break;
@@ -2085,7 +1898,7 @@ var Adventure = {
         });
 
         CoverFlow.settings.element.hide();
-        //VeloXCHelpers.removeOverlay();
+        //GoTripXCHelpers.removeOverlay();
 
         // Show key-nav indicator until mousemove or keypress
         if (Adventure.settings.hasShownTip) {
@@ -2111,14 +1924,14 @@ var Adventure = {
         CoverFlow.settings.element.find('.expand img').show().end().find('.expand').removeClass('expand').addClass('active').removeAttr('style');
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
-        if (parseInt(VeloXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
-            VeloKeyNav.coverFlowKeyCounter = CoverFlow.settings.element.find('.active').index() - firstIndex - 1;
-            VeloKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
+        if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
+            GoTripKeyNav.coverFlowKeyCounter = CoverFlow.settings.element.find('.active').index() - firstIndex - 1;
+            GoTripKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
         }
 
-        //setTimeout(VeloXCHelpers.removeOverlay, 500);
+        //setTimeout(GoTripXCHelpers.removeOverlay, 500);
         CoverFlow.settings.element[0].scrollLeft += 1; // Fix for older browsers
-        VeloXCHelpers.addOverlay({ mousemove: VeloXCHelpers.removeOverlay });
+        GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
 
     },
     
@@ -2132,7 +1945,7 @@ var Adventure = {
             req = $.ajax('/api/section/' + id, { dataType: 'html', type: 'GET', cache: false });
             
         // Disable the page while loading...
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
 
         req.success(function(resp) {
 
@@ -2141,7 +1954,7 @@ var Adventure = {
 
             adventureWrapper.append(resp);
 
-            VeloCompability.fixGeneratedContent();
+            GoTripCompability.fixGeneratedContent();
 
             //Added to support playOutro after navigating sideways
             CoverFlow.settings.scrollLeft = CoverFlow.settings.scrollLeft -(delta * 180);
@@ -2161,7 +1974,7 @@ var Adventure = {
 
                 Scaling.resizeNextAdventure();
 
-                VeloXCHelpers.showPNGLoader($('#' + direction), {
+                GoTripXCHelpers.showPNGLoader($('#' + direction), {
                     size: 41,
                     reset: 4058,
                     loop: false,
@@ -2170,12 +1983,12 @@ var Adventure = {
 
                 $('.adventure-content:nth-child(2) #scene-1 .scale').preload({ 
                     onFinish: function() {
-                        VeloXCHelpers.hidePNGLoader(function() {
+                        GoTripXCHelpers.hidePNGLoader(function() {
                             $('body').removeClass('loading-next-adventure');
                             adventureWrapper.find('.adventure-content').removeClass('active');
 
-                            VeloXCHelpers.cssAnimation(adventureWrapper.find('.adventure-content:last'), { left: 0 }, 1000);
-                            VeloXCHelpers.cssAnimation(adventureWrapper.find('.adventure-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
+                            GoTripXCHelpers.cssAnimation(adventureWrapper.find('.adventure-content:last'), { left: 0 }, 1000);
+                            GoTripXCHelpers.cssAnimation(adventureWrapper.find('.adventure-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
                                 adventureWrapper.find('.adventure-content:first').remove().end()
                                 .find('#scene-1 img').css({
                                     left: 0 //Added to support playOutro after navigating sideways
@@ -2199,9 +2012,10 @@ var Adventure = {
             nextScrollPos, duration;
 
         // #GATracking (lang, adventure-id, scene-id)
-        //GATracking.trackAdventure(VeloXCHelpers.lang, CoverFlow.settings.element.find('.expand').index() + 1, 0);
+        //GATracking.trackAdventure(GoTripXCHelpers.lang, CoverFlow.settings.element.find('.expand').index() + 1, 0);
 
         adventureWrapper.find('.adventure-content:last').addClass('active');
+
         Adventure.settings.sceneCount = $('#scene-wrapper').find('.scene').length;
 
         Adventure.moveCaptions();
@@ -2212,19 +2026,20 @@ var Adventure = {
             $('.figcaption').show(); // Show other captions later
         });
 
-        VeloXCHelpers.removeOverlay();
+        GoTripXCHelpers.removeOverlay();
 
         // Bind navigation events
         adventureWrapper.find('.adventure-nav').unbind('click').bind('click', function(e) {
+
             var id = this.href.split('/').pop();
 
             adventureWrapper.find('.adventure-nav').unbind('click');
-            History.pushState({ type: 'slide-adventure', url: this.href, direction: this.id }, VeloXCHelpers.getPageTitle('slide-adventure', parseInt(id, 10)), '/section/' + id);
+            History.pushState({ type: 'slide-section', url: this.href, direction: this.id }, GoTripXCHelpers.getPageTitle('slide-adventure', parseInt(id, 10)), '/section/' + id);
             e.preventDefault();
 
         }).end()
         .find('.to-coverflow').bind('click', function(e) {
-            History.pushState({ type: 'close-adventure' }, VeloXCHelpers.getPageTitle('close-adventure'), '/');
+            History.pushState({ type: 'close-adventure' }, GoTripXCHelpers.getPageTitle('close-adventure'), '/');
             adventureWrapper.find('.to-top').unbind('click');
             e.preventDefault();
         }).end()
@@ -2239,13 +2054,13 @@ var Adventure = {
             if (link.indexOf('/assets/movies/') > -1) {
                 lang = link.split('_')[1].split('.')[0];
                 id = link.split('/assets/movies/')[1].split('_')[0];
-                VeloXCHelpers.playMovie(id, lang);
+                GoTripXCHelpers.playMovie(id, lang);
                 e.preventDefault();
             }
 
         });
 
-        VeloKeyNav.adventureKeyNav({type: 'adventure'});
+        GoTripKeyNav.adventureKeyNav({type: 'adventure'});
 
         switch (queuedAction) {
             case 37:
@@ -2255,7 +2070,7 @@ var Adventure = {
                 adventureWrapper.find('#next').trigger('click');
                 break;
             case 40:
-                nextScrollPos = VeloXCHelpers.getNextScrollPosition(40),
+                nextScrollPos = GoTripXCHelpers.getNextScrollPosition(40),
                 duration = nextScrollPos * 1.618;
                 $('html, body').firstScrollable().stop().animate({ scrollTop: $(window).scrollTop() + nextScrollPos }, { 
                     duration: duration, 
@@ -2365,8 +2180,8 @@ var CoverFlow = {
 
         // use requestAnimationFrame: 
         (function moveCovers() {
-            VeloXCHelpers.setSeason();
-            //VeloXCHelpers.setVisibleCovers();
+            GoTripXCHelpers.setSeason();
+            //GoTripXCHelpers.setVisibleCovers();
             CoverFlow.settings.timer = setTimeout(function() {
                 if (mousePos > CoverFlow.settings.centerLine) {
                     CoverFlow.settings.element[0].scrollLeft += (CoverFlow.settings.adjustedNavSpeed * delta);
@@ -2389,7 +2204,7 @@ var CoverFlow = {
         .bind('mouseenter mouseleave mousedown', function() { 
             clearTimeout(CoverFlow.settings.timer);
             $('#cover-flow').find('.active').removeClass('active');
-            VeloKeyNav.coverFlowKeyCounter = 0;
+            GoTripKeyNav.coverFlowKeyCounter = 0;
         })
             .bind('mousewheel', function(e, delta){
             e.preventDefault();
@@ -2403,7 +2218,7 @@ var CoverFlow = {
                 index = cover.index();
 
             clearTimeout(CoverFlow.settings.timer);
-            History.pushState({ type: 'open-adventure', id: id, index: index }, VeloXCHelpers.getPageTitle('open-adventure', parseInt(id, 10)), '/section/' + id);
+            History.pushState({ type: 'open-section', id: id, index: index }, GoTripXCHelpers.getPageTitle('open-section', parseInt(id, 10)), '/section/' + id);
             e.preventDefault();
         });
 
@@ -2421,21 +2236,21 @@ var CoverFlow = {
                 cleanName = page.split('/').pop();
 
             if (this.rel === 'home') {
-                History.pushState({ type: 'close-page' }, VeloXCHelpers.getPageTitle('close-page'), '/');
+                History.pushState({ type: 'close-page' }, GoTripXCHelpers.getPageTitle('close-page'), '/');
             }
             else {
-                History.pushState({ type: 'open-page', page: cleanName }, VeloXCHelpers.getPageTitle('open-page', $(this).index() + 1), page);
+                History.pushState({ type: 'open-page', page: cleanName }, GoTripXCHelpers.getPageTitle('open-page', $(this).index() + 1), page);
             }
             e.preventDefault();
         });
 
-        $('#videoplayer').find('a').bind('click', VeloXCHelpers.closeMovie);
+        $('#videoplayer').find('a').bind('click', GoTripXCHelpers.closeMovie);
 
         $(window).bind('resize', $.throttle(100, Scaling.windowResize));
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
-        if (parseInt(VeloXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
-            VeloKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
+        if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
+            GoTripKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
         }
 
     },
@@ -2455,7 +2270,7 @@ var CoverFlow = {
             var id, page;
 
             $('body').removeClass('play-coverflow-intro');
-            VeloXCHelpers.removeOverlay();
+            GoTripXCHelpers.removeOverlay();
 
             if (windowLocationString.indexOf('/section/') > -1) {
                 id = parseInt(windowLocationString.split('/section/').pop(), 10);
@@ -2465,7 +2280,7 @@ var CoverFlow = {
                 id = parseInt(windowLocationString.split('/cars/').pop(), 10);
                 if (/([0-9]+)/.test(id)) {
                     Page.open('cars', function() {
-                        Velo.open({id: id, index: id});
+                        GoTrip.open({id: id, index: id});
                     });
                 }
                 else {
@@ -2476,7 +2291,7 @@ var CoverFlow = {
                 id = parseInt(windowLocationString.split('/v40cc/').pop(), 10);
                 if (/([0-9]+)/.test(id)) {
                     Page.open('v40cc', function() {
-                        Velo.open({id: id, index: id});
+                        GoTrip.open({id: id, index: id});
                     });
                 }
                 else {
@@ -2487,7 +2302,6 @@ var CoverFlow = {
                 page = windowLocationString.split('/').pop();
                 Page.open(page);
             }
-
         }
 
         $('body').removeClass('loading-coverflow').addClass('play-coverflow-intro summer');
@@ -2500,7 +2314,7 @@ var CoverFlow = {
             // Reset curernt cover and index
             currentCover = parseInt(windowLocationString.split('/section/').pop(), 10);
             index = currentCover - 1;
-            VeloXCHelpers.addOverlay();
+            GoTripXCHelpers.addOverlay();
         }
 
         CoverFlow.settings.element.scrollLeft(180 * (index));
@@ -2550,12 +2364,12 @@ var CoverFlow = {
         firstPreloadIndex = firstPreloadIndex - offsetIndex;
 
         // Determine lang, used in #GATracking
-        VeloXCHelpers.lang = $('body').attr('class').split('lang-').pop();
+        GoTripXCHelpers.lang = $('body').attr('class').split('lang-').pop();
 
         // Append coverflow-loader
         CoverFlow.settings.loader = $('#coverflow-loader').length? $('#coverflow-loader') : $('<div id="coverflow-loader" />').appendTo('body');
 
-        VeloCompability.fixGeneratedContent();
+        GoTripCompability.fixGeneratedContent();
 
         Scaling.windowResize();
         this.setWrapperWidth();
@@ -2564,7 +2378,7 @@ var CoverFlow = {
         this.bindEvents();
 
         // Add an overlay so the user dont scroll away before we load the right covers
-        VeloXCHelpers.addOverlay();
+        GoTripXCHelpers.addOverlay();
 
         $('#cover-flow img').slice(firstPreloadIndex, lastPreloadIndex).preload({ onFinish: CoverFlow.playIntro });
         //$.preload('#cover-flow img', { onFinish: CoverFlow.playIntro });
@@ -2600,25 +2414,25 @@ var CoverFlow = {
                 currId = parseInt(State.cleanUrl.split('/' + filter + '/').pop(), 10);
             }
             
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.url) {
-                prevId = parseInt(VeloXCHelpers.prevHistoryState.data.url.split('/' + filter + '/').pop(), 10);
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.url) {
+                prevId = parseInt(GoTripXCHelpers.prevHistoryState.data.url.split('/' + filter + '/').pop(), 10);
             }
 
-            //log('Curr: ' + currId + ' Prev: ' + prevId);
+            log('Curr: ' + currId + ' Prev: ' + prevId);
 
             return (currId > prevId)? 'next' : 'prev';
         }
 
         function scrollToCenter(type, index, cb) {
         	//console.log(type);
-            var obj = (type === 'cars' || type === 'v40cc')? Velo : CoverFlow,
+            var obj = (type === 'cars' || type === 'v40cc')? GoTrip : CoverFlow,
                 currentScrollLeft = obj.settings.element.scrollLeft(),
                 coversOnScreen = Math.ceil((Scaling.windowDimensions.width - 270) / 180),
                 minVisible = Math.round(currentScrollLeft / 180),
                 maxVisible = minVisible + coversOnScreen - 1;
 
-            //log('min: ' + minVisible + ' max: ' + maxVisible);
-            //log('Duration: ' + (currentScrollLeft - (180 * (index + 1 - coversOnScreen))));
+            log('min: ' + minVisible + ' max: ' + maxVisible);
+            log('Duration: ' + (currentScrollLeft - (180 * (index + 1 - coversOnScreen))));
 
             if (index >= minVisible && index <= maxVisible) {
             
@@ -2629,7 +2443,7 @@ var CoverFlow = {
             
             else {
                 if ($.isFunction(cb)) {
-                    VeloXCHelpers.addOverlay();
+                    GoTripXCHelpers.addOverlay();
                     obj.settings.element.stop().animate({ scrollLeft: (180 * (index - Math.ceil(coversOnScreen/2))) + 180 }, {
                         duration: 500,
                         easing: 'easeOutQuad',
@@ -2643,31 +2457,23 @@ var CoverFlow = {
 
         /*
         log('State: ' + State.data.type);
-        if (VeloXCHelpers.prevHistoryState) log('Prev: ' + VeloXCHelpers.prevHistoryState.data.type);
+        if (GoTripXCHelpers.prevHistoryState) log('Prev: ' + GoTripXCHelpers.prevHistoryState.data.type);
         */
 
-        var pageType = 'cars'
 
-        if(State.url.indexOf('/v40cc') > -1) {
-        	pageType = 'v40cc';
-        }
-
-
-        if (State.data.type === 'open-adventure') {
+        if (State.data.type === 'open-section') {
         
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
-                Adventure.slideInAdventure('/section/' + State.data.id, get_dir('adventure'));
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
+                Adventure.slideInAdventure('/section/' + State.data.id, get_dir('section'));
             }
             else {
                 if (Page.settings.visible) {
-                    Page.playOutro(VeloXCHelpers.addOverlay);
+                    Page.playOutro(GoTripXCHelpers.addOverlay);
                 }
                 scrollToCenter('adventures', State.data.index, function(){ Adventure.open(State.data); });
             }
             
-        }
-        
-        else if (State.data.type === 'close-adventure') {
+        } else if (State.data.type === 'close-section') {
         
             if ($(window).scrollTop() !== 0) {
                 $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Adventure.playOutro);
@@ -2679,49 +2485,12 @@ var CoverFlow = {
                 Page.playOutro();
             }
             
-        }
+        } else if (State.data.type === 'slide-section') {
         
-        else if (State.data.type === 'open-car') {
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'slide-car') {
-                Velo.slideInCar('/' + pageType +'/' + State.data.id, get_dir(pageType));
-                console.log("1");
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
+                Adventure.slideInAdventure(State.data.url, get_dir('section'));
             }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'close-page') {
-                Page.open(pageType, function() {
-                    scrollToCenter(pageType, VeloXCHelpers.prevHistoryState.data.index, function(){ Velo.open(VeloXCHelpers.prevHistoryState.data); });
-                });
-                console.log("2");
-            }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'open-page' && VeloXCHelpers.prevHistoryState.data.page !== pageType) {
-                Page.playOutro(function(){
-                    Page.open(pageType, function() { scrollToCenter(pageType, State.data.index, function(){ Velo.open(State.data); }); });
-                });
-                console.log("3");
-            }
-            else {
-                scrollToCenter(pageType, State.data.index, function(){ Velo.open(State.data); });
-                console.log("4");
-            }
-            
-        }
-        
-        else if (State.data.type === 'close-car') {
-        
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'close-page') {
-                Page.open(pageType);
-            }
-            else {
-                Velo.playOutro();
-            }
-            
-        }
-        
-        else if (State.data.type === 'slide-adventure') {
-        
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
-                Adventure.slideInAdventure(State.data.url, get_dir('adventure'));
-            }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'close-adventure') {
+            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-adventure') {
                 id = State.data.url.split('/section/').pop();
                 index = (id - 1 < 0)? 0 : id - 1;
                 scrollToCenter('adventures', index, function(){ Adventure.open({ id: id, index: index, type: 'open-adventure' }); });
@@ -2730,52 +2499,11 @@ var CoverFlow = {
                 Adventure.slideInAdventure(State.data.url, State.data.direction);
             }
             
-        }
+        } else if (State.data.type === 'open-page') {
         
-        else if (State.data.type === 'slide-car') {
-        
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'slide-car') {
-                Velo.slideInCar(State.data.url, get_dir(pageType));
-            }
-            else if (VeloXCHelpers.prevHistoryState && (VeloXCHelpers.prevHistoryState.data.type === 'close-car' || VeloXCHelpers.prevHistoryState.data.type === 'open-page')) {
-                id = State.data.url.split('/' + pageType + '/').pop();
-                //index = (id - 1 < 0)? 0 : id - 1;
-                index = id;
-                if (State.data.page !== pageType) {
-                    Page.playOutro(function(){
-                        Page.open(pageType, function() { scrollToCenter(pageType, index, function() { Velo.open({ id: id, index: index, type: 'open-car' }); }); });
-                    });
-                }
-                else {
-                    scrollToCenter(pageType, index, function(){ Velo.open({ id: id, index: index, type: 'open-car' }); });
-                }
-            }
-            else {
-                Velo.slideInCar(State.data.url, State.data.direction);
-            }
-            
-        }
-        
-        else if (State.data.type === 'open-page') {
-        
-            if(VeloXCHelpers.prevHistoryState && (VeloXCHelpers.prevHistoryState.data.type === 'map-to-adventure' || VeloXCHelpers.prevHistoryState.data.type === 'open-adventure')) {
+            if(GoTripXCHelpers.prevHistoryState && (GoTripXCHelpers.prevHistoryState.data.type === 'map-to-section' || GoTripXCHelpers.prevHistoryState.data.type === 'open-section')) {
                 Adventure.playOutro();
                 Page.open(State.data.page);
-            }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'open-car' && State.data.page !== pageType) {
-                Page.playOutro(function(){
-                    Page.open(State.data.page);
-                });
-            }
-            else if (VeloXCHelpers.prevHistoryState && (VeloXCHelpers.prevHistoryState.data.type === 'open-car' || VeloXCHelpers.prevHistoryState.data.type === 'slide-car')) {
-                if (State.data.page === pageType) {
-                    Velo.playOutro();
-                }
-                else {
-                    Page.playOutro(function(){
-                        Page.open(State.data.page);
-                    });
-                }
             }
             else {
                 if (Page.settings.visible) {
@@ -2792,7 +2520,7 @@ var CoverFlow = {
         
         else if (State.data.type === 'close-page') {
         
-            if(VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'open-adventure') {
+            if(GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-adventure') {
                 Adventure.playOutro();
             }
             else {
@@ -2801,16 +2529,16 @@ var CoverFlow = {
             
         }
         
-        else if (State.data.type === 'map-to-adventure') {
+        else if (State.data.type === 'map-to-section') {
         
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
-                delta = (get_dir('adventure') === 'next')? 1 : -1;
-                State.data.url = '/' + (parseInt(VeloXCHelpers.prevHistoryState.data.url.split('/section/').pop(), 10) + delta);
-                Adventure.slideInAdventure(State.data.url, get_dir('adventure'));
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
+                delta = (get_dir('section') === 'next')? 1 : -1;
+                State.data.url = '/' + (parseInt(GoTripXCHelpers.prevHistoryState.data.url.split('/section/').pop(), 10) + delta);
+                Adventure.slideInAdventure(State.data.url, get_dir('section'));
             }
             else {
                 coversOnScreen = Math.ceil((CoverFlow.settings.element.width() - CoverFlow.settings.sidebar.width()) / CoverFlow.settings.coverWidth);
-                VeloXCHelpers.addOverlay();
+                GoTripXCHelpers.addOverlay();
                 CoverFlow.settings.element.scrollLeft(180 * (State.data.index - Math.ceil(coversOnScreen/2)));
                 Page.playOutro(function() {
                     Adventure.open(State.data);
@@ -2821,23 +2549,23 @@ var CoverFlow = {
         
         else if (State.data.type === undefined) {
         
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'close-adventure') {
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-adventure') {
                 urlId = parseInt(windowLocationString.split('/section/').pop(), 10);
                 scrollToCenter('adventures', (urlId - 1), function(){ Adventure.open({ id: urlId, index: urlId - 1 }); });
             }
-            if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'open-adventure') {
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-adventure') {
                 Adventure.playOutro(); /* Fix for html4 history */
             }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
-                delta = (get_dir('adventure') === 'next')? 1 : -1;
-                State.data.url = '/' + (parseInt(VeloXCHelpers.prevHistoryState.data.url.split('/section/').pop(), 10) + delta);
-                Adventure.slideInAdventure(State.data.url, get_dir('adventure'));
+            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
+                delta = (get_dir('section') === 'next')? 1 : -1;
+                State.data.url = '/' + (parseInt(GoTripXCHelpers.prevHistoryState.data.url.split('/section/').pop(), 10) + delta);
+                Adventure.slideInAdventure(State.data.url, get_dir('section'));
             }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'close-page') {
+            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-page') {
                 urlpage = windowLocationString.split('/').pop();
                 Page.open(urlpage);
             }
-            else if (VeloXCHelpers.prevHistoryState && VeloXCHelpers.prevHistoryState.data.type === 'open-page') {
+            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-page') {
                 urlpage = windowLocationString.split('/').pop();
                 if (urlpage.length) {
                     Page.playOutro(function(){
@@ -2851,7 +2579,7 @@ var CoverFlow = {
             
         }
 
-        VeloXCHelpers.prevHistoryState = State;
+        GoTripXCHelpers.prevHistoryState = State;
 
     });
 
@@ -2863,17 +2591,17 @@ var CoverFlow = {
 
 /* Using this to fix font-weight in ff-mac */
 Modernizr.addTest('ff-mac', function () {   
-	return (VeloXCHelpers.userAgentString.indexOf('macintosh') > -1) && (VeloXCHelpers.userAgentString.indexOf('firefox') > -1 );
+	return (GoTripXCHelpers.userAgentString.indexOf('macintosh') > -1) && (GoTripXCHelpers.userAgentString.indexOf('firefox') > -1 );
 });
 
 /* Using this to tweak hw-acc */
 Modernizr.addTest('safari', function () {   
-	return (VeloXCHelpers.userAgentString.indexOf('safari') > -1) && (VeloXCHelpers.userAgentString.indexOf('chrome') === -1);
+	return (GoTripXCHelpers.userAgentString.indexOf('safari') > -1) && (GoTripXCHelpers.userAgentString.indexOf('chrome') === -1);
 });
 
 /* Chrome */
 Modernizr.addTest('chrome', function () {   
-	return (VeloXCHelpers.userAgentString.indexOf('safari') > -1) && (VeloXCHelpers.userAgentString.indexOf('chrome') > -1);
+	return (GoTripXCHelpers.userAgentString.indexOf('safari') > -1) && (GoTripXCHelpers.userAgentString.indexOf('chrome') > -1);
 });
 
 
@@ -2881,7 +2609,7 @@ Modernizr.addTest('chrome', function () {
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 $.fn.extend({
   firstScrollable: function(dir) {
-    var scrl = VeloXCHelpers.getScrollable.call(this, {el: 'first', dir: dir});
+    var scrl = GoTripXCHelpers.getScrollable.call(this, {el: 'first', dir: dir});
     return this.pushStack(scrl);
   }
 });

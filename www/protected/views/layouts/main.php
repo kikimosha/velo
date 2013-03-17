@@ -51,6 +51,7 @@
 <script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/json2.js"><\/script>'); }</script>
 <!--<script src="../assets/js/script.min.js"></script>-->
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/history.js"></script>
+<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/libs.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/script.js"></script>
 
 </body>
