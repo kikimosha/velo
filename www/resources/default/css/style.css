@@ -1,0 +1,2084 @@
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block
+}
+
+body {
+    font: 13px/1.231 sans-serif;
+    *font-size: small
+}
+
+select, input, textarea, button {
+    font: 99% sans-serif
+}
+
+pre, code, kbd, samp {
+    font-family: monospace, sans-serif
+}
+
+a:hover, a:active, a:focus {
+    outline: none
+}
+
+i {
+    font-style: normal
+}
+
+ul, ol {
+    margin-left: 2em
+}
+
+ol {
+    list-style-type: decimal
+}
+
+nav ul, nav li {
+    margin: 0;
+    list-style: none;
+    list-style-image: none
+}
+
+small {
+    font-size: 85%
+}
+
+strong {
+    font-weight: bold
+}
+
+sub, sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative
+}
+
+sup {
+    top: -0.5em
+}
+
+sub {
+    bottom: -0.25em
+}
+
+a:link {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.ie7 img {
+    -ms-interpolation-mode: bicubic
+}
+
+.js {
+    overflow-x: hidden;
+    overflow-y: scroll
+}
+
+body, select, input, textarea, button {
+    color: #222;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 12px;
+    font-weight: 300
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font: normal 51px/44px broad, arial;
+    margin: 0 0 0.35em;
+    -webkit-font-smoothing: antialiased
+}
+
+h1 {
+    line-height: 1;
+    margin: 0 0 10px
+}
+
+h2, h3, h4 {
+    margin: 8px 0 10px
+}
+
+h5 {
+    font-size: 14px
+}
+
+h6 {
+    font-size: 13px
+}
+
+a, a:active, a:visited {
+    color: #007fc8;
+    text-decoration: none
+}
+
+a:hover {
+    color: #000
+}
+
+body, html {
+    height: 100%
+}
+
+body {
+    background: #282828 url(../img/desktop/sprite_loader2.png) no-repeat 0 -50px;
+    position: relative
+}
+
+.safari #cover-flow *, .safari .page-cars *, .safari #sidebar a[rel], .safari #scene-wrapper .scene img, .safari #map-wrapper img, .safari .slide-in-next-adventure *, .safari .slide-in-next-car * {
+    -webkit-transform: translateZ(0)
+}
+
+.no-safari #cover-flow * {
+}
+
+#loader {
+    z-index: 9999;
+    display: none;
+    width: 32px;
+    height: 32px;
+    margin: -16px 0 0 -16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: url(../img/desktop/loader.gif) no-repeat 0 0
+}
+
+.loading-coverflow #loader {
+    display: block
+}
+
+#coverflow-loader {
+    display: none;
+    background: #fff;
+    height: 4px;
+    width: 0;
+    position: absolute;
+    top: 270px;
+    left: 0
+}
+
+#png-loader {
+    display: block;
+    background: url(../img/desktop/sprite_loader2.png) no-repeat 0 0;
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    top: 50%;
+    margin: -21px 0 0;
+    z-index: 9999
+}
+
+#next #png-loader {
+    left: 2px
+}
+
+#prev #png-loader {
+    right: 2px
+}
+
+.loading-page #png-loader {
+    background: url(../img/desktop/sprite_loader.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    left: 50%;
+    margin: -16px 0 0 119px
+}
+
+.loading-coverflow #png-loader {
+    background: url(../img/desktop/sprite_loader.png) no-repeat 0 0;
+    width: 32px;
+    height: 32px;
+    left: 50%;
+    margin: -16px 0 0 -16px
+}
+
+.loading-coverflow #cover-flow nav {
+    display: none
+}
+
+.ie #overlay {
+    background: url(../img/desktop/fix_iebg.gif) no-repeat
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9997
+}
+
+#overlay.transparent {
+    background: rgba(0, 0, 0, 0.7)
+}
+
+.no-rgba #overlay.transparent {
+    background: url(../img/desktop/fix_rgba.png)
+}
+
+.play-coverflow-intro #overlay, .loading-adventure #overlay, .loading-next-adventure #overlay {
+    cursor: progress
+}
+
+.loading-next-adventure #overlay {
+    position: fixed
+}
+
+#videoplayer {
+    display: none;
+    position: absolute;
+    z-index: 9998
+}
+
+#videoplayer.active {
+    display: block
+}
+
+#videoplayer a {
+    background: url(../img/desktop/sprite_fx.png) no-repeat -45px -136px;
+    color: #FFF;
+    cursor: pointer;
+    display: block;
+    height: 16px;
+    left: -8px;
+    line-height: 11px;
+    position: absolute;
+    text-align: center;
+    top: -8px;
+    width: 21px;
+    height: 21px;
+    z-index: 5;
+    text-indent: -999em
+}
+
+.play-coverflow-intro #cover-flow a {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0
+}
+
+.loading-coverflow #sidebar {
+    display: none
+}
+
+#sidebar {
+    position: absolute;
+    top: 0;
+    left: -270px;
+    width: 270px;
+    height: 100%;
+    z-index: 7777;
+    background: url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat, url(../img/desktop/bg_sidebar_gradient.jpg) 0 0 repeat-y #dbe0e6;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4)
+}
+
+.summer #sidebar {
+    background: url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat, url(../img/desktop/bg_sidebar_gradient.jpg) 0 0 repeat-y #dbe0e6
+}
+
+.winter #sidebar {
+    background: url(../img/desktop/bg_sidebar_double.jpg) 0 0 no-repeat, url(../img/desktop/bg_sidebar_gradient.jpg) 0 0 repeat-y #dbe0e6
+}
+
+#sidebar .home {
+    display: block;
+    height: 260px;
+    left: 30px;
+    position: absolute;
+    text-indent: -999em;
+    top: 30px;
+    width: 200px
+}
+
+.adventure-view #sidebar {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none
+}
+
+#sidebar p {
+    text-align: center;
+    line-height: 16px;
+    margin: 457px 0 0;
+    font-weight: 400
+}
+
+.season {
+    display: none;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -315px 0;
+    width: 68px;
+    height: 124px;
+    position: absolute;
+    left: 125px;
+    top: 320px
+}
+
+.winter {
+    background-position: -315px -125px
+}
+
+#logo {
+    position: absolute;
+    bottom: 16px;
+    right: 16px
+}
+
+#menu {
+    position: absolute;
+    left: 30px;
+    bottom: 20px;
+    width: 185px;
+    text-transform: uppercase
+}
+
+#menu nav {
+    font-weight: bold;
+    font-size: 11px
+}
+
+#menu a {
+    color: #101b23;
+    display: block;
+    line-height: 16px;
+    position: relative;
+    padding: 0 0 0 15px
+}
+
+#menu a:before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 7px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -44px;
+    position: absolute;
+    top: 5px;
+    left: 4px
+}
+
+#langselect {
+    margin: 15px 0 0;
+    font-size: 10px;
+    font-weight: 500
+}
+
+#langselect >a:first-child:before {
+    background-position: -181px -51px
+}
+
+#langselect ul {
+    list-style: none;
+    margin: 0;
+    overflow: hidden;
+    height: auto;
+    display: none;
+    position: relative
+}
+
+.lang-se #langselect a[href="/se"], .lang-no #langselect a[href="/no"], .lang-dk #langselect a[href="/dk"], .lang-fi #langselect a[href="/fi"], .lang-uk #langselect a[href="/uk"] {
+    font-weight: bold
+}
+
+#menu nav a:hover, #langselect ul a:hover {
+    background: #fff
+}
+
+#menu nav a:hover:before, #langselect ul a:hover:before {
+    left: 5px
+}
+
+.csstransitions #menu a {
+    background-color: rgba(0, 0, 0, 0);
+    -moz-transition: background-color 0.3s ease-out;
+    -webkit-transition: background-color 0.3s ease-out;
+    -o-transition: background-color 0.3s ease-out;
+    transition: background-color 0.3s ease-out
+}
+
+.csstransitions #menu nav a:hover, .csstransitions #langselect ul a:hover {
+    background-color: rgba(255, 255, 255, 1)
+}
+
+#cover-flow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5555
+}
+
+.js #cover-flow {
+    overflow: hidden
+}
+
+#cover-flow nav {
+    width: 9000px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 270px;
+    list-style: none;
+    margin: 0
+}
+
+#cover-flow a {
+    display: block;
+    float: left;
+    width: 180px;
+    height: 100%;
+    position: relative;
+    overflow: hidden
+}
+
+#cover-flow img {
+    position: absolute;
+    top: 0
+}
+
+#cover-flow figcaption {
+    position: absolute;
+    top: 117px;
+    left: 0;
+    color: #fff;
+    display: block;
+    background: url(../img/desktop/bg_figcaption.png) no-repeat 0 0;
+    width: 170px;
+    height: 156px;
+    padding: 0 0 0 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    white-space: nowrap
+}
+
+#cover-flow figcaption span {
+    font: normal 127px/111px broad, arial;
+    display: block;
+    padding: 3px 0 0;
+    letter-spacing: 2px
+}
+
+#cover-flow a:hover figcaption, #cover-flow a.active figcaption {
+    background-position: 0 -156px !important
+}
+
+#cover-flow a:before {
+    content: "";
+    display: block;
+    background: url(../img/desktop/shadow_cover.png) no-repeat 0 0;
+    width: 51px;
+    height: 899px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1
+}
+
+.play-adventure-intro #sidebar, .play-adventure-outro #sidebar, .play-car-intro #sidebar, .play-car-outro #sidebar {
+    -webkit-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -moz-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -o-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955)
+}
+
+.play-adventure-intro nav, .play-adventure-outro nav, .play-car-intro .car-covers ul, .play-car-outro .car-covers ul {
+    -webkit-transition-property: left, width;
+    -webkit-transition-duration: 0.8s;
+    -webkit-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -moz-transition-property: left, width;
+    -moz-transition-duration: 0.8s;
+    -moz-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -o-transition-property: left, width;
+    -o-transition-duration: 0.8s;
+    -o-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    transition-property: left, width;
+    transition-duration: 0.8s;
+    transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955)
+}
+
+.play-adventure-intro #scene-1 img, .play-adventure-outro #scene-1 img, .play-car-intro .car-content img, .play-car-outro .car-content img {
+    -webkit-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -moz-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -o-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955)
+}
+
+#cover-flow .expand, .car-covers .expand {
+    -webkit-transition: width 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -moz-transition: width 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -o-transition: width 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    transition: width 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955)
+}
+
+#cover-flow .expand figcaption, .car-covers .expand strong {
+    display: none
+}
+
+#adventure-wrapper, #current-cover {
+    z-index: 3333;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 270px;
+    width: 100%;
+    height: 100%
+}
+
+.adventure-content, .car-content {
+    z-index: 3332;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0
+}
+
+.slide-in-next-adventure .adventure-content, .slide-in-next-car .car-content {
+    -webkit-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
+    -moz-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
+    -ms-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
+    -o-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
+    transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1)
+}
+
+.slide-in-next-adventure .quicklinks, .slide-in-next-car .quicklinks {
+    position: absolute
+}
+
+.quicklinks {
+    position: fixed;
+    top: 20px;
+    right: 22px;
+    white-space: nowrap;
+    z-index: 3331;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased
+}
+
+.quicklinks a {
+    color: #fff;
+    margin: 0 0 0 22px;
+    padding: 0 0 0 22px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 17px
+}
+
+.quicklinks a:hover {
+    color: #000
+}
+
+.quicklinks a:before {
+    content: "";
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.quicklinks .to-coverflow:before {
+    background-position: -297px 0
+}
+
+.quicklinks .to-top:before {
+    background-position: -297px -36px
+}
+
+.quicklinks .to-coverflow:hover:before {
+    background-position: -297px -18px
+}
+
+.quicklinks .to-top:hover:before {
+    background-position: -297px -54px
+}
+
+.js .quicklinks .to-top {
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity = 0);
+    opacity: 0
+}
+
+.adventure-nav {
+    z-index: 3331;
+    visibility: hidden;
+    width: 50px;
+    height: 400px;
+    position: absolute;
+    text-indent: -999em;
+    top: 50%;
+    cursor: pointer;
+    margin-top: -200px
+}
+
+.active .adventure-nav {
+    visibility: visible
+}
+
+#prev {
+    left: 0
+}
+
+#next {
+    right: 0
+}
+
+.adventure-nav b {
+    display: block;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: 50%;
+    margin-top: -23px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat
+}
+
+#prev b {
+    background-position: -90px 0;
+    right: 0
+}
+
+#next b {
+    background-position: -135px 0;
+    left: 0
+}
+
+#prev:hover b {
+    background-position: -90px -45px
+}
+
+#next:hover b {
+    background-position: -135px -45px
+}
+
+.loading-next-adventure #prev:hover b {
+    background-position: -90px 0;
+    right: 0
+}
+
+.loading-next-adventure #next:hover b {
+    background-position: -135px 0;
+    left: 0
+}
+
+#adventure-cords {
+    z-index: 3329;
+    position: absolute;
+    top: 75px;
+    left: 95px;
+    color: #fff;
+    display: none;
+    text-transform: uppercase;
+    -webkit-font-smoothing: antialiased
+}
+
+/*#adventure-cords .cords {*/
+    /*display: block;*/
+    /*font-weight: bold;*/
+    /*margin: 0 0 5px*/
+/*}*/
+
+/*#adventure-cords .no {*/
+    /*display: block;*/
+    /*width: 88px;*/
+    /*height: 97px;*/
+    /*background: url(../img/desktop/sprite_fx.png) no-repeat -192px 0;*/
+    /*text-indent: -999em;*/
+    /*margin: 0 0 10px*/
+/*}*/
+
+/*#adventure-cords .number {*/
+    /*font: 142px/1 broad, arial;*/
+    /*position: absolute;*/
+    /*top: 2px;*/
+    /*left: 94px;*/
+    /*letter-spacing: 2px*/
+/*}*/
+
+#adventure-cords .name {
+    font: 42px/1 broad, arial;
+    position: absolute;
+    top: 2px;
+    left: 94px;
+    letter-spacing: 2px
+}
+
+#indicator-line {
+    width: 1px;
+    background: #fff;
+    position: absolute;
+    top: 0;
+    left: 95px;
+    z-index: 3330;
+    display: none
+}
+
+#scene-wrapper {
+    z-index: 3328;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.scene {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    width: 100%
+}
+
+.scene img {
+    position: relative;
+    vertical-align: top
+}
+
+.figcaption {
+    position: absolute;
+    left: 95px;
+    top: 110%;
+    width: 300px;
+    background: #fff;
+    padding: 17px;
+    line-height: 17px;
+    font-family: arial, helvetica, sans-serif;
+    display: none
+}
+
+.preamble {
+    font-weight: bold
+}
+
+.details, .links {
+    list-style: none;
+    margin: 0
+}
+
+.links {
+    text-transform: uppercase;
+    margin: 10px 0;
+    line-height: 21px
+}
+
+.links a {
+    position: relative;
+    padding-left: 13px
+}
+
+.links a:before {
+    content: "";
+    display: block;
+    width: 8px;
+    height: 7px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -44px;
+    position: absolute;
+    top: 3px;
+    left: 0
+}
+
+.scene .badge {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -90px 0 0 -99px
+}
+
+.scene .footer {
+    position: absolute;
+    bottom: 20px;
+    right: 22px;
+    font-size: 9px;
+    color: #fff
+}
+
+.figcaption .footer {
+    position: static;
+    bottom: auto;
+    left: auto;
+    color: #007FC8;
+    margin: 40px 0 0
+}
+
+.footer .section {
+    display: inline
+}
+
+.markets {
+    float: right
+}
+
+.copyrights a {
+    display: inline-block;
+    vertical-align: bottom
+}
+
+.ie8 .copyrights a {
+    margin-top: 35px
+}
+
+.ie8 .copyrights img {
+    float: right
+}
+
+.tip {
+    width: 202px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat 20px -229px;
+    margin: -80px 0 0 -101px;
+    padding: 110px 0 0;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3329
+}
+
+.play-page-intro #page-wrapper, .play-page-outro #page-wrapper {
+    -moz-transition: all 0.45s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -webkit-transition: all 0.45s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    -o-transition: all 0.45s cubic-bezier(0.455, 0.030, 0.515, 0.955);
+    transition: all 0.45s cubic-bezier(0.455, 0.030, 0.515, 0.955)
+}
+
+#page-wrapper {
+    z-index: 6666;
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: #f0f0f0
+}
+
+.page-content .to-coverflow {
+    position: absolute;
+    top: 35px;
+    left: 30px
+}
+
+.page-content {
+    position: relative
+}
+
+.center {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    display: table
+}
+
+.center-wrap {
+    display: table-cell;
+    vertical-align: middle
+}
+
+.page-content p {
+    font-family: Georgia, serif;
+    font-size: 14px;
+    letter-spacing: 0.7px;
+    margin: 10px auto 0
+}
+
+.page-close {
+    display: block;
+    width: 41px;
+    height: 41px;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -266px -125px;
+    z-index: 1;
+    text-indent: -999em
+}
+
+.page-close:hover {
+    background-position: -225px -125px
+}
+
+.page-app img {
+    display: block;
+    margin: 0 auto -20px
+}
+
+.page-app p {
+    width: 500px
+}
+
+.page-about {
+    padding: 80px 30px 0
+}
+
+.page-about .share {
+    margin: 40px 0 0
+}
+
+.page-content .car-content .to-coverflow {
+    left: auto;
+    right: 0;
+    top: 0
+}
+
+.page-cars {
+    width: 100%;
+    height: 100%
+}
+
+.car-covers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 5555
+}
+
+.js .car-covers {
+    overflow: hidden
+}
+
+.car-covers ul {
+    width: 1980px;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    list-style: none;
+    margin: 0
+}
+
+.car-covers li {
+    display: block;
+    float: left;
+    width: 180px;
+    height: 100%;
+    position: relative;
+    overflow: hidden
+}
+
+.car-covers img {
+    position: absolute;
+    top: 0
+}
+
+.car-covers strong {
+    position: absolute;
+    top: 117px;
+    left: 0;
+    color: #fff;
+    display: block;
+    background: url(../img/desktop/bg_figcaption.png) no-repeat 0 0;
+    width: 170px;
+    height: 156px;
+    padding: 0 0 0 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    -webkit-font-smoothing: antialiased;
+    white-space: nowrap
+}
+
+.car-covers strong span {
+    font: normal 127px/111px broad, arial;
+    display: block;
+    padding: 3px 0 0;
+    letter-spacing: 2px
+}
+
+.car-covers .item, .car-covers a {
+    color: #fff
+}
+
+.car-covers .item:hover strong, .car-covers li.active strong {
+    background-position: 0 -156px
+}
+
+.car-covers .first:hover strong {
+    background-position: 0 0
+}
+
+.car-covers .item:before {
+    content: "";
+    display: block;
+    background: url(../img/desktop/shadow_cover.png) no-repeat 0 0;
+    width: 51px;
+    height: 899px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1
+}
+
+.car-covers p {
+    padding: 0 10px;
+    margin: 290px 0 15px;
+    letter-spacing: 0;
+    position: relative;
+    font-size: 11px;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    z-index: 2
+}
+
+.car-covers p.last {
+    margin: 0;
+    font-size: 10px;
+    padding-left: 10px
+}
+
+.car-covers p.last a:before {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 5px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -58px;
+    position: absolute;
+    top: 4px;
+    left: 10px
+}
+
+.car-covers p.last a:hover:before {
+    background-position: -181px -66px;
+    left: 12px
+}
+
+.car-covers .last a {
+    padding-left: 6px;
+    padding-right: 2px
+}
+
+.ie7 .car-covers .last a {
+    padding-left: 2px
+}
+
+.ie7 .car-content p+p {
+    padding-left: 0
+}
+
+.car-covers .last a:hover {
+    color: #000;
+    background: #fff
+}
+
+.ie8 .car-covers .last a:hover {
+    padding-left: 2px
+}
+
+.car-content .description {
+    position: absolute;
+    color: #fff;
+    width: 370px;
+    display: none
+}
+
+.car-content h2 {
+    margin: 0.1em 0;
+    line-height: 0.9;
+    letter-spacing: 0.01em
+}
+
+.car-content p {
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    margin: 0
+}
+
+.car-content a {
+    color: #fff;
+    text-transform: uppercase
+}
+
+.car-content p+p {
+    margin-top: 0.9em;
+    position: relative;
+    padding-left: 9px
+}
+
+.car-content p+p a:before {
+    content: "";
+    display: block;
+    width: 3px;
+    height: 5px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -58px;
+    position: absolute;
+    top: 4px;
+    left: 2px
+}
+
+.car-content p+p a:hover:before {
+    background-position: -181px -66px
+}
+
+.car-content p+p a:hover {
+    color: #000
+}
+
+.ff-mac .car-content p, .ff-mac .car-covers p {
+    font-weight: 400
+}
+
+.safari .car-content p, .safari .car-covers p {
+    font-weight: 600
+}
+
+.chrome .car-content p, .chrome .car-covers p {
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased
+}
+
+.page-map {
+    padding: 0;
+    width: 100%;
+    height: 100%
+}
+
+.page-map .to-coverflow {
+    position: absolute;
+    top: 35px;
+    left: 30px;
+    z-index: 1
+}
+
+#map-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden
+}
+
+#map-wrapper a {
+    display: block;
+    width: 44px;
+    height: 45px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -68px -97px;
+    position: absolute;
+    color: #f9f9f9;
+    font: 32px/42px broad, arial;
+    text-align: center;
+    text-indent: -5px;
+    z-index: 1;
+    -webkit-font-smoothing: antialiased
+}
+
+#map-wrapper a:hover {
+    color: #fff;
+    z-index: 2
+}
+
+#map-wrapper img {
+    display: block
+}
+
+#ttip {
+    display: block;
+    position: absolute;
+    background: #fff;
+    z-index: 3;
+    font-size: 10px;
+    padding: 2px 4px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-weight: bold
+}
+
+.page-offer .page-close {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 41px;
+    height: 41px;
+    background-position: -264px -324px;
+}
+
+.page-offer .page-close:hover {
+    background-position: -223px -324px;
+}
+
+#offer {
+    position: absolute;
+    top: 90px;
+    width: 370px;
+    margin: 0px 0 0 50px;
+    color: #fff;
+}
+
+#offer h1 {
+    margin: 0 0 -5px -125px;
+}
+
+#offer p.dirt {
+    font-size: 10px;
+    text-align: left
+}
+
+#offer p {
+    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 12px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    -webkit-font-smoothing: antialiased
+}
+
+.page-offer nav {
+    position: absolute;
+    top: 390px;
+    left: 32px;
+    font-size: 14px;
+    color: #fff;
+    list-style: none;
+    float: left;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.page-offer nav a {
+    background-color: transparent;
+    -moz-transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    -webkit-transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    -o-transition: background-color 0.3s ease-out, color 0.3s ease-out;
+    display: block;
+    color: #fff;
+    padding: 0 5px 0 0;
+    margin: 0 0 0 14px;
+    font-size: 11px;
+    height: 16px;
+    line-height: 16px;
+    font-weight: bold;
+}
+
+#offer p strong {
+    font-weight: 600;
+    font-size: 13px
+}
+
+.page-offer nav a:hover {
+    color: #000;
+    background: #fff;
+}
+
+.page-offer nav a:hover:before {
+    background-position: -181px -45px;
+    height: 7px;
+}
+
+.page-offer nav a:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -71px;
+    position: relative;
+    top: 0px;
+    margin: 0 0 0 3px;
+}
+
+#video {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    cursor: pointer;
+}
+
+#video h1 {
+    position: absolute;
+    left: 79px;
+    top: 140px;
+    text-align: center;
+    color: #fff;
+    font-size: 30px;
+    z-index: 999;
+}
+
+#youtube {
+    display: none;
+}
+
+.btn {
+    background-image: url(../img/desktop/sprite_fx.png);
+    background-repeat: no-repeat;
+    text-indent: -999em;
+    display: inline-block
+}
+
+.social {
+    width: 24px;
+    height: 25px
+}
+
+.xl {
+    width: 34px;
+    height: 34px
+}
+
+.app-store {
+    width: 80px;
+    height: 28px;
+    background-position: -122px -97px
+}
+
+.page-app .app-store {
+    width: 108px;
+    height: 38px;
+    background-position: -203px -166px
+}
+
+.page-app .app-store:hover {
+    background-position: -203px -204px
+}
+
+.android-market {
+    width: 23px;
+    height: 27px;
+    background-position: -202px -97px
+}
+
+.page-app .android-market {
+    width: 109px;
+    height: 38px;
+    background-position: -203px -242px;
+    margin-left: 5px
+}
+
+.page-app .android-market:hover {
+    background-position: -203px -280px
+}
+
+.facebook {
+    background-position: -225px -97px
+}
+
+.twitter {
+    background-position: -249px -97px
+}
+
+.mail {
+    background-position: -273px -97px
+}
+
+.facebook-xl {
+    background-position: -122px -125px
+}
+
+.twitter-xl {
+    background-position: -156px -125px
+}
+
+.mail-xl {
+    background-position: -190px -125px
+}
+
+.ff-mac #adventure-cords .name, .ff-mac #adventure-cords .cords, .ff-mac #cover-flow figcaption, .ff-mac .car-covers strong, .ff-mac .quicklinks a, .ff-mac #menu nav {
+    font-weight: 500
+}
+
+.no-multiplebgs #sidebar {
+    background: #b0b6c2 url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat
+}
+
+.no-multiplebgs .summer #sidebar {
+    background: #b0b6c2 url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat
+}
+
+.no-multiplebgs .winter #sidebar {
+    background: #b0b6c2 url(../img/desktop/bg_sidebar_double.jpg) 0 0 no-repeat
+}
+
+.no-generatedcontent .quicklinks a span {
+    display: block;
+    width: 18px;
+    height: 18px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat;
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.no-generatedcontent .quicklinks .to-coverflow span {
+    background-position: -297px 0
+}
+
+.no-generatedcontent .quicklinks .to-top span {
+    background-position: -297px -36px
+}
+
+.no-generatedcontent .quicklinks .to-coverflow:hover span {
+    background-position: -297px -18px
+}
+
+.no-generatedcontent .quicklinks .to-top:hover span {
+    background-position: -297px -54px
+}
+
+.no-generatedcontent .links a span {
+    display: block;
+    width: 8px;
+    height: 7px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -44px;
+    position: absolute;
+    top: 3px;
+    left: 0
+}
+
+.no-generatedcontent #menu a span {
+    display: block;
+    width: 8px;
+    height: 7px;
+    background: url(../img/desktop/sprite_fx.png) no-repeat -181px -44px;
+    position: absolute;
+    top: 5px;
+    left: 4px
+}
+
+.no-generatedcontent #langselect >a:first-child span {
+    background-position: -181px -51px
+}
+
+.no-generatedcontent #menu nav a:hover span, .no-generatedcontent #langselect ul a:hover span {
+    left: 5px
+}
+
+.ie7 .btn {
+    text-indent: 0;
+    font-size: 0;
+    line-height: 0
+}
+
+.ie7 .footer .section {
+    float: left
+}
+
+.ie7 .footer .markets {
+    float: right
+}
+
+.ie7 .figcaption .footer {
+    overflow: hidden
+}
+
+.ie7 .center-wrap {
+    padding-top: 40px
+}
+
+.no-js .loading-coverflow #cover-flow nav {
+    display: block
+}
+
+.no-js #sidebar {
+    left: 0;
+    display: block
+}
+
+.no-js #langselect ul, .no-js .car-content .description {
+    display: block
+}
+
+.no-js #cover-flow img, .no-js .car-covers img {
+    width: 100%;
+    height: 100%
+}
+
+.no-js .page-cars {
+    background: #282828
+}
+
+.no-js .adventure-view #cover-flow, .no-js .car-view .car-covers, .no-js .adventure-view #sidebar, .no-js #loader {
+    display: none
+}
+
+.no-js .adventure-view #adventure-wrapper, .no-js .adventure-view #adventure-cords, .no-js .adventure-view .adventure-nav, .no-js .car-view .adventure-nav, .no-js .car-view #current-cover {
+    display: block
+}
+
+.no-js .car-view #next {
+    right: 270px
+}
+
+.no-js .figcaption {
+    top: auto;
+    bottom: 0;
+    display: block
+}
+
+.no-js .scene img.scale {
+    height: 100%
+}
+
+.no-js .page-view #cover-flow, .no-js .page-view #adventure-wrapper {
+    display: none
+}
+
+.no-js .page-view #page-wrapper {
+    display: block;
+    left: 270px
+}
+
+.align-left {
+    text-align: left
+}
+
+.mejs-container {
+    position: relative;
+    background: #000;
+    font-family: Helvetica, Arial
+}
+
+.mejs-container-fullscreen {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden
+}
+
+.mejs-container-fullscreen .mejs-mediaelement, .mejs-container-fullscreen video {
+    width: 100%;
+    height: 100%
+}
+
+.mejs-background {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.mejs-mediaelement {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.mejs-poster {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.mejs-overlay {
+    position: absolute;
+    top: 0;
+    left: 0
+}
+
+.mejs-overlay-play {
+    cursor: pointer
+}
+
+.mejs-overlay-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin: -50px 0 0 -50px;
+    background: url(../js/libs/mediaelement/bigplay.png) top left no-repeat
+}
+
+.mejs-overlay:hover .mejs-overlay-button {
+    background-position: 0 -100px
+}
+
+.mejs-overlay-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80px;
+    height: 80px;
+    margin: -40px 0 0 -40px;
+    background: #333;
+    background: url(../js/libs/mediaelement/background.png);
+    background: rgba(0, 0, 0, 0.9);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(50, 50, 50, 0.9)), to(rgba(0, 0, 0, 0.9)));
+    background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9));
+    background: linear-gradient(rgba(50, 50, 50, 0.9), rgba(0, 0, 0, 0.9))
+}
+
+.mejs-overlay-loading span {
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: transparent url(../img/desktop/loader.gif) center center no-repeat
+}
+
+.mejs-container .mejs-controls {
+    position: absolute;
+    background: none;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    bottom: 0;
+    left: 0;
+    background: url(../js/libs/mediaelement/background.png);
+    background: rgba(0, 0, 0, 0.7);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(50, 50, 50, 0.7)), to(rgba(0, 0, 0, 0.7)));
+    background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.7));
+    height: 30px;
+    width: 100%
+}
+
+.mejs-container .mejs-controls  div {
+    list-style-type: none;
+    background-image: none;
+    display: block;
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+    line-height: 11px;
+    background: 0;
+    font-family: Helvetica, Arial;
+    border: 0
+}
+
+.mejs-controls .mejs-button button {
+    cursor: pointer;
+    display: block;
+    font-size: 0px;
+    line-height: 0;
+    text-decoration: none;
+    margin: 7px 5px;
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    border: 0;
+    background: transparent url(../js/libs/mediaelement/controls.png) 0 0 no-repeat
+}
+
+.mejs-container .mejs-controls .mejs-time {
+    color: #fff;
+    display: block;
+    height: 17px;
+    width: auto;
+    padding: 8px 3px 0 3px;
+    overflow: hidden;
+    text-align: center;
+    padding: auto 4px
+}
+
+.mejs-container .mejs-controls .mejs-time span {
+    font-size: 11px;
+    color: #fff;
+    line-height: 12px;
+    display: block;
+    float: left;
+    margin: 1px 2px 0 0;
+    width: auto
+}
+
+.mejs-controls .mejs-play button {
+    background-position: 0 0
+}
+
+.mejs-controls .mejs-pause button {
+    background-position: 0 -16px
+}
+
+.mejs-controls .mejs-stop button {
+    background-position: -112px 0
+}
+
+.mejs-controls div.mejs-time-rail {
+    width: 200px;
+    padding-top: 5px
+}
+
+.mejs-controls .mejs-time-rail span {
+    display: block;
+    position: absolute;
+    width: 180px;
+    height: 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-total {
+    margin: 5px;
+    background: #333;
+    background: rgba(50, 50, 50, 0.8);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(30, 30, 30, 0.8)), to(rgba(60, 60, 60, 0.8)));
+    background: -moz-linear-gradient(top, rgba(30, 30, 30, 0.8), rgba(60, 60, 60, 0.8));
+    background: linear-gradient(rgba(30, 30, 30, 0.8), rgba(60, 60, 60, 0.8));
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, startColorstr = #1E1E1E, endColorstr = #3C3C3C)
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-loaded {
+    background: #3caac8;
+    background: rgba(60, 170, 200, 0.8);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(44, 124, 145, 0.8)), to(rgba(78, 183, 212, 0.8)));
+    background: -moz-linear-gradient(top, rgba(44, 124, 145, 0.8), rgba(78, 183, 212, 0.8));
+    background: linear-gradient(rgba(44, 124, 145, 0.8), rgba(78, 183, 212, 0.8));
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, startColorstr = #2C7C91, endColorstr = #4EB7D4);
+    width: 0
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-current {
+    width: 0;
+    background: #fff;
+    background: rgba(255, 255, 255, 0.8);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(255, 255, 255, 0.9)), to(rgba(200, 200, 200, 0.8)));
+    background: -moz-linear-gradient(top, rgba(255, 255, 255, 0.9), rgba(200, 200, 200, 0.8));
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, startColorstr = #FFF, endColorstr = #C8C8C8)
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-handle {
+    display: none;
+    position: absolute;
+    margin: 0;
+    width: 10px;
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: solid 2px #333;
+    top: -2px;
+    text-align: center
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-float {
+    visibility: hidden;
+    position: absolute;
+    display: block;
+    background: #eee;
+    width: 36px;
+    height: 17px;
+    border: solid 1px #333;
+    top: -26px;
+    margin-left: -18px;
+    text-align: center;
+    color: #111
+}
+
+.mejs-controls .mejs-time-rail:hover .mejs-time-float {
+    visibility: visible
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-float-current {
+    margin: 2px;
+    width: 30px;
+    display: block;
+    text-align: center;
+    left: 0
+}
+
+.mejs-controls .mejs-time-rail .mejs-time-float-corner {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    line-height: 0;
+    border: solid 5px #eee;
+    border-color: #eee transparent transparent transparent;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    top: 15px;
+    left: 13px
+}
+
+.mejs-controls .mejs-fullscreen-button button {
+    background-position: -32px 0
+}
+
+.mejs-controls .mejs-unfullscreen button {
+    background-position: -32px -16px
+}
+
+.mejs-controls .mejs-volume-button {
+}
+
+.mejs-controls .mejs-mute button {
+    background-position: -16px -16px
+}
+
+.mejs-controls .mejs-unmute button {
+    background-position: -16px 0
+}
+
+.mejs-controls .mejs-volume-button {
+    position: relative
+}
+
+.mejs-controls .mejs-volume-button .mejs-volume-slider {
+    display: none;
+    height: 115px;
+    width: 25px;
+    background: url(../js/libs/mediaelement/background.png);
+    background: rgba(50, 50, 50, 0.7);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    top: -115px;
+    left: 0;
+    z-index: 1;
+    position: absolute;
+    margin: 0
+}
+
+.mejs-controls .mejs-volume-button:hover {
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px
+}
+
+.mejs-controls .mejs-volume-button:hover .mejs-volume-slider {
+    display: block
+}
+
+.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-total {
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    width: 2px;
+    height: 100px;
+    background: #ddd;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 0
+}
+
+.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-current {
+    position: absolute;
+    left: 11px;
+    top: 8px;
+    width: 2px;
+    height: 100px;
+    background: #ddd;
+    background: rgba(255, 255, 255, 0.9);
+    margin: 0
+}
+
+.mejs-controls .mejs-volume-button .mejs-volume-slider .mejs-volume-handle {
+    position: absolute;
+    left: 4px;
+    top: -3px;
+    width: 16px;
+    height: 6px;
+    background: #ddd;
+    background: rgba(255, 255, 255, 0.9);
+    cursor: N-resize;
+    -webkit-border-radius: 1px;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    margin: 0
+}
+
+.mejs-controls .mejs-captions-button {
+    position: relative
+}
+
+.mejs-controls .mejs-captions-button button {
+    background-position: -48px 0
+}
+
+.mejs-controls .mejs-captions-button .mejs-captions-selector {
+    visibility: hidden;
+    position: absolute;
+    bottom: 26px;
+    right: -10px;
+    width: 130px;
+    height: 100px;
+    background: url(../js/libs/mediaelement/background.png);
+    background: rgba(50, 50, 50, 0.7);
+    border: solid 1px transparent;
+    padding: 10px;
+    overflow: hidden;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0
+}
+
+.mejs-controls .mejs-captions-button:hover .mejs-captions-selector {
+    visibility: visible
+}
+
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul {
+    margin: 0;
+    padding: 0;
+    display: block;
+    list-style-type: none !important;
+    overflow: hidden
+}
+
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul li {
+    margin: 0 0 6px 0;
+    padding: 0;
+    list-style-type: none !important;
+    display: block;
+    color: #fff;
+    overflow: hidden
+}
+
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul li input {
+    clear: both;
+    float: left;
+    margin: 3px 3px 0px 5px
+}
+
+.mejs-controls .mejs-captions-button .mejs-captions-selector ul li label {
+    width: 100px;
+    float: left;
+    padding: 4px 0 0 0;
+    line-height: 15px;
+    font-family: helvetica, arial;
+    font-size: 10px
+}
+
+.mejs-controls .mejs-captions-button .mejs-captions-translations {
+    font-size: 10px;
+    margin: 0 0 5px 0
+}
+
+.mejs-chapters {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -xborder-right: solid 1px #fff;
+    width: 10000px
+}
+
+.mejs-chapters .mejs-chapter {
+    position: absolute;
+    float: left;
+    background: #222;
+    background: rgba(0, 0, 0, 0.7);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(50, 50, 50, 0.7)), to(rgba(0, 0, 0, 0.7)));
+    background: -moz-linear-gradient(top, rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.7));
+    background: linear-gradient(rgba(50, 50, 50, 0.7), rgba(0, 0, 0, 0.7));
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, startColorstr = #323232, endColorstr = #000);
+    overflow: hidden;
+    border: 0
+}
+
+.mejs-chapters .mejs-chapter .mejs-chapter-block {
+    font-size: 11px;
+    color: #fff;
+    padding: 5px;
+    display: block;
+    border-right: solid 1px #333;
+    border-bottom: solid 1px #333;
+    cursor: pointer
+}
+
+.mejs-chapters .mejs-chapter .mejs-chapter-block-last {
+    border-right: none
+}
+
+.mejs-chapters .mejs-chapter .mejs-chapter-block:hover {
+    background: #666;
+    background: rgba(102, 102, 102, 0.7);
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(102, 102, 102, 0.7)), to(rgba(50, 50, 50, 0.6)));
+    background: -moz-linear-gradient(top, rgba(102, 102, 102, 0.7), rgba(50, 50, 50, 0.6));
+    filter: progid:DXImageTransform.Microsoft.Gradient(GradientType = 0, startColorstr = #666, endColorstr = #323232)
+}
+
+.mejs-chapters .mejs-chapter .mejs-chapter-block .ch-title {
+    font-size: 12px;
+    font-weight: bold;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 0 3px 0;
+    line-height: 12px
+}
+
+.mejs-chapters .mejs-chapter .mejs-chapter-block .ch-timespan {
+    font-size: 12px;
+    line-height: 12px;
+    margin: 3px 0 4px 0;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis
+}
+
+.mejs-captions-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    line-height: 22px;
+    font-size: 12px;
+    color: #fff
+}
+
+.mejs-captions-layer  a {
+    color: #fff;
+    text-decoration: underline
+}
+
+.mejs-captions-layer[lang=ar] {
+    font-size: 20px;
+    font-weight: normal
+}
+
+.mejs-captions-position {
+    position: absolute;
+    width: 100%;
+    bottom: 15px;
+    left: 0
+}
+
+.mejs-captions-position-hover {
+    bottom: 45px
+}
+
+.mejs-captions-text {
+    padding: 3px 5px;
+    background: url(../js/libs/mediaelement/background.png);
+    background: rgba(20, 20, 20, 0.8)
+}
+
+.mejs-clear {
+    clear: both
+}
+
+.me-cannotplay {
+}
+
+.me-cannotplay a {
+    color: #fff;
+    font-weight: bold
+}
+
+.me-cannotplay span {
+    padding: 15px;
+    display: block
+}
+
+.mejs-controls .mejs-loop-off button {
+    background-position: -64px -16px
+}
+
+.mejs-controls .mejs-loop-on button {
+    background-position: -64px 0
+}
+
+.mejs-controls .mejs-backlight-off button {
+    background-position: -80px -16px
+}
+
+.mejs-controls .mejs-backlight-on button {
+    background-position: -80px 0
+}
+
+.mejs-controls .mejs-picturecontrols-button {
+    background-position: -96px 0
+}
