@@ -11,7 +11,7 @@ class SiteController extends Controller
 	public function actionIndex()
 	{
         $model = new Sections();
-        $sections = $model->findAll();
+        $sections = $model->findAll(array('order'=>"position ASC"));
         $this->render('index', array('sections' => $sections));
 	}
 
@@ -23,19 +23,34 @@ class SiteController extends Controller
         $model = new Sections();
         if(isset($_GET['id'])) {
 
-            $id = $_GET['id'];
+            $id = (int)$_GET['id'];
             $sectionInfo = $model->findByPk($id);
             $prevId = $model->getPrevId($id);
             $nextId = $model->getNextId($id);
+
+            $trips = Trips::model()->findAll("section_id = ". $id);
 
             echo $this->renderPartial(
                 'section',
                 array(
                     'sectionInfo' => $sectionInfo,
+                    'trips' => $trips,
                     'prevId' => $prevId,
                     'nextId' => $nextId
                 )
             );
+        }
+    }
+
+    public function actionTrip()
+    {
+        $model = new Trips();
+        if(isset($_GET['id'])) {
+
+            $id = (int)$_GET['id'];
+            $tripInfo = $model->findByPk($id);
+
+            $this->render('trip', array('tripInfo' => $tripInfo));
         }
     }
 

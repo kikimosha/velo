@@ -16,10 +16,16 @@
 
     <div id="scene-wrapper">
         <div class="scene" id="scene-1">
-            <img class="scale" src="/img/section_velo.jpg" />
+            <img class="scale" src="/resources/default/img/section_velo.jpg" />
 
             <div data-align="bottom" data-offset="0" class="figcaption caption-1">
                 <p><?php echo $sectionInfo->description; ?></p>
+
+                <ul>
+                    <?php foreach($trips as $index => $trip): ?>
+                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/trip/<?php echo $trip->id; ?>" title="<?php echo $trip->title; ?>"><?php echo $trip->title; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
     </div>

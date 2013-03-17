@@ -3,7 +3,7 @@
         <?php foreach($sections as $index => $section) {
         $cover_img = '';
         if ($section->cover_filename != '') {
-            $cover_img = '<img src="/img/' . $section->cover_filename. '" alt="' . $section->name . '" />';
+            $cover_img = '<img src="/resources/default/img/' . $section->cover_filename. '" alt="' . $section->name . '" />';
         }
         echo '<a href="/section/' . $section->id .
             '">' . $cover_img . '<figcaption><span>' . ($index+1) .

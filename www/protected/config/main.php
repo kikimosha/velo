@@ -24,8 +24,15 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'rules'=>array(
-                '/section/<id:\d+>' => 'site/index',
-                '/api/section/<id:\d+>' => 'site/section',
+                'gii'=>'gii',
+                'gii/<controller:\w+>'=>'gii/<controller>',
+                'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
+
+                'section/<id:\d+>' => 'site/index',
+                'api/section/<id:\d+>' => 'site/section',
+
+                'trip/<id:\d+>' => 'site/trip',
+
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 			),
 		),
@@ -43,4 +50,16 @@ return array(
     // application-level parameters that can be accessed
     // using Yii::app()->params['paramName']
     'params'=>require(dirname(__FILE__).'/params.php'),
+
+    // modules
+    'modules'=>array(
+        'admin',
+        'gii'=>array(
+            'class'=>'system.gii.GiiModule',
+            'password'=>'dzeta',
+            // 'ipFilters'=>array(…список IP…),
+            // 'newFileMode'=>0666,
+            // 'newDirMode'=>0777,
+        ),
+    ),
 );
