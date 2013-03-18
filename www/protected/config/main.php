@@ -33,6 +33,8 @@ return array(
 
                 'trip/<id:\d+>' => 'site/trip',
 
+                'admin/section/<id:\d+>' => 'admin/default/section',
+
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
 			),
 		),

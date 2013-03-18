@@ -27,20 +27,20 @@ $this->breadcrumbs=array(
     <meta property="og:description" content="Welcome to Travels"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="resources/admin/css/reset.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="resources/admin/css/style.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="resources/admin/css/invalid.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="resources/admin/css/thickbox.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/css/style.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/css/invalid.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/css/thickbox.css" type="text/css" media="screen" />
     <!--[if lte IE 7]>
-    <link rel="stylesheet" href="resources/admin/css/ie.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/css/ie.css" type="text/css" media="screen" />
     <![endif]-->
-    <script type="text/javascript" src="resources/admin/scripts/jquery.js"></script>
-    <script type="text/javascript" src="resources/admin/scripts/thickbox.js"></script>
-    <script type="text/javascript" src="resources/admin/scripts/custom.js"></script>
-    <script type="text/javascript" src="resources/admin/scripts/jquery.wysiwyg.js"></script>
-    <!--[if IE]><script type="text/javascript" src="resources/admin/scripts/jquery.bgiframe.js"></script><![endif]-->
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/scripts/jquery.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/scripts/thickbox.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/scripts/custom.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/scripts/jquery.wysiwyg.js"></script>
+    <!--[if IE]><script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/scripts/jquery.bgiframe.js"></script><![endif]-->
     <!--[if IE 6]>
-    <script type="text/javascript" src="resources/admin/scripts/DD_belatedPNG_0.0.7a.js"></script>
+    <script type="text/javascript" src="<?php echo Yii::app()->request->baseUrl; ?>/resources/admin/scripts/DD_belatedPNG_0.0.7a.js"></script>
     <script type="text/javascript">
         DD_belatedPNG.fix('.png_bg, img, li');
     </script>
@@ -59,11 +59,11 @@ $this->breadcrumbs=array(
                 <a href="#" class="nav-top-item no-submenu current">Категории</a>
             </li>
             <li>
-                <a href="#" class="nav-top-item">Пункт с подменю</a>
+                <a href="#" class="nav-top-item">Sections</a>
                 <ul>
                     <li><a href="#">подпункт 1</a></li>
                     <li><a href="#">подпункт 2</a></li>
-                    <li><a href="#">подпункт 3</a></li>
+                    <li><a href="/admin/section/3">Велы</a></li>
                 </ul>
             </li>
         </ul>
