@@ -14,6 +14,6 @@
 
 <section id="page-wrapper"></section>
 
-<section id="adventure-wrapper"></section>
+<section id="section-wrapper"></section>
 
 <div id="loader"></div>

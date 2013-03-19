@@ -129,7 +129,7 @@ body {
     position: relative
 }
 
-.safari #cover-flow *, .safari .page-cars *, .safari #sidebar a[rel], .safari #scene-wrapper .scene img, .safari #map-wrapper img, .safari .slide-in-next-adventure *, .safari .slide-in-next-car * {
+.safari #cover-flow *, .safari .page-cars *, .safari #sidebar a[rel], .safari #scene-wrapper .scene img, .safari #map-wrapper img, .safari .slide-in-next-section *, .safari .slide-in-next-car * {
     -webkit-transform: translateZ(0)
 }
 
@@ -220,11 +220,11 @@ body {
     background: url(../img/desktop/fix_rgba.png)
 }
 
-.play-coverflow-intro #overlay, .loading-adventure #overlay, .loading-next-adventure #overlay {
+.play-coverflow-intro #overlay, .loading-section #overlay, .loading-next-section #overlay {
     cursor: progress
 }
 
-.loading-next-adventure #overlay {
+.loading-next-section #overlay {
     position: fixed
 }
 
@@ -296,7 +296,7 @@ body {
     width: 200px
 }
 
-.adventure-view #sidebar {
+.section-view #sidebar {
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none
@@ -480,14 +480,14 @@ body {
     z-index: 1
 }
 
-.play-adventure-intro #sidebar, .play-adventure-outro #sidebar, .play-car-intro #sidebar, .play-car-outro #sidebar {
+.play-section-intro #sidebar, .play-section-outro #sidebar, .play-car-intro #sidebar, .play-car-outro #sidebar {
     -webkit-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
     -moz-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
     -o-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
     transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955)
 }
 
-.play-adventure-intro nav, .play-adventure-outro nav, .play-car-intro .car-covers ul, .play-car-outro .car-covers ul {
+.play-section-intro nav, .play-section-outro nav, .play-car-intro .car-covers ul, .play-car-outro .car-covers ul {
     -webkit-transition-property: left, width;
     -webkit-transition-duration: 0.8s;
     -webkit-transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955);
@@ -502,7 +502,7 @@ body {
     transition-timing-function: cubic-bezier(0.455, 0.030, 0.515, 0.955)
 }
 
-.play-adventure-intro #scene-1 img, .play-adventure-outro #scene-1 img, .play-car-intro .car-content img, .play-car-outro .car-content img {
+.play-section-intro #scene-1 img, .play-section-outro #scene-1 img, .play-car-intro .car-content img, .play-car-outro .car-content img {
     -webkit-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
     -moz-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
     -o-transition: left 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955);
@@ -520,7 +520,7 @@ body {
     display: none
 }
 
-#adventure-wrapper, #current-cover {
+#section-wrapper, #current-cover {
     z-index: 3333;
     display: none;
     position: absolute;
@@ -530,7 +530,7 @@ body {
     height: 100%
 }
 
-.adventure-content, .car-content {
+.section-content, .car-content {
     z-index: 3332;
     position: absolute;
     width: 100%;
@@ -539,7 +539,7 @@ body {
     left: 0
 }
 
-.slide-in-next-adventure .adventure-content, .slide-in-next-car .car-content {
+.slide-in-next-section .section-content, .slide-in-next-car .car-content {
     -webkit-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
     -moz-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
     -ms-transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1);
@@ -547,7 +547,7 @@ body {
     transition: left 1s cubic-bezier(0.315, 0.660, 0.380, 1)
 }
 
-.slide-in-next-adventure .quicklinks, .slide-in-next-car .quicklinks {
+.slide-in-next-section .quicklinks, .slide-in-next-car .quicklinks {
     position: absolute
 }
 
@@ -609,7 +609,7 @@ body {
     opacity: 0
 }
 
-.adventure-nav {
+.section-nav {
     z-index: 3331;
     visibility: hidden;
     width: 50px;
@@ -621,7 +621,7 @@ body {
     margin-top: -200px
 }
 
-.active .adventure-nav {
+.active .section-nav {
     visibility: visible
 }
 
@@ -633,7 +633,7 @@ body {
     right: 0
 }
 
-.adventure-nav b {
+.section-nav b {
     display: block;
     width: 45px;
     height: 45px;
@@ -661,17 +661,17 @@ body {
     background-position: -135px -45px
 }
 
-.loading-next-adventure #prev:hover b {
+.loading-next-section #prev:hover b {
     background-position: -90px 0;
     right: 0
 }
 
-.loading-next-adventure #next:hover b {
+.loading-next-section #next:hover b {
     background-position: -135px 0;
     left: 0
 }
 
-#adventure-cords {
+#section-cords {
     z-index: 3329;
     position: absolute;
     top: 75px;
@@ -682,13 +682,13 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-/*#adventure-cords .cords {*/
+/*#section-cords .cords {*/
     /*display: block;*/
     /*font-weight: bold;*/
     /*margin: 0 0 5px*/
 /*}*/
 
-/*#adventure-cords .no {*/
+/*#section-cords .no {*/
     /*display: block;*/
     /*width: 88px;*/
     /*height: 97px;*/
@@ -697,7 +697,7 @@ body {
     /*margin: 0 0 10px*/
 /*}*/
 
-/*#adventure-cords .number {*/
+/*#section-cords .number {*/
     /*font: 142px/1 broad, arial;*/
     /*position: absolute;*/
     /*top: 2px;*/
@@ -705,7 +705,7 @@ body {
     /*letter-spacing: 2px*/
 /*}*/
 
-#adventure-cords .name {
+#section-cords .name {
     font: 42px/1 broad, arial;
     position: absolute;
     top: 2px;
@@ -1381,7 +1381,7 @@ body {
     background-position: -190px -125px
 }
 
-.ff-mac #adventure-cords .name, .ff-mac #adventure-cords .cords, .ff-mac #cover-flow figcaption, .ff-mac .car-covers strong, .ff-mac .quicklinks a, .ff-mac #menu nav {
+.ff-mac #section-cords .name, .ff-mac #section-cords .cords, .ff-mac #cover-flow figcaption, .ff-mac .car-covers strong, .ff-mac .quicklinks a, .ff-mac #menu nav {
     font-weight: 500
 }
 
@@ -1495,11 +1495,11 @@ body {
     background: #282828
 }
 
-.no-js .adventure-view #cover-flow, .no-js .car-view .car-covers, .no-js .adventure-view #sidebar, .no-js #loader {
+.no-js .section-view #cover-flow, .no-js .car-view .car-covers, .no-js .section-view #sidebar, .no-js #loader {
     display: none
 }
 
-.no-js .adventure-view #adventure-wrapper, .no-js .adventure-view #adventure-cords, .no-js .adventure-view .adventure-nav, .no-js .car-view .adventure-nav, .no-js .car-view #current-cover {
+.no-js .section-view #section-wrapper, .no-js .section-view #section-cords, .no-js .section-view .section-nav, .no-js .car-view .section-nav, .no-js .car-view #current-cover {
     display: block
 }
 
@@ -1517,7 +1517,7 @@ body {
     height: 100%
 }
 
-.no-js .page-view #cover-flow, .no-js .page-view #adventure-wrapper {
+.no-js .page-view #cover-flow, .no-js .page-view #section-wrapper {
     display: none
 }
 

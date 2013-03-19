@@ -6,7 +6,7 @@
 //    },
 //
 //
-//    trackAdventure: function (lang, adventure, page) {
+//    trackSection: function (lang, section, page) {
 //
 //        var pageName = 'start';
 //
@@ -19,7 +19,7 @@
 //                break;
 //        }
 //
-//        GATracking.trackPageView('/tracking/' + lang + '/section/' + adventure + '/' + pageName);
+//        GATracking.trackPageView('/tracking/' + lang + '/section/' + section + '/' + pageName);
 //
 //	},
 //
@@ -53,8 +53,8 @@ var Scaling = {
     },
     
     
-    // Offset percentages for larger adventure-images. 
-    // Needed for matching larger adventure-images with cover-images
+    // Offset percentages for larger section-images. 
+    // Needed for matching larger section-images with cover-images
     coverOffsets: [
         0.1328125, 
         0.2515625, 
@@ -148,7 +148,7 @@ var Scaling = {
     },
     
 	
-    // Return the correct percentage for scaling cover-images and adventure-images
+    // Return the correct percentage for scaling cover-images and section-images
     scalingPercentage: function() {
 
         var coverDimensions = { width: 180, height: 800 },
@@ -161,7 +161,7 @@ var Scaling = {
     },
     
 	
-    // Return the correct percentage for scaling cover-images and adventure-images
+    // Return the correct percentage for scaling cover-images and section-images
     scalingPercentageCars: function() {
 
         var coverDimensions = { width: 180, height: 800 },
@@ -203,16 +203,16 @@ var Scaling = {
     
 
     // Runs on each window-resize
-    resizeAdventure: function() {
+    resizeSection: function() {
 
         var percent = Scaling.scalingPercentage(),
             carDescriptionOffsets;
 
-        Adventure.settings.element.find('img.scale').css({
+        Section.settings.element.find('img.scale').css({
             width: percent * 1280,
             height: percent * 800
         })
-        .end().find('.adventure-content').css({
+        .end().find('.section-content').css({
             width: Scaling.windowDimensions.width,
             height: Scaling.windowDimensions.height
         });
@@ -232,19 +232,19 @@ var Scaling = {
 
         }
 
-        Adventure.moveCaptions();
-        Adventure.moveBadge();
-        Adventure.setIndicatorLine();
+        Section.moveCaptions();
+        Section.moveBadge();
+        Section.setIndicatorLine();
 
     },
     
 	
-    // Runs on slideInAdventure
-    resizeNextAdventure: function() {
+    // Runs on slideInSection
+    resizeNextSection: function() {
 
         var percent = Scaling.scalingPercentage();
 
-        Adventure.settings.element.find('.adventure-content:last').css({
+        Section.settings.element.find('.section-content:last').css({
             width: Scaling.windowDimensions.width,
             height: Scaling.windowDimensions.height
         })
@@ -269,7 +269,7 @@ var Scaling = {
     },
     
 
-    // Runs on each window-resize and on AdventureMap init
+    // Runs on each window-resize and on SectionMap init
     resizePage: function() {
 
         var percent = Scaling.scalingPercentage(),
@@ -357,7 +357,7 @@ var Scaling = {
         Scaling.windowDimensions.height = $(window).height();
 
         Scaling.resizeCoverFlow();
-        Scaling.resizeAdventure();
+        Scaling.resizeSection();
         Scaling.resizePage();
         Scaling.adjustSidebar();
         Scaling.resizeOverlay();
@@ -712,7 +712,7 @@ var GoTripKeyNav = {
                     //Enter
                     if (activeCover.length) {
                         index = activeCover.removeClass('active').index();
-                        History.pushState({ type: 'open-adventure', id: (index + 1), index: index }, GoTripXCHelpers.getPageTitle('open-adventure', index + 1), '/section/' + (index + 1));
+                        History.pushState({ type: 'open-section', id: (index + 1), index: index }, GoTripXCHelpers.getPageTitle('open-section', index + 1), '/section/' + (index + 1));
                     }
                     break;
                 case 37:
@@ -785,7 +785,7 @@ var GoTripKeyNav = {
         });
 	},
 	
-    adventureKeyNav: function(settings) {
+    sectionKeyNav: function(settings) {
 
         $(document).unbind('keydown keyup')
         .bind('keydown', function(e) {
@@ -800,7 +800,7 @@ var GoTripKeyNav = {
                 duration = nextScrollPos * 1.618;
 
             // Disable advenure-key-nav in these occasions
-            if ($('#overlay').is(':visible') || $('body').is('.loading-next-adventure, .slide-in-next-adventure')) {
+            if ($('#overlay').is(':visible') || $('body').is('.loading-next-section, .slide-in-next-section')) {
                 return;
             }
 
@@ -838,7 +838,7 @@ var GoTripKeyNav = {
                     break;
                 case 84:
                     if (settings.type === 'section' && scrollPos !== 0) { /* This check is needed on mac/safari */
-                        Adventure.scrollToTop();
+                        Section.scrollToTop();
                     }
                     break;
             }
@@ -856,7 +856,7 @@ var GoTripCompability = {
     fixGeneratedContent: function() {
         /* Appy an extra element to some elements to compensate for lack of generated-content support */
         if (!Modernizr.generatedcontent) {
-            Adventure.settings.element.find('.quicklinks a, .links a').add('#menu a').append('<span />');
+            Section.settings.element.find('.quicklinks a, .links a').add('#menu a').append('<span />');
         }
     }
     
@@ -920,7 +920,7 @@ var Page = {
             }).html(resp);
 
             if (page === 'map') {
-                AdventureMap.init();
+                SectionMap.init();
             }
             else if (page === 'cars') {
                 GoTrip.init('cars');
@@ -1211,7 +1211,7 @@ var GoTrip = {
 
         req.success(function(resp) {
 
-            $('body').addClass('loading-adventure');
+            $('body').addClass('loading-section');
 
             $('#current-cover').html(resp).find('img').css({					
                 width: percent * 1280,
@@ -1221,7 +1221,7 @@ var GoTrip = {
 
             GoTripCompability.fixGeneratedContent();
 
-            //$.preload('.adventure-content img', {
+            //$.preload('.section-content img', {
             $('.car-content img').preload({ 
                 onFinish: function() {
                     CoverFlow.settings.loader.stop().animate({ width: 180 }, { 
@@ -1229,7 +1229,7 @@ var GoTrip = {
                         queue: false, 
                         easing: 'easeInOutQuad',
                         complete: function() {
-                            $('body').removeClass('loading-adventure');
+                            $('body').removeClass('loading-section');
                             CoverFlow.settings.loader.hide().width(0);
                             GoTrip.playIntro(cover, index);
                         }
@@ -1344,7 +1344,7 @@ var GoTrip = {
 	
     slideInCar: function(url, direction) {
 
-        var adventureWrapper = $('#current-cover'),
+        var sectionWrapper = $('#current-cover'),
             id = parseInt(url.split('/').pop(), 10),
             index = id,
             delta = (direction === 'next')? -1 : 1,
@@ -1356,10 +1356,10 @@ var GoTrip = {
 
         req.success(function(resp) {
 
-            $('body').addClass('loading-next-adventure');
+            $('body').addClass('loading-next-section');
             $('#' + direction).addClass('loading');
 
-            adventureWrapper.append(resp);
+            sectionWrapper.append(resp);
 
             GoTripCompability.fixGeneratedContent();
 
@@ -1371,13 +1371,13 @@ var GoTrip = {
             .end().find('li').eq(index).addClass('expand').width(Scaling.windowDimensions.width).find('img').hide();
             // END
 
-            adventureWrapper.find('.car-content:last').css({
+            sectionWrapper.find('.car-content:last').css({
                 zIndex: 1, /* Dont set to zero, will break in ie7 */
                 left: leftValue - ((Scaling.scalingPercentage() * 1280) * GoTrip.settings.offsets[index])
             }).end()
             .find('.car-content:first').css('zIndex', 3332);
 
-            Scaling.resizeNextAdventure();
+            Scaling.resizeNextSection();
 
             GoTripXCHelpers.showPNGLoader($('#' + direction), {
                 size: 41,
@@ -1389,12 +1389,12 @@ var GoTrip = {
             $('.car-content:nth-child(2) img').preload({ 
                 onFinish: function() {
                     GoTripXCHelpers.hidePNGLoader(function() {
-                        $('body').removeClass('loading-next-adventure');
-                        adventureWrapper.find('.car-content').removeClass('active');
+                        $('body').removeClass('loading-next-section');
+                        sectionWrapper.find('.car-content').removeClass('active');
 
-                        GoTripXCHelpers.cssAnimation(adventureWrapper.find('.car-content:last'), { left: 0 }, 1000);
-                        GoTripXCHelpers.cssAnimation(adventureWrapper.find('.car-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
-                            adventureWrapper.find('.car-content:first').remove().end()
+                        GoTripXCHelpers.cssAnimation(sectionWrapper.find('.car-content:last'), { left: 0 }, 1000);
+                        GoTripXCHelpers.cssAnimation(sectionWrapper.find('.car-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
+                            sectionWrapper.find('.car-content:first').remove().end()
                             .find('.car-content img').css({
                                 left: 0 //Added to support playOutro after navigating sideways
                             });
@@ -1410,22 +1410,22 @@ var GoTrip = {
 	
 	
     initNav: function() {
-console.log(11);
-        var adventureWrapper = $('#current-cover');
 
-		adventureWrapper.find('.car-content:last').addClass('active');
+        var sectionWrapper = $('#current-cover');
+
+		sectionWrapper.find('.car-content:last').addClass('active');
 
         GoTrip.moveDescription(false);
-        console.log(0);
+
         $('.car-content .description').fadeIn(200);
 
         GoTripXCHelpers.removeOverlay();
-        console.log(1);
+
         // Bind navigation events
-        adventureWrapper.find('.adventure-nav').unbind('click').bind('click', function(e) {
+        sectionWrapper.find('.section-nav').unbind('click').bind('click', function(e) {
             var id = this.href.split('/').pop();
 
-            adventureWrapper.find('.adventure-nav').unbind('click');
+            sectionWrapper.find('.section-nav').unbind('click');
             History.pushState({ type: 'slide-section', url: this.href, direction: this.id }, GoTripXCHelpers.getPageTitle('slide-section', parseInt(id, 10) + 1), '/' + GoTrip.settings.pagetype + '/' + id);
             e.preventDefault();
         }).end()
@@ -1434,7 +1434,7 @@ console.log(11);
             e.preventDefault();
         });
 
-        GoTripKeyNav.adventureKeyNav({type: GoTrip.settings.pagetype});
+        GoTripKeyNav.sectionKeyNav({type: GoTrip.settings.pagetype});
 
     },
 	
@@ -1509,7 +1509,7 @@ var Offer = {
     }
 };
 
-var AdventureMap = {
+var SectionMap = {
 
     timeout: null,
     mapWrapper: null,
@@ -1523,12 +1523,12 @@ var AdventureMap = {
             deltaX = Math.abs(1 - mouse.x / xMiddle), 
             deltaY = Math.abs(1 - mouse.y / yMiddle);
 
-        clearTimeout(AdventureMap.timeout);
+        clearTimeout(SectionMap.timeout);
 
         (function moveCovers() {
-            AdventureMap.timeout = setTimeout(function() {
-                (mouse.x > xMiddle)? AdventureMap.mapWrapper.scrollLeft += (scrollSpeed * deltaX) : AdventureMap.mapWrapper.scrollLeft -= (scrollSpeed * deltaX);
-                (mouse.y > yMiddle)? AdventureMap.mapWrapper.scrollTop += (scrollSpeed * deltaY) : AdventureMap.mapWrapper.scrollTop -= (scrollSpeed * deltaY);
+            SectionMap.timeout = setTimeout(function() {
+                (mouse.x > xMiddle)? SectionMap.mapWrapper.scrollLeft += (scrollSpeed * deltaX) : SectionMap.mapWrapper.scrollLeft -= (scrollSpeed * deltaX);
+                (mouse.y > yMiddle)? SectionMap.mapWrapper.scrollTop += (scrollSpeed * deltaY) : SectionMap.mapWrapper.scrollTop -= (scrollSpeed * deltaY);
             moveCovers();
             }, 11);
         })();
@@ -1571,15 +1571,15 @@ var AdventureMap = {
     
     init: function() {
 
-        AdventureMap.mapWrapper = document.getElementById('map-wrapper');
+        SectionMap.mapWrapper = document.getElementById('map-wrapper');
         Scaling.resizePage();
 
-        $(AdventureMap.mapWrapper).bind('mousemove', $.throttle(100, true, function(e) { 
+        $(SectionMap.mapWrapper).bind('mousemove', $.throttle(100, true, function(e) { 
             var mouse = { x: e.pageX - 270, y: e.pageY };
-            AdventureMap.scrollMap(mouse);
+            SectionMap.scrollMap(mouse);
         }))
         .bind('mouseleave mousedown', function() {
-            clearTimeout(AdventureMap.timeout);
+            clearTimeout(SectionMap.timeout);
         })
         .bind('click', function(e) {
             if ($(e.target).is('a')) {
@@ -1589,20 +1589,20 @@ var AdventureMap = {
             }
         });
 
-        $(AdventureMap.mapWrapper).find('a')
-        .bind('mouseenter', function() { AdventureMap.showTooltip(this); })
-        .bind('mouseleave', function() { AdventureMap.hideTooltip(this); });
+        $(SectionMap.mapWrapper).find('a')
+        .bind('mouseenter', function() { SectionMap.showTooltip(this); })
+        .bind('mouseleave', function() { SectionMap.hideTooltip(this); });
 
     }
     
     
 };
 
-var Adventure = {
+var Section = {
 
 
     settings: {
-        element: $('#adventure-wrapper'),
+        element: $('#section-wrapper'),
         sceneCount: null,
         queuedScroll: 0,
         hasShownTip: false
@@ -1619,28 +1619,28 @@ var Adventure = {
         var sceneHeight = Scaling.windowDimensions.height,
             percent = ($(window).scrollTop() - (scene * sceneHeight)) / sceneHeight;
 
-        Adventure.settings.element.find('.caption-' + (scene + 1)).css('top', to - ((from - to) * percent));
+        Section.settings.element.find('.caption-' + (scene + 1)).css('top', to - ((from - to) * percent));
 
     },
     
     
     moveCaptions: function() {
 
-        var adventureWrapper = Adventure.settings.element,
+        var sectionWrapper = Section.settings.element,
             scrollPos = $(window).scrollTop(),
-            toTop = Adventure.settings.element.find('.to-top'),
+            toTop = Section.settings.element.find('.to-top'),
             caption,
             from,
             to,
             i;
 
-        if (!Adventure.settings.sceneCount) {
+        if (!Section.settings.sceneCount) {
             return;
         }
 
         //positionCaptions(scene, from, to)
-        for (i = 1; i <= Adventure.settings.sceneCount; i++) {
-            caption = adventureWrapper.find('.caption-' + (i));
+        for (i = 1; i <= Section.settings.sceneCount; i++) {
+            caption = sectionWrapper.find('.caption-' + (i));
 
             if (caption.length) {
                 switch (caption.data('align')) {
@@ -1658,7 +1658,7 @@ var Adventure = {
                 // Distance to move (4 > 10) :P
                 from = to + (Scaling.windowDimensions.height / 4);
 
-                Adventure.positionCaptions((i - 1), from, to);
+                Section.positionCaptions((i - 1), from, to);
             }
         }
 
@@ -1670,12 +1670,12 @@ var Adventure = {
             toTop.stop().animate({ opacity:1 }, { duration: 200, queue: false });
         }
 
-        adventureWrapper.find('#adventure-cords').css('top', -(scrollPos) + 75).end()
-        .find('.adventure-nav').css('top', -(scrollPos * 3) + (Scaling.windowDimensions.height/2));
+        sectionWrapper.find('#section-cords').css('top', -(scrollPos) + 75).end()
+        .find('.section-nav').css('top', -(scrollPos * 3) + (Scaling.windowDimensions.height/2));
 
         // Move indicator line relative to first scene figcaption
-        if ($('#indicator-line').length && adventureWrapper.find('.figcaption').length) {
-            $('#indicator-line').css('top', parseInt(adventureWrapper.find('.figcaption')[0].style.top, 10) + 100);
+        if ($('#indicator-line').length && sectionWrapper.find('.figcaption').length) {
+            $('#indicator-line').css('top', parseInt(sectionWrapper.find('.figcaption')[0].style.top, 10) + 100);
         }
 
     },
@@ -1691,7 +1691,7 @@ var Adventure = {
             lastSceneSpan,
             offsetTop;
 
-        if (!Adventure.settings.sceneCount || !sceneWrapper.find('.figcaption').length) {
+        if (!Section.settings.sceneCount || !sceneWrapper.find('.figcaption').length) {
             return;
         }
 
@@ -1728,10 +1728,10 @@ var Adventure = {
     },
     
     
-    open: function(adventure) {
+    open: function(section) {
 
-        var id = adventure.id,
-            index = adventure.index,
+        var id = section.id,
+            index = section.index,
             cover = CoverFlow.settings.element.find('a').eq(index),
             req = $.ajax('/api/section/' + id, { dataType : 'html', type : 'GET', cache: false }),
             percent = Scaling.scalingPercentage(),
@@ -1750,9 +1750,9 @@ var Adventure = {
 
         req.success(function(resp) {
 
-            $('body').addClass('loading-adventure');
+            $('body').addClass('loading-section');
 
-            Adventure.settings.element.html(resp).find('#scene-1 img.scale').css({					
+            Section.settings.element.html(resp).find('#scene-1 img.scale').css({					
                 width: percent * 1280,
                 height: percent * 800,
                 left: leftValue
@@ -1761,17 +1761,17 @@ var Adventure = {
 
             GoTripCompability.fixGeneratedContent();
 
-            //$.preload('.adventure-content img', {
-            $('.adventure-content #scene-1 img').preload({ 
+            //$.preload('.section-content img', {
+            $('.section-content #scene-1 img').preload({ 
                 onFinish: function() {
                     CoverFlow.settings.loader.stop().animate({ width: 180 }, { 
                         duration: 500,
                         queue: false, 
                         easing: 'easeInOutQuad',
                         complete: function() {
-                            $('body').removeClass('loading-adventure');
+                            $('body').removeClass('loading-section');
                             CoverFlow.settings.loader.hide().width(0);
-                            Adventure.playIntro(cover, index);
+                            Section.playIntro(cover, index);
                         }
                     });
                 }
@@ -1788,7 +1788,7 @@ var Adventure = {
             leftValue = (-180 * index) + CoverFlow.settings.scrollLeft,
             expandWidth = CoverFlow.settings.coverWrapper.width() + Scaling.windowDimensions.width;
 
-        Adventure.settings.element.show();
+        Section.settings.element.show();
         cover.addClass('expand').find('img').hide();
 
         // #HACK Make animations non-instant
@@ -1796,8 +1796,8 @@ var Adventure = {
 
         GoTripXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: leftValue, width: expandWidth }, duration);
         GoTripXCHelpers.cssAnimation(cover, { width: Scaling.windowDimensions.width }, duration);
-        GoTripXCHelpers.cssAnimation($('#scene-1').find('img.scale'), { left: 0 }, duration, Adventure.introCallback, 'play-adventure-intro');
-        //GoTripXCHelpers.cssAnimation($('#sidebar'), { left: -270 }, duration);
+        GoTripXCHelpers.cssAnimation($('#scene-1').find('img.scale'), { left: 0 }, duration, Section.introCallback, 'play-section-intro');
+        GoTripXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
 
     },
     
@@ -1824,14 +1824,14 @@ var Adventure = {
         }
 
         //Added to support playOutro after navigating sideways
-        Adventure.settings.element.find('.adventure-content').css('zIndex', 3332);
+        Section.settings.element.find('.section-content').css('zIndex', 3332);
 
         CoverFlow.settings.element.show().scrollLeft(CoverFlow.settings.scrollLeft);
-        $('#scene-1').find('.figcaption').add('#indicator-line, #adventure-cords').hide();
+        $('#scene-1').find('.figcaption').add('#indicator-line, #section-cords').hide();
 
         GoTripXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: 270, width: coverWrapperWidth }, duration);
         GoTripXCHelpers.cssAnimation(cover, { width: 180 }, duration);
-        GoTripXCHelpers.cssAnimation($('#scene-1 img'), { left: leftValue }, duration, Adventure.outroCallback, 'play-adventure-outro');
+        GoTripXCHelpers.cssAnimation($('#scene-1 img'), { left: leftValue }, duration, Section.outroCallback, 'play-section-outro');
         GoTripXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
 
     },
@@ -1876,8 +1876,8 @@ var Adventure = {
                 setTimeout(function() {
                     tip.fadeOut(200, function() {
                         tip.remove();
-                        Adventure.settings.hasShownTip = true;
-                        Adventure.initNav(queueKey);
+                        Section.settings.hasShownTip = true;
+                        Section.initNav(queueKey);
                     });
                 }, delay);
 
@@ -1885,14 +1885,14 @@ var Adventure = {
 
         }
 
-        $('body').addClass('adventure-view');
+        $('body').addClass('section-view');
 
         // #note changed from Scaling.windowResize(); These should be the only elements in need of resize.
-        Adventure.settings.element.find('img.scale').css({
+        Section.settings.element.find('img.scale').css({
             width: percent * 1280,
             height: percent * 800
         }).end()
-        .find('.adventure-content').css({
+        .find('.section-content').css({
             width: Scaling.windowDimensions.width,
             height: Scaling.windowDimensions.height
         });
@@ -1901,11 +1901,11 @@ var Adventure = {
         //GoTripXCHelpers.removeOverlay();
 
         // Show key-nav indicator until mousemove or keypress
-        if (Adventure.settings.hasShownTip) {
-            Adventure.initNav();
+        if (Section.settings.hasShownTip) {
+            Section.initNav();
         }
         else {
-            Adventure.settings.element.find('.adventure-content').append(tip);
+            Section.settings.element.find('.section-content').append(tip);
             tip.hide().fadeIn(200);
             toggleTip();
         }
@@ -1918,15 +1918,15 @@ var Adventure = {
         var scrollLeft = CoverFlow.settings.element.scrollLeft(),
             firstIndex = Math.floor(scrollLeft / 180);
 
-        Adventure.settings.sceneCount = null;
-        $('body').removeClass('adventure-view');
-        Adventure.settings.element.empty().hide();
+        Section.settings.sceneCount = null;
+        $('body').removeClass('section-view');
+        Section.settings.element.empty().hide();
         CoverFlow.settings.element.find('.expand img').show().end().find('.expand').removeClass('expand').addClass('active').removeAttr('style');
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
         if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
             GoTripKeyNav.coverFlowKeyCounter = CoverFlow.settings.element.find('.active').index() - firstIndex - 1;
-            GoTripKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
+            GoTripKeyNav.coverFlowKeyNav({type: 'section', covers: 50});
         }
 
         //setTimeout(GoTripXCHelpers.removeOverlay, 500);
@@ -1935,116 +1935,124 @@ var Adventure = {
 
     },
     
-    slideInAdventure: function(url, direction) {
+    slideInSection: function(url, direction) {
 
-        var adventureWrapper = Adventure.settings.element,
+        var sectionWrapper = Section.settings.element,
             id = parseInt(url.split('/').pop(), 10),
             index = id - 1,
             delta = (direction === 'next')? -1 : 1,
-            leftValue = (delta === -1)? Scaling.windowDimensions.width : 0,	
-            req = $.ajax('/api/section/' + id, { dataType: 'html', type: 'GET', cache: false });
-            
+            leftValue = (delta === -1)? Scaling.windowDimensions.width : 0;
+
         // Disable the page while loading...
         GoTripXCHelpers.addOverlay();
 
-        req.success(function(resp) {
 
-            $('body').addClass('loading-next-adventure');
-            $('#' + direction).addClass('loading');
+        $.ajax('/api/section/' + id, {
+            dataType: 'html',
+            type: 'GET', cache: false,
 
-            adventureWrapper.append(resp);
+            success: function(resp) {
 
-            GoTripCompability.fixGeneratedContent();
+                $('body').addClass('loading-next-section');
+                $('#' + direction).addClass('loading');
 
-            //Added to support playOutro after navigating sideways
-            CoverFlow.settings.scrollLeft = CoverFlow.settings.scrollLeft -(delta * 180);
-            CoverFlow.settings.coverWrapper.css('left', (-180 * index) + CoverFlow.settings.scrollLeft);
-            CoverFlow.settings.element.find('.expand img').show().end()
-            .find('.expand').removeClass('expand').removeAttr('style').end()
-            .find('a').eq(index).addClass('expand').width(Scaling.windowDimensions.width).find('img').hide();
-            // END
+                sectionWrapper.append(resp);
 
-            adventureWrapper.find('.adventure-content:last').css({
-                zIndex: 1, /* Dont set to zero, will break in ie7 */
-                left: leftValue - ((Scaling.scalingPercentage() * 1280) * Scaling.coverOffsets[index])
-            }).end()
-            .find('.adventure-content:first').css('zIndex', 3332);
+                GoTripCompability.fixGeneratedContent();
 
-            $('html, body').firstScrollable().animate({ scrollTop: 0 }, $(window).scrollTop(), 'easeOutQuad', function() {
+                //Added to support playOutro after navigating sideways
+                CoverFlow.settings.scrollLeft = CoverFlow.settings.scrollLeft -(delta * 180);
+                CoverFlow.settings.coverWrapper.css('left', (-180 * index) + CoverFlow.settings.scrollLeft);
+                CoverFlow.settings.element.find('.expand img').show().end()
+                .find('.expand').removeClass('expand').removeAttr('style').end()
+                .find('a').eq(index).addClass('expand').width(Scaling.windowDimensions.width).find('img').hide();
+                // END
 
-                Scaling.resizeNextAdventure();
+                sectionWrapper.find('.section-content:last').css({
+                    zIndex: 1, /* Dont set to zero, will break in ie7 */
+                    left: leftValue - ((Scaling.scalingPercentage() * 1280) * Scaling.coverOffsets[index])
+                }).end()
+                .find('.section-content:first').css('zIndex', 3332);
 
-                GoTripXCHelpers.showPNGLoader($('#' + direction), {
-                    size: 41,
-                    reset: 4058,
-                    loop: false,
-                    interval: 50
-                });
+                var afterScrollTop = function() {
 
-                $('.adventure-content:nth-child(2) #scene-1 .scale').preload({ 
-                    onFinish: function() {
-                        GoTripXCHelpers.hidePNGLoader(function() {
-                            $('body').removeClass('loading-next-adventure');
-                            adventureWrapper.find('.adventure-content').removeClass('active');
+                    Scaling.resizeNextSection();
 
-                            GoTripXCHelpers.cssAnimation(adventureWrapper.find('.adventure-content:last'), { left: 0 }, 1000);
-                            GoTripXCHelpers.cssAnimation(adventureWrapper.find('.adventure-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
-                                adventureWrapper.find('.adventure-content:first').remove().end()
-                                .find('#scene-1 img').css({
-                                    left: 0 //Added to support playOutro after navigating sideways
-                                });
-                                Adventure.initNav();
-                            }, 'slide-in-next-adventure');
-                        });
-                    }
-                });
+                    GoTripXCHelpers.showPNGLoader($('#' + direction), {
+                        size: 41,
+                        reset: 4058,
+                        loop: false,
+                        interval: 50
+                    });
 
-            });
+                    $('.section-content:nth-child(2) #scene-1 .scale').preload({
+                        onFinish: function() {
+                            GoTripXCHelpers.hidePNGLoader(function() {
+                                $('body').removeClass('loading-next-section');
+                                sectionWrapper.find('.section-content').removeClass('active');
 
-        }); 
+                                GoTripXCHelpers.cssAnimation(sectionWrapper.find('.section-content:last'), { left: 0 }, 1000);
+                                GoTripXCHelpers.cssAnimation(sectionWrapper.find('.section-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
+                                    sectionWrapper.find('.section-content:first').remove().end()
+                                        .find('#scene-1 img').css({
+                                            left: 0 //Added to support playOutro after navigating sideways
+                                        });
+                                    Section.initNav();
+                                }, 'slide-in-next-section');
+                            });
+                        }
+                    });
+                };
 
+                if($(window).scrollTop() != 0 ){
+                    $('html, body').firstScrollable().animate({ scrollTop: 0 }, $(window).scrollTop(), 'easeOutQuad', afterScrollTop);
+                } else {
+                    afterScrollTop();
+                }
+            }
+        });
     },
     
     
     initNav: function(queuedAction) {
 
-        var adventureWrapper = Adventure.settings.element,
+        var sectionWrapper = Section.settings.element,
             nextScrollPos, duration;
 
-        // #GATracking (lang, adventure-id, scene-id)
-        //GATracking.trackAdventure(GoTripXCHelpers.lang, CoverFlow.settings.element.find('.expand').index() + 1, 0);
+        // #GATracking (lang, section-id, scene-id)
+        //GATracking.trackSection(GoTripXCHelpers.lang, CoverFlow.settings.element.find('.expand').index() + 1, 0);
 
-        adventureWrapper.find('.adventure-content:last').addClass('active');
+        sectionWrapper.find('.section-content:last').addClass('active');
 
-        Adventure.settings.sceneCount = $('#scene-wrapper').find('.scene').length;
+        Section.settings.sceneCount = $('#scene-wrapper').find('.scene').length;
 
-        Adventure.moveCaptions();
-        Adventure.moveBadge();
-        Adventure.setIndicatorLine();
+        Section.moveCaptions();
+        Section.moveBadge();
+        Section.setIndicatorLine();
 
-        $('#adventure-cords, #indicator-line, .caption-1').fadeIn(200, function() {
+        $('#section-cords, #indicator-line, .caption-1').fadeIn(200, function() {
             $('.figcaption').show(); // Show other captions later
         });
 
         GoTripXCHelpers.removeOverlay();
 
         // Bind navigation events
-        adventureWrapper.find('.adventure-nav').unbind('click').bind('click', function(e) {
+        sectionWrapper.find('.section-nav').unbind('click').bind('click', function(e) {
 
             var id = this.href.split('/').pop();
 
-            adventureWrapper.find('.adventure-nav').unbind('click');
-            History.pushState({ type: 'slide-section', url: this.href, direction: this.id }, GoTripXCHelpers.getPageTitle('slide-adventure', parseInt(id, 10)), '/section/' + id);
+            sectionWrapper.find('.section-nav').unbind('click');
+            History.pushState({ type: 'slide-section', url: this.href, direction: this.id }, GoTripXCHelpers.getPageTitle('slide-section', parseInt(id, 10)), '/section/' + id);
             e.preventDefault();
 
         }).end()
         .find('.to-coverflow').bind('click', function(e) {
-            History.pushState({ type: 'close-adventure' }, GoTripXCHelpers.getPageTitle('close-adventure'), '/');
-            adventureWrapper.find('.to-top').unbind('click');
+            History.pushState({ type: 'close-section' }, GoTripXCHelpers.getPageTitle('close-section'), '/');
+            sectionWrapper.find('.to-top').unbind('click');
             e.preventDefault();
         }).end()
         .find('.to-top').bind('click', function(e) {
-            Adventure.scrollToTop();
+            Section.scrollToTop();
             e.preventDefault();
         }).end()
         .find('.figcaption a').bind('click', function(e) {
@@ -2060,14 +2068,14 @@ var Adventure = {
 
         });
 
-        GoTripKeyNav.adventureKeyNav({type: 'adventure'});
+        GoTripKeyNav.sectionKeyNav({type: 'section'});
 
         switch (queuedAction) {
             case 37:
-                adventureWrapper.find('#prev').trigger('click');
+                sectionWrapper.find('#prev').trigger('click');
                 break;
             case 39:
-                adventureWrapper.find('#next').trigger('click');
+                sectionWrapper.find('#next').trigger('click');
                 break;
             case 40:
                 nextScrollPos = GoTripXCHelpers.getNextScrollPosition(40),
@@ -2093,43 +2101,43 @@ var Adventure = {
             speed = Scaling.windowDimensions.height / scrollSteps,
             duration;
 
-        // Prevent scrolling when a new adventure is loading
-        if ($('body').hasClass('loading-next-adventure') || $('body').hasClass('slide-in-next-adventure')) {
+        // Prevent scrolling when a new section is loading
+        if ($('body').hasClass('loading-next-section') || $('body').hasClass('slide-in-next-section')) {
             return;
         }
 
         delta = (delta < 0)? -1 : 1;
 
         // Direction-change
-        if ( delta !== Adventure.settings.prevDelta) {
-            Adventure.settings.queuedScroll = (-delta * speed);
+        if ( delta !== Section.settings.prevDelta) {
+            Section.settings.queuedScroll = (-delta * speed);
         }
 
-        Adventure.settings.prevDelta = delta;
+        Section.settings.prevDelta = delta;
 
         // Scroll Down
         if (delta < 0) {
-            if (Adventure.settings.queuedScroll < (speed * 10)) {
-                Adventure.settings.queuedScroll += speed;
+            if (Section.settings.queuedScroll < (speed * 10)) {
+                Section.settings.queuedScroll += speed;
             }
         }
 
         // Scroll Up
         else {		
-            if (Adventure.settings.queuedScroll > (-speed * 10)) {
-                Adventure.settings.queuedScroll -= speed;
+            if (Section.settings.queuedScroll > (-speed * 10)) {
+                Section.settings.queuedScroll -= speed;
             }
         }
 
-        duration = 500 + (-delta * Adventure.settings.queuedScroll * 3);
+        duration = 500 + (-delta * Section.settings.queuedScroll * 3);
 
         // Scroll page
-        $('html, body').firstScrollable().stop().animate({ scrollTop: '+=' + Adventure.settings.queuedScroll }, { 
+        $('html, body').firstScrollable().stop().animate({ scrollTop: '+=' + Section.settings.queuedScroll }, { 
             duration: duration, 
             easing: 'easeOutCubic', 
             queue: false, 
             complete: function() { 
-                Adventure.settings.queuedScroll = 0; 
+                Section.settings.queuedScroll = 0; 
             } 
         });
 
@@ -2250,7 +2258,7 @@ var CoverFlow = {
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
         if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
-            GoTripKeyNav.coverFlowKeyNav({type: 'adventure', covers: 50});
+            GoTripKeyNav.coverFlowKeyNav({type: 'section', covers: 50});
         }
 
     },
@@ -2274,7 +2282,7 @@ var CoverFlow = {
 
             if (windowLocationString.indexOf('/section/') > -1) {
                 id = parseInt(windowLocationString.split('/section/').pop(), 10);
-                Adventure.open({ id: id, index: id - 1 });
+                Section.open({ id: id, index: id - 1 });
             }
             else if (windowLocationString.indexOf('/cars/') > -1) {
                 id = parseInt(windowLocationString.split('/cars/').pop(), 10);
@@ -2424,7 +2432,7 @@ var CoverFlow = {
         }
 
         function scrollToCenter(type, index, cb) {
-        	//console.log(type);
+
             var obj = (type === 'cars' || type === 'v40cc')? GoTrip : CoverFlow,
                 currentScrollLeft = obj.settings.element.scrollLeft(),
                 coversOnScreen = Math.ceil((Scaling.windowDimensions.width - 270) / 180),
@@ -2463,23 +2471,23 @@ var CoverFlow = {
 
         if (State.data.type === 'open-section') {
         
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
-                Adventure.slideInAdventure('/section/' + State.data.id, get_dir('section'));
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
+                Section.slideInSection('/section/' + State.data.id, get_dir('section'));
             }
             else {
                 if (Page.settings.visible) {
                     Page.playOutro(GoTripXCHelpers.addOverlay);
                 }
-                scrollToCenter('adventures', State.data.index, function(){ Adventure.open(State.data); });
+                scrollToCenter('sections', State.data.index, function(){ Section.open(State.data); });
             }
             
         } else if (State.data.type === 'close-section') {
         
             if ($(window).scrollTop() !== 0) {
-                $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Adventure.playOutro);
+                $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Section.playOutro);
             }
             else {
-                Adventure.playOutro();
+                Section.playOutro();
             }
             if (Page.settings.visible) {
                 Page.playOutro();
@@ -2487,22 +2495,22 @@ var CoverFlow = {
             
         } else if (State.data.type === 'slide-section') {
         
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
-                Adventure.slideInAdventure(State.data.url, get_dir('section'));
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
+                Section.slideInSection(State.data.url, get_dir('section'));
             }
-            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-adventure') {
+            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-section') {
                 id = State.data.url.split('/section/').pop();
                 index = (id - 1 < 0)? 0 : id - 1;
-                scrollToCenter('adventures', index, function(){ Adventure.open({ id: id, index: index, type: 'open-adventure' }); });
+                scrollToCenter('sections', index, function(){ Section.open({ id: id, index: index, type: 'open-section' }); });
             }
             else {
-                Adventure.slideInAdventure(State.data.url, State.data.direction);
+                Section.slideInSection(State.data.url, State.data.direction);
             }
             
         } else if (State.data.type === 'open-page') {
         
             if(GoTripXCHelpers.prevHistoryState && (GoTripXCHelpers.prevHistoryState.data.type === 'map-to-section' || GoTripXCHelpers.prevHistoryState.data.type === 'open-section')) {
-                Adventure.playOutro();
+                Section.playOutro();
                 Page.open(State.data.page);
             }
             else {
@@ -2520,8 +2528,8 @@ var CoverFlow = {
         
         else if (State.data.type === 'close-page') {
         
-            if(GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-adventure') {
-                Adventure.playOutro();
+            if(GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-section') {
+                Section.playOutro();
             }
             else {
                 Page.playOutro();
@@ -2531,17 +2539,17 @@ var CoverFlow = {
         
         else if (State.data.type === 'map-to-section') {
         
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
                 delta = (get_dir('section') === 'next')? 1 : -1;
                 State.data.url = '/' + (parseInt(GoTripXCHelpers.prevHistoryState.data.url.split('/section/').pop(), 10) + delta);
-                Adventure.slideInAdventure(State.data.url, get_dir('section'));
+                Section.slideInSection(State.data.url, get_dir('section'));
             }
             else {
                 coversOnScreen = Math.ceil((CoverFlow.settings.element.width() - CoverFlow.settings.sidebar.width()) / CoverFlow.settings.coverWidth);
                 GoTripXCHelpers.addOverlay();
                 CoverFlow.settings.element.scrollLeft(180 * (State.data.index - Math.ceil(coversOnScreen/2)));
                 Page.playOutro(function() {
-                    Adventure.open(State.data);
+                    Section.open(State.data);
                 });
             }
             
@@ -2549,17 +2557,17 @@ var CoverFlow = {
         
         else if (State.data.type === undefined) {
         
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-adventure') {
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-section') {
                 urlId = parseInt(windowLocationString.split('/section/').pop(), 10);
-                scrollToCenter('adventures', (urlId - 1), function(){ Adventure.open({ id: urlId, index: urlId - 1 }); });
+                scrollToCenter('sections', (urlId - 1), function(){ Section.open({ id: urlId, index: urlId - 1 }); });
             }
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-adventure') {
-                Adventure.playOutro(); /* Fix for html4 history */
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-section') {
+                Section.playOutro(); /* Fix for html4 history */
             }
-            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-adventure') {
+            else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
                 delta = (get_dir('section') === 'next')? 1 : -1;
                 State.data.url = '/' + (parseInt(GoTripXCHelpers.prevHistoryState.data.url.split('/section/').pop(), 10) + delta);
-                Adventure.slideInAdventure(State.data.url, get_dir('section'));
+                Section.slideInSection(State.data.url, get_dir('section'));
             }
             else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-page') {
                 urlpage = windowLocationString.split('/').pop();
@@ -2636,9 +2644,9 @@ jQuery(function(){
 	
 	$(document).bind('mousewheel', function(e, delta) {
 		e.preventDefault();
-		Adventure.mouseWheelScroll(delta);
+		Section.mouseWheelScroll(delta);
 	});
 
-	$(window).bind('scroll', Adventure.moveCaptions);
+	$(window).bind('scroll', Section.moveCaptions);
 	
 });

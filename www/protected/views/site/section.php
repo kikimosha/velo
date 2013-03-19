@@ -1,11 +1,11 @@
-<div class="adventure-content">
-    <div id="adventure-cords">
+<div class="section-content">
+    <div id="section-cords">
         <span class="name"><?php echo $sectionInfo->name; ?></span>
     </div>
 
-    <?php if (!empty($nextId)): ?><a class="adventure-nav" id="next" href="<?php echo Yii::app()->request->baseUrl; ?>/section/<?php echo $nextId; ?>"><b>Next</b></a><?php endif; ?>
+    <?php if (!empty($nextId)): ?><a class="section-nav" id="next" href="<?php echo Yii::app()->request->baseUrl; ?>/section/<?php echo $nextId; ?>"><b>Next</b></a><?php endif; ?>
 
-    <?php if (!empty($prevId)): ?><a class="adventure-nav" id="prev" href="<?php echo Yii::app()->request->baseUrl; ?>/section/<?php echo $prevId; ?>"><b>Previous</b></a><?php endif; ?>
+    <?php if (!empty($prevId)): ?><a class="section-nav" id="prev" href="<?php echo Yii::app()->request->baseUrl; ?>/section/<?php echo $prevId; ?>"><b>Previous</b></a><?php endif; ?>
 
     <div class="quicklinks">
         <a href="#scene-1" class="to-top">Top</a>
