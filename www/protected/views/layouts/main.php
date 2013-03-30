@@ -31,13 +31,15 @@
 
     <a href="/" rel="home" class="home">Home</a>
 
-    <p>Welcome to <strong><?php echo CHtml::encode(Yii::app()->name); ?></strong>. Bla-bla-bla...</p>
+    <p>Туры от <strong>Go-Trip</strong> – это возможность сблизиться с природой, стряхнуть с себя будничную рутину, отдохнуть душой, взбодрить тело, окунуться в историю родного края. Это радость общения с живой средой и новые знакомства, свежие впечатления и приключения.<br />
+    Туры от  <strong>Go-Trip</strong> – Ваша возможность расширить свои  горизонты.<br />
+    <strong>Go</strong> to <strong>Trip</strong> with us!</p>
 
     <div id="menu">
 
         <nav>
-            <a href="/v40cc"></a>
-            <a href="/" rel="home">Home</a>
+            <a href="/" rel="home">Главная</a>
+            <a href="/" rel="contacts">Контакты</a>
         </nav>
 
     </div>

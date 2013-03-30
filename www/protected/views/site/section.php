@@ -8,25 +8,35 @@
     <?php if (!empty($prevId)): ?><a class="section-nav" id="prev" href="<?php echo Yii::app()->request->baseUrl; ?>/section/<?php echo $prevId; ?>"><b>Previous</b></a><?php endif; ?>
 
     <div class="quicklinks">
-        <a href="#scene-1" class="to-top">Top</a>
-        <a href="/" class="to-coverflow">Home</a>
+        <a href="#scene-1" title="Top" class="to-top">Top</a>
+        <a href="/" title="Home" class="to-coverflow">Home</a>
     </div>
 
     <div id="indicator-line"></div>
 
     <div id="scene-wrapper">
         <div class="scene" id="scene-1">
-            <img class="scale" src="/resources/default/img/section_velo.jpg" />
+            <img class="scale" src="/resources/default/img/<?php echo $sectionInfo->alias; ?>/section_1.jpg" />
 
             <div data-align="bottom" data-offset="0" class="figcaption caption-1">
                 <p><?php echo $sectionInfo->description; ?></p>
-
-                <ul>
-                    <?php foreach($trips as $index => $trip): ?>
-                    <li><a href="<?php echo Yii::app()->request->baseUrl; ?>/trip/<?php echo $trip->id; ?>" title="<?php echo $trip->title; ?>"><?php echo $trip->title; ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
             </div>
         </div>
+
+        <?php $dataAlign = 'bottom';
+        foreach($trips as $index => $trip):
+            $sceneNum = $index+2; // first index = 0
+            $dataAlign = ($dataAlign == 'bottom')? 'top' : 'bottom';
+        ?>
+        <div class="scene" id="scene-<?php echo $sceneNum; ?>">
+            <img class="scale" src="/resources/default/img/<?php echo $sectionInfo->alias; ?>/section_<?php echo $sceneNum; ?>.jpg" />
+
+            <div data-align="<?php echo $dataAlign; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
+                <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
+                <h4><?php echo $trip->title; ?></h4>
+                <div><?php echo $trip->description; ?></div>
+            </div>
+        </div>
+        <?php endforeach; ?>
     </div>
 </div>

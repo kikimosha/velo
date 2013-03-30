@@ -89,7 +89,7 @@ body, select, input, textarea, button {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font: normal 51px/44px broad, arial;
+    font: normal 40px broad, arial;
     margin: 0 0 0.35em;
     -webkit-font-smoothing: antialiased
 }
@@ -266,34 +266,28 @@ body {
 }
 
 #sidebar {
-    position: absolute;
+    /*position: absolute;*/
+    position: fixed;
     top: 0;
     left: -270px;
     width: 270px;
     height: 100%;
     z-index: 7777;
-    background: url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat, url(../img/desktop/bg_sidebar_gradient.jpg) 0 0 repeat-y #dbe0e6;
+    background-color: #dbe0e6;
     -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4)
 }
 
-.summer #sidebar {
-    background: url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat, url(../img/desktop/bg_sidebar_gradient.jpg) 0 0 repeat-y #dbe0e6
-}
-
-.winter #sidebar {
-    background: url(../img/desktop/bg_sidebar_double.jpg) 0 0 no-repeat, url(../img/desktop/bg_sidebar_gradient.jpg) 0 0 repeat-y #dbe0e6
-}
-
 #sidebar .home {
     display: block;
-    height: 260px;
+    height: 125px;
     left: 30px;
     position: absolute;
     text-indent: -999em;
     top: 30px;
-    width: 200px
+    width: 200px;
+    background: url("../img/logo.png") no-repeat 0 0 transparent;
 }
 
 .section-view #sidebar {
@@ -303,9 +297,9 @@ body {
 }
 
 #sidebar p {
-    text-align: center;
+    text-align: justify;
     line-height: 16px;
-    margin: 457px 0 0;
+    margin: 200px 33px 0;
     font-weight: 400
 }
 
@@ -317,10 +311,6 @@ body {
     position: absolute;
     left: 125px;
     top: 320px
-}
-
-.winter {
-    background-position: -315px -125px
 }
 
 #logo {
@@ -562,19 +552,20 @@ body {
 }
 
 .quicklinks a {
-    color: #fff;
-    margin: 0 0 0 22px;
-    padding: 0 0 0 22px;
+    /*color: #fff;*/
+    margin: 0 0 0 10px;
+    padding: 0 0 0 10px;
     cursor: pointer;
     position: relative;
     display: inline-block;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    text-indent: -9999px;
     line-height: 17px
 }
 
-.quicklinks a:hover {
-    color: #000
-}
+/*.quicklinks a:hover {*/
+    /*color: #000*/
+/*}*/
 
 .quicklinks a:before {
     content: "";
@@ -718,7 +709,7 @@ body {
     background: #fff;
     position: absolute;
     top: 0;
-    left: 95px;
+    right: 95px;
     z-index: 3330;
     display: none
 }
@@ -746,7 +737,7 @@ body {
 
 .figcaption {
     position: absolute;
-    left: 95px;
+    right: 95px;
     top: 110%;
     width: 300px;
     background: #fff;
@@ -1385,18 +1376,6 @@ body {
     font-weight: 500
 }
 
-.no-multiplebgs #sidebar {
-    background: #b0b6c2 url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat
-}
-
-.no-multiplebgs .summer #sidebar {
-    background: #b0b6c2 url(../img/desktop/bg_sidebar_double.jpg) -270px 0 no-repeat
-}
-
-.no-multiplebgs .winter #sidebar {
-    background: #b0b6c2 url(../img/desktop/bg_sidebar_double.jpg) 0 0 no-repeat
-}
-
 .no-generatedcontent .quicklinks a span {
     display: block;
     width: 18px;
@@ -1669,7 +1648,6 @@ body {
     padding: 8px 3px 0 3px;
     overflow: hidden;
     text-align: center;
-    padding: auto 4px
 }
 
 .mejs-container .mejs-controls .mejs-time span {

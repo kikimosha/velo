@@ -591,6 +591,21 @@ var GoTripXCHelpers = {
 
     },
 
+
+    setSeason: function() {
+
+        var scrollLeft = CoverFlow.settings.element[0].scrollLeft;
+
+        if ($('body').is('.summer') && scrollLeft < 180 * 25) {
+            $('body').removeClass('summer').addClass('winter');
+        }
+        else if ($('body').is('.winter') && scrollLeft > 180 * 25) {
+            $('body').removeClass('winter').addClass('summer');
+        }
+
+    },
+
+
     setVisibleCovers: function() {
 
         var scrollLeft = CoverFlow.settings.element[0].scrollLeft,
@@ -746,6 +761,7 @@ var GoTripKeyNav = {
                         if (scrollPos === 0) {
                             GoTripKeyNav.coverFlowKeyCounter = activeCover.index();
                         }
+                        GoTripXCHelpers.setSeason();
                     }
                 });
                 GoTripKeyNav.coverFlowKeyCounter = coversOnScreen - 1;
@@ -762,6 +778,7 @@ var GoTripKeyNav = {
                         if (scrollPos === scrollPosMax) {
                             GoTripKeyNav.coverFlowKeyCounter = coversOnScreen - 1 - ((settings.covers - 1) - activeCover.index());
                         }
+                        GoTripXCHelpers.setSeason();
                     }
                 });
                 GoTripKeyNav.coverFlowKeyCounter = 0;
@@ -2176,6 +2193,7 @@ var CoverFlow = {
 
         // use requestAnimationFrame:
         (function moveCovers() {
+            GoTripXCHelpers.setSeason();
             //GoTripXCHelpers.setVisibleCovers();
             CoverFlow.settings.timer = setTimeout(function() {
                 if (mousePos > CoverFlow.settings.centerLine) {
@@ -2245,7 +2263,7 @@ var CoverFlow = {
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
         if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
-            GoTripKeyNav.coverFlowKeyNav({type: 'section', covers: 6});
+            GoTripKeyNav.coverFlowKeyNav({type: 'section', covers: 50});
         }
 
     },
@@ -2616,6 +2634,7 @@ $.extend(jQuery.easing, {
 /* #DOM-READY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 jQuery(function(){
+	
 	CoverFlow.init();
 	
 	$(document).bind('mousewheel', function(e, delta) {

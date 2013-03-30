@@ -54,6 +54,16 @@ class SiteController extends Controller
         }
     }
 
+    public function actionPage()
+    {
+        $model = new Pages();
+        if(isset($_GET['alias'])) {
+            $alias = mysql_real_escape_string($_GET['alias']);
+            $pageInfo = $model->findAll("url_alias = '" . $alias . "'", array('limit'=>1));
+            $this->render('page', array('pageInfo' => $pageInfo[0]));
+        }
+    }
+
     /**
      * This is the action to handle external exceptions.
      */

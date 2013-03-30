@@ -28,10 +28,14 @@ return array(
                 'gii/<controller:\w+>'=>'gii/<controller>',
                 'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
 
+                '/page/<alias:\w+>' => 'site/page',
+                '/api/page/<alias:\w+>' => 'site/page',
+
                 'section/<id:\d+>' => 'site/index',
                 'api/section/<id:\d+>' => 'site/section',
 
                 'trip/<id:\d+>' => 'site/trip',
+                'api/trip/<id:\d+>' => 'site/trip',
 
                 'admin/section/<id:\d+>' => 'admin/default/section',
 

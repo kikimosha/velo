@@ -2,8 +2,8 @@
     <nav>
         <?php foreach($sections as $index => $section) {
         $cover_img = '';
-        if ($section->cover_filename != '') {
-            $cover_img = '<img src="/resources/default/img/' . $section->cover_filename. '" alt="' . $section->name . '" />';
+        if ($section->alias != '') {
+            $cover_img = '<img src="/resources/default/img/' . $section->alias . '/cover.jpg" alt="' . $section->name . '" />';
         }
         echo '<a href="/section/' . $section->id .
             '">' . $cover_img . '<figcaption><span>' . ($index+1) .
