@@ -16,7 +16,7 @@
 
     <div id="scene-wrapper">
         <div class="scene" id="scene-1">
-            <img class="scale" src="/resources/default/img/<?php echo $sectionInfo->alias; ?>/section_1.jpg" />
+            <img class="scale" src="/resources/default/img/sections/<?php echo $sectionInfo->alias; ?>/section_1.jpg" />
 
             <div data-align="bottom" data-offset="0" class="figcaption caption-1">
                 <p><?php echo $sectionInfo->description; ?></p>
@@ -29,12 +29,13 @@
             $dataAlign = ($dataAlign == 'bottom')? 'top' : 'bottom';
         ?>
         <div class="scene" id="scene-<?php echo $sceneNum; ?>">
-            <img class="scale" src="/resources/default/img/<?php echo $sectionInfo->alias; ?>/section_<?php echo $sceneNum; ?>.jpg" />
+            <img class="scale" src="/resources/default/img/sections/<?php echo $sectionInfo->alias; ?>/section_<?php echo $sceneNum; ?>.jpg" />
 
             <div data-align="<?php echo $dataAlign; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
                 <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
                 <h4><?php echo $trip->title; ?></h4>
                 <div><?php echo $trip->description; ?></div>
+                <div class="costTrip"><a href=# class="grayBtn">Стоимость »</a></div>
             </div>
         </div>
         <?php endforeach; ?>
