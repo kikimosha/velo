@@ -269,7 +269,7 @@ var Scaling = {
     },
 
 
-    // Runs on each window-resize and on SectionMap init
+    // Runs on each window-resize and on SectionTrip init
     resizePage: function() {
 
         var percent = Scaling.scalingPercentage(),
@@ -904,8 +904,8 @@ console.log(1);
                 left: left
             }).html(resp);
 
-            if (page === 'map') {
-                SectionMap.init();
+            if (page === 'trip') {
+                SectionTrip.init();
             }
             else if (page === 'cars') {
                 GoTrip.init('cars');
@@ -1499,7 +1499,7 @@ var Offer = {
     }
 };
 
-var SectionMap = {
+var SectionTrip = {
 
     timeout: null,
     mapWrapper: null,
@@ -1513,12 +1513,12 @@ var SectionMap = {
             deltaX = Math.abs(1 - mouse.x / xMiddle),
             deltaY = Math.abs(1 - mouse.y / yMiddle);
 
-        clearTimeout(SectionMap.timeout);
+        clearTimeout(SectionTrip.timeout);
 
         (function moveCovers() {
-            SectionMap.timeout = setTimeout(function() {
-                (mouse.x > xMiddle)? SectionMap.mapWrapper.scrollLeft += (scrollSpeed * deltaX) : SectionMap.mapWrapper.scrollLeft -= (scrollSpeed * deltaX);
-                (mouse.y > yMiddle)? SectionMap.mapWrapper.scrollTop += (scrollSpeed * deltaY) : SectionMap.mapWrapper.scrollTop -= (scrollSpeed * deltaY);
+            SectionTrip.timeout = setTimeout(function() {
+                (mouse.x > xMiddle)? SectionTrip.mapWrapper.scrollLeft += (scrollSpeed * deltaX) : SectionTrip.mapWrapper.scrollLeft -= (scrollSpeed * deltaX);
+                (mouse.y > yMiddle)? SectionTrip.mapWrapper.scrollTop += (scrollSpeed * deltaY) : SectionTrip.mapWrapper.scrollTop -= (scrollSpeed * deltaY);
             moveCovers();
             }, 11);
         })();
@@ -1560,16 +1560,16 @@ var SectionMap = {
 
 
     init: function() {
-
-        SectionMap.mapWrapper = document.getElementById('map-wrapper');
+console.log('inTrip');
+        SectionTrip.mapWrapper = document.getElementById('map-wrapper');
         Scaling.resizePage();
 
-        $(SectionMap.mapWrapper).bind('mousemove', $.throttle(100, true, function(e) {
+        $(SectionTrip.mapWrapper).bind('mousemove', $.throttle(100, true, function(e) {
             var mouse = { x: e.pageX - 270, y: e.pageY };
-            SectionMap.scrollMap(mouse);
+            SectionTrip.scrollMap(mouse);
         }))
         .bind('mouseleave mousedown', function() {
-            clearTimeout(SectionMap.timeout);
+            clearTimeout(SectionTrip.timeout);
         })
         .bind('click', function(e) {
             if ($(e.target).is('a')) {
@@ -1579,9 +1579,9 @@ var SectionMap = {
             }
         });
 
-        $(SectionMap.mapWrapper).find('a')
-        .bind('mouseenter', function() { SectionMap.showTooltip(this); })
-        .bind('mouseleave', function() { SectionMap.hideTooltip(this); });
+        $(SectionTrip.mapWrapper).find('a')
+        .bind('mouseenter', function() { SectionTrip.showTooltip(this); })
+        .bind('mouseleave', function() { SectionTrip.hideTooltip(this); });
 
     }
 
@@ -1598,6 +1598,21 @@ var Section = {
         hasShownTip: false
     },
 
+    // my block
+    bindEvents: function() {
+
+        if ($('.costTrip a').length > 0) {
+            $('.costTrip a').on('click', function(e) {
+                console.log('in bind cost button');
+                var page = this.href,
+                    id = page.split('/').pop();
+
+                History.pushState({ type: 'open-trip', id: id }, GoTripXCHelpers.getPageTitle('open-trip', parseInt(id, 10)), '/trip/' + id);
+
+                e.preventDefault();
+            });
+        }
+    },
 
     scrollToTop: function() {
         $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad');
@@ -1743,6 +1758,8 @@ var Section = {
         req.success(function(resp) {
 
             $('body').addClass('loading-section');
+
+            Section.bindEvents();
 
             Section.settings.element.html(resp).find('#scene-1 img.scale').css({
                 width: percent * 1280,
@@ -2145,7 +2162,7 @@ var CoverFlow = {
         coverArray: null,
         coverWidth: null,
         coverCount: null,
-        currentCover: 26,
+        currentCover: 4,
         scrollLeft: 0,
         navSpeed: 7,
         centerLine: 0,
@@ -2535,6 +2552,30 @@ var CoverFlow = {
 
         }
 
+        else if (State.data.type === 'open-trip') {
+
+            if (Page.settings.visible) {
+                Page.playOutro(function() {
+                    Page.open(State.data.page);
+                });
+            }
+            else {
+                Page.open(State.data.page);
+            }
+
+        } else if (State.data.type === 'close-section') {
+
+            if ($(window).scrollTop() !== 0) {
+                $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Section.playOutro);
+            }
+            else {
+                Section.playOutro();
+            }
+            if (Page.settings.visible) {
+                Page.playOutro();
+            }
+        }
+
         else if (State.data.type === undefined) {
 
             if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-section') {
@@ -2616,6 +2657,10 @@ $.extend(jQuery.easing, {
 /* #DOM-READY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 jQuery(function(){
+//    if (window.location.pathname.toLowerCase().indexOf('trip') > -1) {
+//        return false;
+//    }
+
 	CoverFlow.init();
 	
 	$(document).bind('mousewheel', function(e, delta) {

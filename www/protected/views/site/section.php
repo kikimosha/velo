@@ -35,7 +35,7 @@
                 <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
                 <h4><?php echo $trip->title; ?></h4>
                 <div><?php echo $trip->description; ?></div>
-                <div class="costTrip"><a href=# class="grayBtn">Стоимость »</a></div>
+                <div class="costTrip"><a href="<?php echo Yii::app()->request->baseUrl . '/trip/' . $trip->id ?>" class="grayBtn">Стоимость »</a></div>
             </div>
         </div>
         <?php endforeach; ?>

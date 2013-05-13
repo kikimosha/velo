@@ -46,10 +46,9 @@ class SiteController extends Controller
     {
         $model = new Trips();
         if(isset($_GET['id'])) {
-
             $id = (int)$_GET['id'];
-            $tripInfo = $model->findByPk($id);
-
+            $tripInfo = $model->getTripInfo($id);
+//            var_dump($tripInfo);die;
             $this->render('trip', array('tripInfo' => $tripInfo));
         }
     }

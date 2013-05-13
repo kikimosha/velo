@@ -320,7 +320,7 @@ body {
     font-weight: bold;
     line-height: 1;
     text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25);
-    background: url("alert-overlay.png") repeat-x scroll 0 0 #222222;
+    background: url(../img/desktop/alert-overlay.png) repeat-x scroll 0 0 #222222;
     border-bottom: 1px solid rgba(0, 0, 0, 0.25);
     color: #FFFFFF;
     cursor: pointer;
@@ -546,7 +546,7 @@ body {
     height: 100%
 }
 
-.section-content, .car-content {
+.section-content, .trip-content {
     z-index: 3332;
     position: absolute;
     width: 100%;
@@ -688,7 +688,8 @@ body {
     left: 0
 }
 
-#section-cords {
+#section-cords,
+#trip-cords {
     z-index: 3329;
     position: absolute;
     top: 75px;

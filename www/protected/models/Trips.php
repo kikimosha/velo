@@ -94,4 +94,16 @@ class Trips extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+    public function getTripInfo($id)
+    {
+        $row = Yii::app()->db->createCommand()
+            ->select('t.*, s.alias as aliasSection')
+            ->from('trips t')
+            ->join('sections s', 's.id=t.section_id')
+            ->where('t.id=:id', array(':id'=>$id))
+            ->queryRow();
+
+        return $row;
+    }
 }
