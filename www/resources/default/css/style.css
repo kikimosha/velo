@@ -546,7 +546,7 @@ body {
     height: 100%
 }
 
-.section-content, .trip-content {
+.section-content {
     z-index: 3332;
     position: absolute;
     width: 100%;
@@ -688,8 +688,7 @@ body {
     left: 0
 }
 
-#section-cords,
-#trip-cords {
+#section-cords {
     z-index: 3329;
     position: absolute;
     top: 75px;
@@ -1157,27 +1156,31 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-.page-map {
+.page-map,
+.page-trip {
     padding: 0;
     width: 100%;
     height: 100%
 }
 
-.page-map .to-coverflow {
+.page-map .to-coverflow,
+.page-trip .to-coverflow {
     position: absolute;
     top: 35px;
     left: 30px;
     z-index: 1
 }
 
-#map-wrapper {
+#map-wrapper,
+#trip-wrapper {
     width: 100%;
     height: 100%;
     position: relative;
     overflow: hidden
 }
 
-#map-wrapper a {
+#map-wrapper a,
+#trip-wrapper a {
     display: block;
     width: 44px;
     height: 45px;
@@ -1191,12 +1194,14 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-#map-wrapper a:hover {
+#map-wrapper a:hover,
+#trip-wrapper a:hover {
     color: #fff;
     z-index: 2
 }
 
-#map-wrapper img {
+#map-wrapper img,
+#trip-wrapper img {
     display: block
 }
 

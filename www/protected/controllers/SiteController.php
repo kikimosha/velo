@@ -48,8 +48,11 @@ class SiteController extends Controller
         if(isset($_GET['id'])) {
             $id = (int)$_GET['id'];
             $tripInfo = $model->getTripInfo($id);
-//            var_dump($tripInfo);die;
-            $this->render('trip', array('tripInfo' => $tripInfo));
+            //$this->render('trip', array('tripInfo' => $tripInfo));
+            echo $this->renderPartial(
+                'trip',
+                array('tripInfo' => $tripInfo)
+            );
         }
     }
 

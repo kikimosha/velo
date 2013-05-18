@@ -269,23 +269,14 @@ var Scaling = {
     },
 
 
-    // Runs on each window-resize and on SectionTrip init
+    // Runs on each window-resize and on SectionMap init
     resizePage: function() {
 
         var percent = Scaling.scalingPercentage(),
             percent2 = Scaling.constrainPercent(1185, 1024, Scaling.windowDimensions.width - 270),
             percent3 = Scaling.constrainPercent(1100, 800, Scaling.windowDimensions.width - 270),
-            w, h;
-
-        if ($('.page-cars').length) {
-            w = Scaling.windowDimensions.width;
+            w = Scaling.windowDimensions.width,
             h = Scaling.windowDimensions.height;
-        }
-
-        else {
-            w = Scaling.windowDimensions.width - 270;
-            h = Scaling.windowDimensions.height;
-        }
 
         $('#page-wrapper').css({
             width: w,
@@ -864,7 +855,7 @@ var Page = {
         $('body').addClass('loading-page');
         GoTripXCHelpers.showPNGLoader($('body'));
         GoTripXCHelpers.addOverlay();
-console.log(1);
+
 		var req = $.ajax('/api/page/' + page, {
 		dataType : 'html',
 		type : 'GET',
@@ -905,7 +896,7 @@ console.log(1);
             }).html(resp);
 
             if (page === 'trip') {
-                SectionTrip.init();
+                Trip.init();
             }
             else if (page === 'cars') {
                 GoTrip.init('cars');
@@ -963,6 +954,7 @@ console.log(1);
 
         // Reset scrollLeft position if we load the map page
         $('#map-wrapper').scrollLeft((Scaling.scalingPercentage() * 1185) / 2);
+        $('#trip-wrapper').scrollLeft((Scaling.scalingPercentage() * 1185) / 2);
 
         //GoTripXCHelpers.cssAnimation(Page.settings.element, {'transform': 'translateX(270px)'}, 450, function(){Page.introCallback();}, 'play-page-intro');
         GoTripXCHelpers.cssAnimation(Page.settings.element, { left: leftValue }, 450, function() {
@@ -1027,6 +1019,140 @@ console.log(1);
     }
 
 
+};
+
+var Trip = {
+
+
+    settings: {
+        element: $('#page-wrapper'),
+        visible: false
+    },
+
+    open: function(id, cb) {
+
+        //GATracking.trackPage(GoTripXCHelpers.lang, page);
+
+        $('body').addClass('loading-page');
+        GoTripXCHelpers.showPNGLoader($('body'));
+        GoTripXCHelpers.addOverlay();
+
+        var req = $.ajax('/api/trip/' + id, {
+            dataType : 'html',
+            type : 'GET',
+            cache: false,
+            error: function (xhr, ajaxOptions, thrownError) {
+                $('body').removeClass('loading-page');
+                GoTripXCHelpers.hidePNGLoader();
+                GoTripXCHelpers.removeOverlay();
+            }
+        });
+
+        req.success(function(resp) {
+            //Trip.settings.element.css({'transform': 'translateX('+ (270 - (Scaling.windowDimensions.width - 270)) + ')'}).html(resp);
+            var width = Scaling.windowDimensions.width - 270,
+                left = 270 - (Scaling.windowDimensions.width - 270);
+
+            Trip.settings.element.css({
+                width: width,
+                left: left
+            }).html(resp);
+
+            SectionMap.init();
+
+            $.preload('.page-content img', {
+                onFinish: function() {
+                    $('body').removeClass('loading-page');
+                    GoTripXCHelpers.hidePNGLoader();
+                    Trip.playIntro(id, cb);
+                }
+            });
+
+        });
+
+    },
+
+
+    playIntro: function(id, cb) {
+        var leftValue = 270;
+
+        Trip.settings.element.show();
+        Trip.settings.visible = true;
+        //set the size of the background image in .page-offer
+        var percent3 = Scaling.constrainPercent(1100, 800, Scaling.windowDimensions.width - 270),
+            h = Scaling.windowDimensions.height;
+
+        $('.page-offer .scene img').css({
+            minWidth:1100,
+            minHeight:800,
+            width: percent3*1100,
+            height:  percent3*800
+        });
+
+        $('.page-offer .scene ').css({
+            height:  h
+        });
+        // #HACK Make animations non-instant
+        $(window).scrollTop(0);
+
+        // Reset scrollLeft position if we load the map page
+        $('#map-wrapper').scrollLeft((Scaling.scalingPercentage() * 1185) / 2);
+        $('#trip-wrapper').scrollLeft((Scaling.scalingPercentage() * 1185) / 2);
+
+        //GoTripXCHelpers.cssAnimation(Trip.settings.element, {'transform': 'translateX(270px)'}, 450, function(){Trip.introCallback();}, 'play-page-intro');
+        GoTripXCHelpers.cssAnimation(Trip.settings.element, { left: leftValue }, 450, function() {
+            GoTripXCHelpers.removeOverlay();
+
+            if ($.isFunction(cb)) {
+                cb();
+            }
+
+            Trip.settings.element.find('.page-close').bind('click', function(e) {
+                History.pushState({ type: 'close-trip' }, GoTripXCHelpers.getPageTitle('close-trip'), '/');
+                e.preventDefault();
+            });
+        }, 'play-page-intro');
+
+    },
+
+
+    playOutro: function(cb) {
+
+        var scrollLeft,
+            firstIndex,
+            leftValue = 270;
+
+        if (Trip.settings.element.is(':visible')) {
+            Trip.settings.visible = false;
+
+            //GoTripXCHelpers.cssAnimation(Trip.settings.element, {'transform': 'translateX('+(270 -(Scaling.windowDimensions.width - 270))+')'}, 450, function(){
+            GoTripXCHelpers.cssAnimation(Trip.settings.element, { left: 270 - (Scaling.windowDimensions.width - leftValue) }, 450, function() {
+                Trip.settings.element.empty().hide();
+
+                // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
+                if (parseInt(GoTripXCHelpers.userAgentString.indexOf('msie'), 10) === -1) {
+
+                    scrollLeft = CoverFlow.settings.element.scrollLeft();
+                    firstIndex = Math.floor(scrollLeft / 180);
+
+                    if (CoverFlow.settings.element.find('.active').length) {
+                        GoTripKeyNav.coverFlowKeyCounter = CoverFlow.settings.element.find('.active').index() - firstIndex - 1;
+                    }
+
+                    GoTripKeyNav.coverFlowKeyNav({type: 'section', covers: 6});
+
+                }
+
+                GoTripXCHelpers.removeOverlay();
+
+                if ($.isFunction(cb)) {
+                    cb();
+                }
+
+            }, 'play-page-outro');
+        }
+
+    }
 };
 
 var GoTrip = {
@@ -1499,7 +1625,7 @@ var Offer = {
     }
 };
 
-var SectionTrip = {
+var SectionMap = {
 
     timeout: null,
     mapWrapper: null,
@@ -1513,12 +1639,12 @@ var SectionTrip = {
             deltaX = Math.abs(1 - mouse.x / xMiddle),
             deltaY = Math.abs(1 - mouse.y / yMiddle);
 
-        clearTimeout(SectionTrip.timeout);
+        clearTimeout(SectionMap.timeout);
 
         (function moveCovers() {
-            SectionTrip.timeout = setTimeout(function() {
-                (mouse.x > xMiddle)? SectionTrip.mapWrapper.scrollLeft += (scrollSpeed * deltaX) : SectionTrip.mapWrapper.scrollLeft -= (scrollSpeed * deltaX);
-                (mouse.y > yMiddle)? SectionTrip.mapWrapper.scrollTop += (scrollSpeed * deltaY) : SectionTrip.mapWrapper.scrollTop -= (scrollSpeed * deltaY);
+            SectionMap.timeout = setTimeout(function() {
+                (mouse.x > xMiddle)? SectionMap.mapWrapper.scrollLeft += (scrollSpeed * deltaX) : SectionMap.mapWrapper.scrollLeft -= (scrollSpeed * deltaX);
+                (mouse.y > yMiddle)? SectionMap.mapWrapper.scrollTop += (scrollSpeed * deltaY) : SectionMap.mapWrapper.scrollTop -= (scrollSpeed * deltaY);
             moveCovers();
             }, 11);
         })();
@@ -1560,16 +1686,16 @@ var SectionTrip = {
 
 
     init: function() {
-console.log('inTrip');
-        SectionTrip.mapWrapper = document.getElementById('map-wrapper');
+
+        SectionMap.mapWrapper = document.getElementById('map-wrapper');
         Scaling.resizePage();
 
-        $(SectionTrip.mapWrapper).bind('mousemove', $.throttle(100, true, function(e) {
+        $(SectionMap.mapWrapper).bind('mousemove', $.throttle(100, true, function(e) {
             var mouse = { x: e.pageX - 270, y: e.pageY };
-            SectionTrip.scrollMap(mouse);
+            SectionMap.scrollMap(mouse);
         }))
         .bind('mouseleave mousedown', function() {
-            clearTimeout(SectionTrip.timeout);
+            clearTimeout(SectionMap.timeout);
         })
         .bind('click', function(e) {
             if ($(e.target).is('a')) {
@@ -1579,9 +1705,83 @@ console.log('inTrip');
             }
         });
 
-        $(SectionTrip.mapWrapper).find('a')
-        .bind('mouseenter', function() { SectionTrip.showTooltip(this); })
-        .bind('mouseleave', function() { SectionTrip.hideTooltip(this); });
+        $(SectionMap.mapWrapper).find('a')
+        .bind('mouseenter', function() { SectionMap.showTooltip(this); })
+        .bind('mouseleave', function() { SectionMap.hideTooltip(this); });
+
+    }
+
+
+};
+
+var SectionTrip = {
+
+    timeout: null,
+    tripWrapper: null,
+
+
+    scrollMap: function(mouse) {
+
+        var scrollSpeed = 4 * Scaling.scalingPercentage(),
+            xMiddle = (Scaling.windowDimensions.width - 270) / 2,
+            yMiddle = Scaling.windowDimensions.height / 2,
+            deltaX = Math.abs(1 - mouse.x / xMiddle),
+            deltaY = Math.abs(1 - mouse.y / yMiddle);
+
+        clearTimeout(SectionTrip.timeout);
+
+        (function moveCovers() {
+            SectionTrip.timeout = setTimeout(function() {
+                (mouse.x > xMiddle)? SectionTrip.tripWrapper.scrollLeft += (scrollSpeed * deltaX) : SectionTrip.tripWrapper.scrollLeft -= (scrollSpeed * deltaX);
+                (mouse.y > yMiddle)? SectionTrip.tripWrapper.scrollTop += (scrollSpeed * deltaY) : SectionTrip.tripWrapper.scrollTop -= (scrollSpeed * deltaY);
+                moveCovers();
+            }, 11);
+        })();
+
+    },
+
+
+    showTooltip: function(item) {
+
+        var tooltip = ($('#ttip').length)? $('#ttip') : $('<div id="ttip" />').appendTo('#trip-wrapper').hide(),
+            text = item.title,
+            cords = {
+                x: parseInt(item.style.left, 10) + 22,
+                y: parseInt(item.style.top, 10) + 47
+            };
+
+        item.title = '';
+
+        tooltip.text(text).css({
+            left: cords.x,
+            top: cords.y,
+            display: 'block'
+        });
+
+        // Prevent tooltip from showing outside map container
+        if (cords.x + tooltip.width() > Scaling.windowDimensions.width - 270 + $('#trip-wrapper').scrollLeft()) {
+            tooltip.css({
+                left: cords.x - tooltip.width()
+            });
+        }
+
+    },
+
+
+    hideTooltip: function(item) {
+        var ttip = $('#ttip').hide();
+        item.title = ttip.text();
+    },
+
+
+    init: function() {
+
+        SectionTrip.tripWrapper = document.getElementById('trip-wrapper');
+        Scaling.resizePage();
+
+        $(SectionTrip.tripWrapper).find('a')
+            .bind('mouseenter', function() { SectionTrip.showTooltip(this); })
+            .bind('mouseleave', function() { SectionTrip.hideTooltip(this); });
 
     }
 
@@ -1600,18 +1800,14 @@ var Section = {
 
     // my block
     bindEvents: function() {
+        $('#section-wrapper').delegate('.costTrip a', 'click', function(e) {
+            var page = this.href,
+                id = page.split('/').pop();
 
-        if ($('.costTrip a').length > 0) {
-            $('.costTrip a').on('click', function(e) {
-                console.log('in bind cost button');
-                var page = this.href,
-                    id = page.split('/').pop();
+            History.pushState({ type: 'open-trip', id: id }, GoTripXCHelpers.getPageTitle('open-trip', parseInt(id, 10)), '/trip/' + id);
 
-                History.pushState({ type: 'open-trip', id: id }, GoTripXCHelpers.getPageTitle('open-trip', parseInt(id, 10)), '/trip/' + id);
-
-                e.preventDefault();
-            });
-        }
+            e.preventDefault();
+        });
     },
 
     scrollToTop: function() {
@@ -2107,7 +2303,7 @@ var Section = {
             duration;
 
         // Prevent scrolling when a new section is loading
-        if ($('body').hasClass('loading-next-section') || $('body').hasClass('slide-in-next-section')) {
+        if ($('body').hasClass('loading-next-section') || $('body').hasClass('slide-in-next-section'))       {
             return;
         }
 
@@ -2396,14 +2592,14 @@ var CoverFlow = {
 (function(window, undefined) {
 
     var History = window.History;
-
+    console.log('history.js');
     if (!History.enabled) {
         return false;
     }
 
     // Bind to StateChange Event
     History.Adapter.bind(window, 'statechange', function() {
-
+        console.log('statechange');
         var State = History.getState(),
             windowLocationString = window.location.pathname.toLowerCase(),
             prevId = 0,
@@ -2463,7 +2659,7 @@ var CoverFlow = {
         if (GoTripXCHelpers.prevHistoryState) log('Prev: ' + GoTripXCHelpers.prevHistoryState.data.type);
         */
 
-
+console.log(State.data.type);
         if (State.data.type === 'open-section') {
 
             if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
@@ -2551,19 +2747,7 @@ var CoverFlow = {
             }
 
         }
-
-        else if (State.data.type === 'open-trip') {
-
-            if (Page.settings.visible) {
-                Page.playOutro(function() {
-                    Page.open(State.data.page);
-                });
-            }
-            else {
-                Page.open(State.data.page);
-            }
-
-        } else if (State.data.type === 'close-section') {
+        else if (State.data.type === 'close-section') {
 
             if ($(window).scrollTop() !== 0) {
                 $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Section.playOutro);
@@ -2574,6 +2758,34 @@ var CoverFlow = {
             if (Page.settings.visible) {
                 Page.playOutro();
             }
+        }
+        else if (State.data.type === 'open-trip') {
+
+            if(GoTripXCHelpers.prevHistoryState && (GoTripXCHelpers.prevHistoryState.data.type === 'map-to-section' || GoTripXCHelpers.prevHistoryState.data.type === 'open-section')) {
+//                Section.playOutro();
+                Trip.open(State.data.id);
+            }
+            else {
+                if (Trip.settings.visible) {
+                    Trip.playOutro(function() {
+                        Trip.open(State.data.id);
+                    });
+                } else {
+                    Trip.open(State.data.id);
+                }
+            }
+        }
+        else if (State.data.type === 'close-trip') {
+
+            if(GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-section') {
+                console.log(1);
+                Section.playOutro();
+            }
+            else {
+                console.log(2);
+                Trip.playOutro();
+            }
+
         }
 
         else if (State.data.type === undefined) {

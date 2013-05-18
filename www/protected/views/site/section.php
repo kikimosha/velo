@@ -31,7 +31,7 @@
         <div class="scene" id="scene-<?php echo $sceneNum; ?>">
             <img class="scale" src="/resources/default/img/sections/<?php echo $sectionInfo->alias; ?>/section_<?php echo $sceneNum; ?>.jpg" />
 
-            <div data-align="<?php echo $dataAlign; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
+            <div data-align="<?php echo 'bottom';//$dataAlign; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
                 <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
                 <h4><?php echo $trip->title; ?></h4>
                 <div><?php echo $trip->description; ?></div>
