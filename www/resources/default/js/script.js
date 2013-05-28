@@ -1029,6 +1029,21 @@ var Trip = {
         visible: false
     },
 
+    bindEvents: function() {
+        $("input[type=checkbox]").change(function(){
+            recalculate();
+        });
+
+
+        function recalculate(){
+            var sum = 0;
+            $("input[type=checkbox]:checked").each(function(){
+                sum += parseInt($(this).attr("rel"));
+            });
+            $('#trip-cost').text(sum);
+        }
+    },
+
     open: function(id, cb) {
 
         //GATracking.trackPage(GoTripXCHelpers.lang, page);
@@ -1058,7 +1073,9 @@ var Trip = {
                 left: left
             }).html(resp);
 
-            SectionMap.init();
+            SectionTrip.init();
+
+            Trip.bindEvents();
 
             $.preload('.page-content img', {
                 onFinish: function() {

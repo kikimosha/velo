@@ -4,17 +4,32 @@
     <div id="trip-wrapper">
         <div class="iScroll-wrap">
             <div class="trip-description">
-                <h4><?php echo $tripInfo['title']; ?></h4>
+                <header><?php echo $tripInfo['title']; ?></header>
                 <div><?php echo $tripInfo['full_description']; ?></div>
             </div>
 
             <div class="trip-cost">
-                <h4>Расчет стоимости:</h4>
-                <ul id="trip-services">
+                <header>Расчет стоимости:</header>
+                <div id="trip-services">
                     <?php foreach ($tripServices as $service): ?>
-                    <li><input type="checkbox"><?php echo $service['name']; ?></li>
+                        <div>
+                            <input type="checkbox" rel="<?php echo $service['cost']; ?>">
+                            <?php echo $service['name']; ?> (<?php echo $service['cost']; ?> грн.)
+                            <?php
+                            if (strlen($service['sub_services']) > 1) :
+                                $subServices = explode("|", $service['sub_services']);
+                                if (count($subServices)) : ?>
+                                    <ul>
+                                    <?php foreach($subServices as $ss): ?>
+                                        <li><?php echo $ss; ?></li>
+                                    <?php endforeach; ?>
+                                    </ul>
+                                <?php endif; ?>
+                            <?php endif; ?>
+                        </div>
                     <?php endforeach; ?>
-                </ul>
+                </div>
+                <strong>Итого:</strong> <span id="trip-cost">0</span> грн.
             </div>
         </div>
     </div>

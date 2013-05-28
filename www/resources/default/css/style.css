@@ -1177,12 +1177,15 @@ body {
 .trip-cost {
     margin:10px;
 }
-
-ul#trip-services {
-    list-style: none;
+.trip-description header,
+.trip-cost header {
+    font-weight: bold;
 }
-ul#trip-services li {
-    list-style: none;
+.trip-description header {
+    font-size: 20px;
+}
+.trip-cost header {
+    font-size: 14px;
 }
 
 #map-wrapper,
