@@ -34,7 +34,7 @@
             <div data-align="<?php echo 'bottom';//$dataAlign; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
                 <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
                 <h4><?php echo $trip->title; ?></h4>
-                <div><?php echo $trip->description; ?></div>
+                <div><?php echo $trip->short_description; ?></div>
                 <div class="costTrip"><a href="<?php echo Yii::app()->request->baseUrl . '/trip/' . $trip->id ?>" class="grayBtn">Стоимость »</a></div>
             </div>
         </div>

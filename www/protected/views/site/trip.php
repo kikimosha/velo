@@ -4,7 +4,7 @@
     <div id="trip-wrapper">
         <div class="iScroll-wrap">
             <div><strong><?php echo $tripInfo['title']; ?></strong></div>
-            <div><p><?php echo $tripInfo['description']; ?></p></div>
+            <div><p><?php echo $tripInfo['full_description']; ?></p></div>
         </div>
     </div>
 </div>
