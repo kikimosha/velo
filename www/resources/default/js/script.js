@@ -1030,10 +1030,11 @@ var Trip = {
     },
 
     bindEvents: function() {
+        recalculate();
+
         $("input[type=checkbox]").change(function(){
             recalculate();
         });
-
 
         function recalculate(){
             var sum = 0;

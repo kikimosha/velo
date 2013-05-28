@@ -13,13 +13,13 @@
                 <div id="trip-services">
                     <?php foreach ($tripServices as $service): ?>
                         <div>
-                            <input type="checkbox" rel="<?php echo $service['cost']; ?>">
+                            <input type="checkbox" rel="<?php echo $service['cost']; ?>" <?php if ($service['is_constant']) {echo 'checked="checked" disabled="disabled"';} ?>>
                             <?php echo $service['name']; ?> (<?php echo $service['cost']; ?> грн.)
                             <?php
                             if (strlen($service['sub_services']) > 1) :
                                 $subServices = explode("|", $service['sub_services']);
                                 if (count($subServices)) : ?>
-                                    <ul>
+                                    <ul class="sub_services">
                                     <?php foreach($subServices as $ss): ?>
                                         <li><?php echo $ss; ?></li>
                                     <?php endforeach; ?>
@@ -29,7 +29,10 @@
                         </div>
                     <?php endforeach; ?>
                 </div>
-                <strong>Итого:</strong> <span id="trip-cost">0</span> грн.
+                <div>
+                    <div class="orderTrip"><a href="<?php echo Yii::app()->request->baseUrl . '/order/'; ?>" class="grayBtn">Заказать</a></div>
+                    <div class="grayBtn">Стоимость: <span id="trip-cost">0</span> грн</div>
+                </div>
             </div>
         </div>
     </div>
