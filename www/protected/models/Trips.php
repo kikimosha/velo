@@ -41,10 +41,11 @@ class Trips extends CActiveRecord
 			array('position, section_id, title', 'required'),
 			array('position, section_id', 'numerical', 'integerOnly'=>true),
 			array('title', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('short_description', 'safe'),
+			array('full_description', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, position, section_id, title, description', 'safe', 'on'=>'search'),
+			array('id, position, section_id, title, short_description, full_description', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,7 +70,8 @@ class Trips extends CActiveRecord
 			'position' => 'Position',
 			'section_id' => 'Section',
 			'title' => 'Title',
-			'description' => 'Description',
+			'short_description' => 'Short Description',
+			'full_description' => 'Full Description',
 		);
 	}
 
@@ -88,7 +90,8 @@ class Trips extends CActiveRecord
 		$criteria->compare('position',$this->position);
 		$criteria->compare('section_id',$this->section_id);
 		$criteria->compare('title',$this->title,true);
-		$criteria->compare('description',$this->description,true);
+		$criteria->compare('short_description',$this->short_description,true);
+		$criteria->compare('full_description',$this->full_description,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

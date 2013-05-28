@@ -5,7 +5,7 @@
         <div class="iScroll-wrap">
             <div class="trip-description">
                 <h4><?php echo $tripInfo['title']; ?></h4>
-                <div><?php echo $tripInfo['description']; ?></div>
+                <div><?php echo $tripInfo['full_description']; ?></div>
             </div>
 
             <div class="trip-cost">
