@@ -1108,9 +1108,10 @@ var Trip = {
             }
 
             Trip.settings.element.find('.page-close').bind('click', function(e) {
-                History.pushState({ type: 'close-trip' }, GoTripXCHelpers.getPageTitle('close-trip'), '/');
+                History.pushState({ type: 'close-trip', url: this.href }, GoTripXCHelpers.getPageTitle('close-trip'), this.href);
                 e.preventDefault();
             });
+
         }, 'play-page-intro');
 
     },
@@ -2465,7 +2466,7 @@ var CoverFlow = {
 
 
     playIntro: function() {
-
+console.log('after 12');
         var windowLocationString = window.location.pathname.toLowerCase(),
             coverArray = CoverFlow.settings.coverArray,
             currentCover = CoverFlow.settings.currentCover,
@@ -2484,17 +2485,10 @@ var CoverFlow = {
                 id = parseInt(windowLocationString.split('/section/').pop(), 10);
                 Section.open({ id: id, index: id - 1 });
             }
-//            else if (windowLocationString.indexOf('/v40cc/') > -1) {
-//                id = parseInt(windowLocationString.split('/v40cc/').pop(), 10);
-//                if (/([0-9]+)/.test(id)) {
-//                    Page.open('v40cc', function() {
-//                        GoTrip.open({id: id, index: id});
-//                    });
-//                }
-//                else {
-//                    Page.open('v40cc');
-//                }
-//            }
+            else if (windowLocationString.indexOf('/trip/') > -1) {
+                id = parseInt(windowLocationString.split('/trip/').pop(), 10);
+                Trip.open(id);
+            }
             else if (/\/(about|app|offer)/.test(windowLocationString)) {
                 page = windowLocationString.split('/').pop();
                 Page.open(page);
@@ -2592,7 +2586,6 @@ var CoverFlow = {
 (function(window, undefined) {
 
     var History = window.History;
-    console.log('history.js');
     if (!History.enabled) {
         return false;
     }
@@ -2659,7 +2652,6 @@ var CoverFlow = {
         if (GoTripXCHelpers.prevHistoryState) log('Prev: ' + GoTripXCHelpers.prevHistoryState.data.type);
         */
 
-console.log(State.data.type);
         if (State.data.type === 'open-section') {
 
             if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
@@ -2668,12 +2660,12 @@ console.log(State.data.type);
             else {
                 if (Page.settings.visible) {
                     Page.playOutro(GoTripXCHelpers.addOverlay);
-                    console.log(14);
                 }
                 scrollToCenter('sections', State.data.index, function(){ Section.open(State.data); });
             }
 
-        } else if (State.data.type === 'close-section') {
+        }
+        else if (State.data.type === 'close-section') {
 
             if ($(window).scrollTop() !== 0) {
                 $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Section.playOutro);
@@ -2685,7 +2677,8 @@ console.log(State.data.type);
                 Page.playOutro();
             }
 
-        } else if (State.data.type === 'slide-section') {
+        }
+        else if (State.data.type === 'slide-section') {
 
             if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
                 Section.slideInSection(State.data.url, get_dir('section'));
@@ -2699,7 +2692,8 @@ console.log(State.data.type);
                 Section.slideInSection(State.data.url, State.data.direction);
             }
 
-        } else if (State.data.type === 'open-page') {
+        }
+        else if (State.data.type === 'open-page') {
 
             if(GoTripXCHelpers.prevHistoryState && (GoTripXCHelpers.prevHistoryState.data.type === 'map-to-section' || GoTripXCHelpers.prevHistoryState.data.type === 'open-section')) {
                 Section.playOutro();
@@ -2747,22 +2741,11 @@ console.log(State.data.type);
             }
 
         }
-        else if (State.data.type === 'close-section') {
-
-            if ($(window).scrollTop() !== 0) {
-                $('html, body').firstScrollable().stop().animate({'scrollTop': 0}, $(window).scrollTop(), 'easeOutQuad', Section.playOutro);
-            }
-            else {
-                Section.playOutro();
-            }
-            if (Page.settings.visible) {
-                Page.playOutro();
-            }
-        }
         else if (State.data.type === 'open-trip') {
 
             if(GoTripXCHelpers.prevHistoryState && (GoTripXCHelpers.prevHistoryState.data.type === 'map-to-section' || GoTripXCHelpers.prevHistoryState.data.type === 'open-section')) {
-//                Section.playOutro();
+
+                Section.playOutro();
                 Trip.open(State.data.id);
             }
             else {
@@ -2771,21 +2754,16 @@ console.log(State.data.type);
                         Trip.open(State.data.id);
                     });
                 } else {
+                    Section.playOutro();
                     Trip.open(State.data.id);
                 }
             }
         }
         else if (State.data.type === 'close-trip') {
-
-            if(GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-section') {
-                console.log(1);
-                Section.playOutro();
-            }
-            else {
-                console.log(2);
-                Trip.playOutro();
-            }
-
+            Trip.playOutro(function() {
+                urlId = parseInt(State.data.url.split('/section/').pop(), 10);
+                Section.open({ id: urlId, index: urlId - 1, type: 'open-section' });
+            });
         }
 
         else if (State.data.type === undefined) {
@@ -2869,9 +2847,6 @@ $.extend(jQuery.easing, {
 /* #DOM-READY
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 jQuery(function(){
-//    if (window.location.pathname.toLowerCase().indexOf('trip') > -1) {
-//        return false;
-//    }
 
 	CoverFlow.init();
 	

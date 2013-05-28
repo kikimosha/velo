@@ -28,7 +28,7 @@ class SiteController extends Controller
             $prevId = $model->getPrevId($id);
             $nextId = $model->getNextId($id);
 
-            $trips = Trips::model()->findAll("section_id = ". $id);
+            $trips = Trips::model()->findAll("section_id = ". $id. " order by position");
 
             echo $this->renderPartial(
                 'section',
@@ -48,10 +48,14 @@ class SiteController extends Controller
         if(isset($_GET['id'])) {
             $id = (int)$_GET['id'];
             $tripInfo = $model->getTripInfo($id);
-            //$this->render('trip', array('tripInfo' => $tripInfo));
+            $tripServices = $model->getTripServices($id);
+
             echo $this->renderPartial(
                 'trip',
-                array('tripInfo' => $tripInfo)
+                array(
+                    'tripInfo' => $tripInfo,
+                    'tripServices' => $tripServices
+                )
             );
         }
     }

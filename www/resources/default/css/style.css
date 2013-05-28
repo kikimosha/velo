@@ -904,10 +904,10 @@ body {
 }
 
 .page-content p {
-    font-family: Georgia, serif;
-    font-size: 14px;
-    letter-spacing: 0.7px;
-    margin: 10px auto 0
+    font-family: font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 12px;
+    text-align: justify;
+    margin: 10px auto 0;
 }
 
 .page-close {
@@ -915,7 +915,7 @@ body {
     width: 41px;
     height: 41px;
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
     background: url(../img/desktop/sprite_fx.png) no-repeat -266px -125px;
     z-index: 1;
@@ -1156,11 +1156,13 @@ body {
     -webkit-font-smoothing: antialiased
 }
 
-.page-map,
-.page-trip {
-    padding: 0;
+.page-map {
     width: 100%;
-    height: 100%
+    height: 100%;
+    padding: 0;
+}
+.page-trip {
+    padding: 10px;
 }
 
 .page-map .to-coverflow,
@@ -1171,12 +1173,23 @@ body {
     z-index: 1
 }
 
+.trip-description,
+.trip-cost {
+    margin:10px;
+}
+
 #map-wrapper,
 #trip-wrapper {
-    width: 100%;
-    height: 100%;
     position: relative;
     overflow: hidden
+}
+#map-wrapper {
+    width: 100%;
+    height: 100%;
+}
+#trip-wrapper {
+    border-radius: 5px;
+    border:solid 1px #999;
 }
 
 #map-wrapper a,

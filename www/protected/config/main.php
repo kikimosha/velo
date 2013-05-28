@@ -34,7 +34,7 @@ return array(
                 'section/<id:\d+>' => 'site/index',
                 'api/section/<id:\d+>' => 'site/section',
 
-                'trip/<id:\d+>' => 'site/trip',
+                'trip/<id:\d+>' => 'site/index',
                 'api/trip/<id:\d+>' => 'site/trip',
 
                 'admin/section/<id:\d+>' => 'admin/default/section',
