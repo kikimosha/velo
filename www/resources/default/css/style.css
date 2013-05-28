@@ -1178,6 +1178,13 @@ body {
     margin:10px;
 }
 
+ul#trip-services {
+    list-style: none;
+}
+ul#trip-services li {
+    list-style: none;
+}
+
 #map-wrapper,
 #trip-wrapper {
     position: relative;

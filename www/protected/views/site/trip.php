@@ -10,7 +10,7 @@
 
             <div class="trip-cost">
                 <h4>Расчет стоимости:</h4>
-                <ul>
+                <ul id="trip-services">
                     <?php foreach ($tripServices as $service): ?>
                     <li><input type="checkbox"><?php echo $service['name']; ?></li>
                     <?php endforeach; ?>
