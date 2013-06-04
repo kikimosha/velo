@@ -316,7 +316,7 @@ var Scaling = {
     resizeOverlay: function() {
 
         $('#overlay').css({
-            width: Scaling.windowDimensions.width,
+            width: Scaling.windowDimensions.width+270,
             height: Scaling.windowDimensions.height
         });
 
@@ -444,9 +444,9 @@ var GoTripXCHelpers = {
         }
 
         overlay.css({
-            width: Scaling.windowDimensions.width,
+            width: Scaling.windowDimensions.width + 270,
             height: Scaling.windowDimensions.height,
-            left: 270,
+            left: 0,
             display: 'block'
         });
 
@@ -905,7 +905,7 @@ var Page = {
                 GoTrip.init('v40cc');
             }
             else if (page === 'offer') {
-                Offer.init();
+                OrderTrip.init();
             }
 
             $.preload('.page-content img', {
@@ -986,7 +986,7 @@ var Page = {
                 leftValue = 0;
             }
             if (Page.settings.pageName === 'offer') {
-                Offer.out();
+                OrderTrip.out();
             }
 
             //GoTripXCHelpers.cssAnimation(Page.settings.element, {'transform': 'translateX('+(270 -(Scaling.windowDimensions.width - 270))+')'}, 450, function(){
@@ -1043,6 +1043,20 @@ var Trip = {
             });
             $('#trip-cost').text(sum);
         }
+
+        $('#orderTrip').click(function() {
+            GoTripXCHelpers.addOverlay({
+                classname: 'transparent',
+                click: OrderTrip.close
+            });
+
+            $('#popUp').addClass('active').css({
+                left: ((Scaling.windowDimensions.width + 270) / 2) - (768 / 2),
+                top: (Scaling.windowDimensions.height / 2) - (432 / 2) + $(window).scrollTop()
+            });
+
+            $('#popUp a').click(OrderTrip.close);
+        });
     },
 
     open: function(id, cb) {
@@ -1602,7 +1616,7 @@ var GoTrip = {
 
 };
 
-var Offer = {
+var OrderTrip = {
 	init: function(){
 		$("#video").css("opacity", "0").show().delay(300).animate({
 			opacity:1
@@ -1615,16 +1629,16 @@ var Offer = {
 
         var videoSrc = $("#youtube");
 
-        GoTripXCHelpers.addOverlay({ classname: 'transparent', click: Offer.closeMovie });
+        GoTripXCHelpers.addOverlay({ classname: 'transparent', click: OrderTrip.close });
             console.log(6);
 
-        $('#videoplayer').addClass('active').css({
+        $('#popUp').addClass('active').css({
             left: (Scaling.windowDimensions.width / 2) - (768 / 2),
             top: (Scaling.windowDimensions.height / 2) - (500 / 2)
         });
 
         $("#youtube").show();
-		$("#videoplayer").html( videoSrc)
+		$("#popUp").html( videoSrc)
 
     	})
 	},
@@ -1636,9 +1650,9 @@ var Offer = {
 			opacity:0
 		}, 100 )
 	},
-  	closeMovie: function() {
+  	close: function() {
   		$("#youtube").detach().appendTo("#video");
-        $('#videoplayer').removeClass('active');
+        $('#popUp').removeClass('active');
         GoTripXCHelpers.removeOverlay();
 		$("#youtube").hide();
     }
@@ -2471,7 +2485,7 @@ var CoverFlow = {
             e.preventDefault();
         });
 
-        $('#videoplayer').find('a').bind('click', GoTripXCHelpers.closeMovie);
+        $('#popUp').find('a').bind('click', GoTripXCHelpers.closeMovie);
 
         $(window).bind('resize', $.throttle(100, Scaling.windowResize));
 

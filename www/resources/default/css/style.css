@@ -228,17 +228,17 @@ body {
     position: fixed
 }
 
-#videoplayer {
+#popUp {
     display: none;
     position: absolute;
     z-index: 9998
 }
 
-#videoplayer.active {
+#popUp.active {
     display: block
 }
 
-#videoplayer a {
+#popUp a {
     background: url(../img/desktop/sprite_fx.png) no-repeat -45px -136px;
     color: #FFF;
     cursor: pointer;
@@ -1190,7 +1190,7 @@ a.grayBtn {
 .trip-cost header {
     font-size: 14px;
 }
-.orderTrip {
+.fl_r {
     float:right;
 }
 #trip-services {
@@ -1577,7 +1577,7 @@ a.grayBtn {
 
 .mejs-container {
     position: relative;
-    background: #000;
+    background: #fff;
     font-family: Helvetica, Arial
 }
 

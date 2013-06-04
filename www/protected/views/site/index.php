@@ -16,4 +16,17 @@
 
 <section id="section-wrapper"></section>
 
+<div id="popUp">
+    <a>x</a>
+    <div class="mejs-container" id="mep_0" style="width: 768px; height: 432px;">
+        <div class="mejs-inner">
+            <div class="mejs-mediaelement">
+                <br/><br/>
+                <p>&nbsp;[Форма заказа]</p>
+            </div>
+            <div class="mejs-clear"></div>
+        </div>
+    </div>
+</div>
+
 <div id="loader"></div>

@@ -30,7 +30,7 @@
                     <?php endforeach; ?>
                 </div>
                 <div>
-                    <div class="orderTrip"><a href="<?php echo Yii::app()->request->baseUrl . '/order/'; ?>" class="grayBtn">Заказать</a></div>
+                    <div class="fl_r"><a id="orderTrip" href="javascript:void(0);" class="grayBtn">Заказать</a></div>
                     <div class="grayBtn">Стоимость: <span id="trip-cost">0</span> грн</div>
                 </div>
             </div>
