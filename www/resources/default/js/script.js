@@ -1033,6 +1033,11 @@ var Trip = {
         recalculate();
 
         $("input[type=checkbox]").change(function(){
+            if ($(this).is(':checked')) {
+                $(this).parent().find('i').addClass('checked');
+            } else {
+                $(this).parent().find('i').removeClass('checked');
+            }
             recalculate();
         });
 
@@ -2689,12 +2694,10 @@ console.log('after 12');
         */
         if (State.data.type === 'open-section') {
 
-            if (GoTripXCHelpers.prevHistoryState) {
-                if (GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
-                    Section.slideInSection('/section/' + State.data.id, get_dir('section'));
-                } else if (GoTripXCHelpers.prevHistoryState.data.type === 'open-trip') {
-                    Trip.playOutro(function(){ Section.open(State.data); });
-                }
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
+                Section.slideInSection('/section/' + State.data.id, get_dir('section'));
+            } else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-trip') {
+                Trip.playOutro(function(){ Section.open(State.data); });
             } else {
                 if (Page.settings.visible) {
                     Page.playOutro(GoTripXCHelpers.addOverlay);
@@ -2718,15 +2721,13 @@ console.log('after 12');
         }
         else if (State.data.type === 'slide-section') {
 
-            if (GoTripXCHelpers.prevHistoryState) {
-                if (GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
-                    Section.slideInSection(State.data.url, get_dir('section'));
-                } else if (GoTripXCHelpers.prevHistoryState.data.type === 'open-trip') {
-                    Trip.playOutro(function() {
-                        urlId = parseInt(State.data.url.split('/section/').pop(), 10);
-                        Section.open({ id: urlId, index: urlId - 1, type: 'open-section' });
-                    });
-                }
+            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
+                Section.slideInSection(State.data.url, get_dir('section'));
+            } else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'open-trip') {
+                Trip.playOutro(function() {
+                    urlId = parseInt(State.data.url.split('/section/').pop(), 10);
+                    Section.open({ id: urlId, index: urlId - 1, type: 'open-section' });
+                });
             }
             else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-section') {
                 id = State.data.url.split('/section/').pop();
