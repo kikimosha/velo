@@ -113,7 +113,7 @@ class Trips extends CActiveRecord
     public function getTripServices($id)
     {
         $subServices = Yii::app()->db->createCommand()
-            ->select('service_id, group_concat(name separator "|") as sub_services')
+            ->select('service_id, group_concat(name order by position separator "|") as sub_services')
             ->from('sub_services')
             ->group('service_id');
 
@@ -123,6 +123,7 @@ class Trips extends CActiveRecord
             ->join('trips t', 't.id = serv.trip_id')
             ->leftJoin('('.$subServices->getText() . ') as subs', 'subs.service_id = serv.id')
             ->where('t.id=:id', array(':id' => $id))
+            ->order('position')
             ->queryAll();
 
         return $rows;
