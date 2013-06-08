@@ -2687,13 +2687,15 @@ console.log('after 12');
         log('State: ' + State.data.type);
         if (GoTripXCHelpers.prevHistoryState) log('Prev: ' + GoTripXCHelpers.prevHistoryState.data.type);
         */
-
         if (State.data.type === 'open-section') {
 
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
-                Section.slideInSection('/section/' + State.data.id, get_dir('section'));
-            }
-            else {
+            if (GoTripXCHelpers.prevHistoryState) {
+                if (GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
+                    Section.slideInSection('/section/' + State.data.id, get_dir('section'));
+                } else if (GoTripXCHelpers.prevHistoryState.data.type === 'open-trip') {
+                    Trip.playOutro(function(){ Section.open(State.data); });
+                }
+            } else {
                 if (Page.settings.visible) {
                     Page.playOutro(GoTripXCHelpers.addOverlay);
                 }
@@ -2716,8 +2718,15 @@ console.log('after 12');
         }
         else if (State.data.type === 'slide-section') {
 
-            if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
-                Section.slideInSection(State.data.url, get_dir('section'));
+            if (GoTripXCHelpers.prevHistoryState) {
+                if (GoTripXCHelpers.prevHistoryState.data.type === 'slide-section') {
+                    Section.slideInSection(State.data.url, get_dir('section'));
+                } else if (GoTripXCHelpers.prevHistoryState.data.type === 'open-trip') {
+                    Trip.playOutro(function() {
+                        urlId = parseInt(State.data.url.split('/section/').pop(), 10);
+                        Section.open({ id: urlId, index: urlId - 1, type: 'open-section' });
+                    });
+                }
             }
             else if (GoTripXCHelpers.prevHistoryState && GoTripXCHelpers.prevHistoryState.data.type === 'close-section') {
                 id = State.data.url.split('/section/').pop();
@@ -2780,7 +2789,6 @@ console.log('after 12');
         else if (State.data.type === 'open-trip') {
 
             if(GoTripXCHelpers.prevHistoryState && (GoTripXCHelpers.prevHistoryState.data.type === 'map-to-section' || GoTripXCHelpers.prevHistoryState.data.type === 'open-section')) {
-
                 Section.playOutro();
                 Trip.open(State.data.id);
             }
