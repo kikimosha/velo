@@ -44,8 +44,8 @@ class SiteController extends Controller
 
     public function actionTrip()
     {
-        $model = new Trips();
         if(isset($_GET['id'])) {
+            $model = new Trips();
             $id = (int)$_GET['id'];
             $tripInfo = $model->getTripInfo($id);
             $tripServices = $model->getTripServices($id);
@@ -54,7 +54,7 @@ class SiteController extends Controller
                 'trip',
                 array(
                     'tripInfo' => $tripInfo,
-                    'tripServices' => $tripServices
+                    'tripServices' => $tripServices,
                 )
             );
         }

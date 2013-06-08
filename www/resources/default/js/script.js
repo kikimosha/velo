@@ -1044,19 +1044,23 @@ var Trip = {
             $('#trip-cost').text(sum);
         }
 
-        $('#orderTrip').click(function() {
-            GoTripXCHelpers.addOverlay({
-                classname: 'transparent',
-                click: OrderTrip.close
-            });
+        $('#orderTrip').click(Trip.order);
+    },
 
-            $('#popUp').addClass('active').css({
-                left: ((Scaling.windowDimensions.width + 270) / 2) - (768 / 2),
-                top: (Scaling.windowDimensions.height / 2) - (432 / 2) + $(window).scrollTop()
-            });
+    order: function() {
 
-            $('#popUp a').click(OrderTrip.close);
+        GoTripXCHelpers.addOverlay({
+            classname: 'transparent',
+            click: OrderTrip.close
         });
+
+        $('#popUp').addClass('active').css({
+            left: ((Scaling.windowDimensions.width + 270) / 2) - (768 / 2),
+            top: (Scaling.windowDimensions.height / 2) - (432 / 2) + $(window).scrollTop()
+        });
+
+        $('#popUp a.closePopup').click(OrderTrip.close);
+
     },
 
     open: function(id, cb) {

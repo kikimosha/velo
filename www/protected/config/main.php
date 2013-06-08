@@ -37,6 +37,8 @@ return array(
                 'trip/<id:\d+>' => 'site/index',
                 'api/trip/<id:\d+>' => 'site/trip',
 
+                'order' => 'site/order',
+
                 'admin/section/<id:\d+>' => 'admin/default/section',
 
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',

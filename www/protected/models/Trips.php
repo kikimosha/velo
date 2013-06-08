@@ -127,16 +127,5 @@ class Trips extends CActiveRecord
 
         return $rows;
     }
-// select group_concat(hobbies separator ', ') from peoples_hobbies where person_id = 5
-//    public function getTripSubServices($id)
-//    {
-//        $rows = Yii::app()->db->createCommand()
-//            ->select('sub_serv.name')
-//            ->from('sub_services sub_serv')
-//            ->join('services s', 's.id = sub_serv.service_id')
-//            ->where('s.id=:id', array(':id'=>$id))
-//            ->queryAll();
-//
-//        return $rows;
-//    }
+
 }
