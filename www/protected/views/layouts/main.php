@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/css/style.css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/vendor/fuelux/css/fuelux.css">
 
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/modernizr-2.0.min.js"></script>
 
@@ -57,6 +58,5 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/history.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/libs.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/script.js"></script>
-
 </body>
 </html>

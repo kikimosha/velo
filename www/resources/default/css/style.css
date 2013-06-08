@@ -911,6 +911,7 @@ a.grayBtn {
     font-size: 12px;
     text-align: justify;
     margin: 10px auto 0;
+    text-indent: 20px;
 }
 
 .page-close {
@@ -1175,7 +1176,12 @@ a.grayBtn {
     left: 30px;
     z-index: 1
 }
-
+.trip-description {
+    width: auto;
+}
+.trip-cost {
+    width: 500px;
+}
 .trip-description,
 .trip-cost {
     margin:15px;
@@ -1193,12 +1199,29 @@ a.grayBtn {
 .fl_r {
     float:right;
 }
+.fl_l {
+    float:left;
+}
 #trip-services {
     margin: 5px 0;
 }
+table#trip-services td:nth-child(odd) {
+    padding: 2px 10px;
+}
+table#trip-services td:nth-child(even) {
+    padding: 2px 20px;
+}
+table#trip-services tr {
+    background-color: #ccc;
+}
+table#trip-services tr.addInfoCost {
+    background-color: #eee;
+}
+
 #trip-services ul.sub_services {
     margin:5px 5px 10px 35px;
 }
+
 #map-wrapper,
 #trip-wrapper {
     position: relative;
