@@ -26,9 +26,12 @@
                         <td><?php echo $service['cost']; ?> грн.</td>
                     </tr>
                     <?php endforeach; ?>
+                    <?php if (!empty($tripInfo['additional_info'])) : ?>
                     <tr class="addInfoCost"><td colspan="2">
-                        <strong>Дополнительная информация:&nbsp;</strong>Frdsgsdfgsdfg ardsgsdfgsdfg ardsgsdfgsdfg ardsgsdfgsdfg ardsgsdfgsdfg ardsgsdfgsdfg ardsgsdfgsdfg.
+                        <div><strong>Дополнительная информация (цены ориентировочно):</strong></div>
+                       <div><?php echo $tripInfo['additional_info']; ?></div>
                     </td></tr>
+                    <?php endif; ?>
                 </table>
                 <div>
                     <!--                    <div class="fl_r"><a id="orderTrip" href="javascript:void(0);" class="grayBtn">Заказать</a></div>-->

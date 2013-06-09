@@ -101,7 +101,7 @@ class Trips extends CActiveRecord
     public function getTripInfo($id)
     {
         $row = Yii::app()->db->createCommand()
-            ->select('t.title, t.full_description, t.section_id')
+            ->select('t.title, t.full_description, t.section_id, t.additional_info')
             ->from('trips t')
             ->join('sections sec', 'sec.id=t.section_id')
             ->where('t.id=:id', array(':id'=>$id))
