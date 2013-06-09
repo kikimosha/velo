@@ -666,7 +666,6 @@ var GoTripKeyNav = {
             if (e.which === 27 || e.which === 13 || (e.which >= 37 && e.which <= 40)) {
                 if (!$('#overlay').is(':visible')) {
                     GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
-                    console.log(16);
                 }
                 e.preventDefault();
             }
@@ -735,7 +734,6 @@ var GoTripKeyNav = {
                     queue: false,
                     complete: function() {
                         GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
-                        console.log(17);
                         scrollPos = coverFlow.scrollLeft();
                         if (scrollPos === 0) {
                             GoTripKeyNav.coverFlowKeyCounter = activeCover.index();
@@ -751,7 +749,6 @@ var GoTripKeyNav = {
                     queue: false,
                     complete: function() {
                         GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
-                        console.log(18);
                         scrollPos = coverFlow.scrollLeft();
                         if (scrollPos === scrollPosMax) {
                             GoTripKeyNav.coverFlowKeyCounter = coversOnScreen - 1 - ((settings.covers - 1) - activeCover.index());
@@ -1362,7 +1359,6 @@ var GoTrip = {
 
         // If we open with click-event, the overlay has not been added yet.
         GoTripXCHelpers.addOverlay();
-        console.log(2);
 
         CoverFlow.settings.loader.detach().appendTo(cover).show().animate({ width: 180 }, { duration: 5000, queue: false, easing: 'easeInOutQuad' });
 
@@ -1429,7 +1425,6 @@ var GoTrip = {
             coverWrapperWidth = GoTrip.settings.coverCount * GoTrip.settings.coverWidth;
 
         GoTripXCHelpers.addOverlay();
-        console.log(3);
 
         // Fix for when user slides "prev" and the cover-wrapper has not scrolled past the first cover-item
         if (GoTrip.settings.scrollLeft < 0 && GoTripXCHelpers.prevHistoryState.data.direction === 'prev') {
@@ -1496,8 +1491,6 @@ var GoTrip = {
         //setTimeout(GoTripXCHelpers.removeOverlay, 500);
         GoTrip.settings.element[0].scrollLeft += 1; // Fix for older browsers
         GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
-        console.log(4);
-
     },
 
 
@@ -1512,7 +1505,6 @@ var GoTrip = {
 
         // Disable the page while loading...
         GoTripXCHelpers.addOverlay();
-        console.log(5);
 
         req.success(function(resp) {
 
@@ -1642,7 +1634,6 @@ var OrderTrip = {
         var videoSrc = $("#youtube");
 
         GoTripXCHelpers.addOverlay({ classname: 'transparent', click: OrderTrip.close });
-            console.log(6);
 
         $('#popUp').addClass('active').css({
             left: (Scaling.windowDimensions.width / 2) - (768 / 2),
@@ -1992,7 +1983,6 @@ var Section = {
 
         // If we open with click-event, the overlay has not been added yet.
         GoTripXCHelpers.addOverlay();
-        console.log(7);
 
         CoverFlow.settings.loader.detach().appendTo(cover).show().animate({ width: 180 }, { duration: 5000, queue: false, easing: 'easeInOutQuad' });
 
@@ -2064,7 +2054,6 @@ var Section = {
             coverWrapperWidth = CoverFlow.settings.coverCount * CoverFlow.settings.coverWidth;
 
         GoTripXCHelpers.addOverlay();
-        console.log(8);
 
         // Fix for when user slides "prev" and the cover-wrapper has not scrolled past the first cover-item
         if (CoverFlow.settings.scrollLeft < 0 && GoTripXCHelpers.prevHistoryState.data.direction === 'prev') {
@@ -2186,8 +2175,6 @@ var Section = {
         //setTimeout(GoTripXCHelpers.removeOverlay, 500);
         CoverFlow.settings.element[0].scrollLeft += 1; // Fix for older browsers
         GoTripXCHelpers.addOverlay({ mousemove: GoTripXCHelpers.removeOverlay });
-        console.log(9);
-
     },
 
     slideInSection: function(url, direction) {
@@ -2200,8 +2187,6 @@ var Section = {
 
         // Disable the page while loading...
         GoTripXCHelpers.addOverlay();
-        console.log(10);
-
 
         $.ajax('/api/section/' + id, {
             dataType: 'html',
@@ -2513,7 +2498,6 @@ var CoverFlow = {
 
 
     playIntro: function() {
-console.log('after 12');
         var windowLocationString = window.location.pathname.toLowerCase(),
             coverArray = CoverFlow.settings.coverArray,
             currentCover = CoverFlow.settings.currentCover,
@@ -2617,7 +2601,6 @@ console.log('after 12');
 
         // Add an overlay so the user dont scroll away before we load the right covers
         GoTripXCHelpers.addOverlay();
-        console.log(12);
 
         $('#cover-flow img').slice(firstPreloadIndex, lastPreloadIndex).preload({ onFinish: CoverFlow.playIntro });
         //$.preload('#cover-flow img', { onFinish: CoverFlow.playIntro });
@@ -2639,7 +2622,6 @@ console.log('after 12');
 
     // Bind to StateChange Event
     History.Adapter.bind(window, 'statechange', function() {
-        console.log('statechange');
         var State = History.getState(),
             windowLocationString = window.location.pathname.toLowerCase(),
             prevId = 0,
@@ -2682,7 +2664,6 @@ console.log('after 12');
             else {
                 if ($.isFunction(cb)) {
                     GoTripXCHelpers.addOverlay();
-                    console.log(13);
                     obj.settings.element.stop().animate({ scrollLeft: (180 * (index - Math.ceil(coversOnScreen/2))) + 180 }, {
                         duration: 500,
                         easing: 'easeOutQuad',
@@ -2785,7 +2766,6 @@ console.log('after 12');
             else {
                 coversOnScreen = Math.ceil((CoverFlow.settings.element.width() - CoverFlow.settings.sidebar.width()) / CoverFlow.settings.coverWidth);
                 GoTripXCHelpers.addOverlay();
-                console.log(15);
                 CoverFlow.settings.element.scrollLeft(180 * (State.data.index - Math.ceil(coversOnScreen/2)));
                 Page.playOutro(function() {
                     Section.open(State.data);

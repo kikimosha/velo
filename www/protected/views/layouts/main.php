@@ -11,13 +11,13 @@
 
     <title><?php echo CHtml::encode($this->pageTitle); ?></title>
 
-    <meta property="og:title" content="Travels"/>
+    <meta property="og:title" content="Go-Trip"/>
     <meta property="og:type" content="website"/>
-    <meta property="og:url" content="http://..."/>
-    <meta property="og:image" content="http://..."/>
-    <meta property="og:site_name" content="Travels"/>
-    <meta property="fb:admins" content="..."/>
-    <meta property="og:description" content="Welcome to Travels"/>
+    <meta property="og:url" content="http://go-trip.com.ua"/>
+    <meta property="og:image" content="http://go-trip.com.ua"/>
+    <meta property="og:site_name" content="Go-Trip"/>
+    <meta property="fb:admins" content="Go-Trip"/>
+    <meta property="og:description" content="Welcome to Go-Trip"/>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -59,5 +59,16 @@
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/history.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/libs.js"></script>
 <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/script.js"></script>
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41603226-1', 'go-trip.com.ua');
+    ga('send', 'pageview');
+
+</script>
 </body>
 </html>
