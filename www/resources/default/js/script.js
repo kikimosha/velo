@@ -2252,7 +2252,8 @@ var Section = {
                                 GoTripXCHelpers.cssAnimation(sectionWrapper.find('.section-content:first'), { left: delta * Scaling.windowDimensions.width }, 1000, function() {
                                     sectionWrapper.find('.section-content:first').remove().end()
                                         .find('#scene-1 img').css({
-                                            left: 0 //Added to support playOutro after navigating sideways
+                                            //left: 0 //Added to support playOutro after navigating sideways
+                                            left: (Scaling.windowDimensions.width - 1280)/2
                                         });
                                     Section.initNav();
                                 }, 'slide-in-next-section');
