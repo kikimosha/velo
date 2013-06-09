@@ -206,11 +206,13 @@ var Scaling = {
     resizeSection: function() {
 
         var percent = Scaling.scalingPercentage(),
-            carDescriptionOffsets;
+            scaleLeft = (Scaling.windowDimensions.width - 1280)/2;
 
         Section.settings.element.find('img.scale').css({
-            width: percent * 1280,
-            height: percent * 800
+            width: percent * 1280 + 'px',
+            height: percent * 800 + 'px',
+            left: scaleLeft + 'px'
+            //top: scaleTop + 'px'
         })
         .end().find('.section-content').css({
             width: Scaling.windowDimensions.width,
@@ -250,7 +252,8 @@ var Scaling = {
         })
         .find('img.scale').css({
             width: percent * 1280,
-            height: percent * 800
+            height: percent * 800,
+            left: (Scaling.windowDimensions.width - 1280)/2
         });
 
         if ($('#current-cover').length) {
@@ -2033,7 +2036,8 @@ var Section = {
 
         var duration = 0.8 * 1000,
             leftValue = (-180 * index) + CoverFlow.settings.scrollLeft,
-            expandWidth = CoverFlow.settings.coverWrapper.width() + Scaling.windowDimensions.width;
+            expandWidth = CoverFlow.settings.coverWrapper.width() + Scaling.windowDimensions.width,
+            scaleLeft = (Scaling.windowDimensions.width - 1280)/2;
 
         Section.settings.element.show();
         cover.addClass('expand').find('img').hide();
@@ -2043,7 +2047,7 @@ var Section = {
 
         GoTripXCHelpers.cssAnimation(CoverFlow.settings.coverWrapper, { left: leftValue, width: expandWidth }, duration);
         GoTripXCHelpers.cssAnimation(cover, { width: Scaling.windowDimensions.width }, duration);
-        GoTripXCHelpers.cssAnimation($('#scene-1').find('img.scale'), { left: 0 }, duration, Section.introCallback, 'play-section-intro');
+        GoTripXCHelpers.cssAnimation($('#scene-1').find('img.scale'), { left: scaleLeft }, duration, Section.introCallback, 'play-section-intro');
         GoTripXCHelpers.cssAnimation($('#sidebar'), { left: 0 }, duration);
 
     },
@@ -2139,7 +2143,8 @@ var Section = {
         // #note changed from Scaling.windowResize(); These should be the only elements in need of resize.
         Section.settings.element.find('img.scale').css({
             width: percent * 1280,
-            height: percent * 800
+            height: percent * 800,
+            left: (Scaling.windowDimensions.width - 1280)/2
         }).end()
         .find('.section-content').css({
             width: Scaling.windowDimensions.width,
