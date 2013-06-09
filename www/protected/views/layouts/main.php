@@ -38,13 +38,14 @@
         <p>Туры от Go-Trip – Ваша возможность расширить свои горизонты.</p>
     </div>
 
-    <div id="menu">
-
-        <nav>
-            <a href="/" rel="home">Главная</a>
-            <a href="/" rel="contacts">Контакты</a>
-        </nav>
-
+    <div class="contacts">
+        <div>Телефоны:<br/>
+            +38050 147 33 11<br />
+            +38097 632 17 84<br />
+            +38063 584 24 74
+        </div><br/>
+        <div>Skype: gotrip.com.ua<br />
+        E-mail: info@gotrip.com.ua</div>
     </div>
 
 </aside>
