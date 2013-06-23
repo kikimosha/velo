@@ -1910,6 +1910,8 @@ var Section = {
         sectionWrapper.find('#section-cords').css('top', -(scrollPos) + 75).end()
         .find('.section-nav').css('top', -(scrollPos * 3) + (Scaling.windowDimensions.height/2));
 
+        sectionWrapper.find('.slide-nav').css('margin-left', Scaling.windowDimensions.width/2 - 45);
+
         // Move indicator line relative to first scene figcaption
         if ($('#indicator-line').length && sectionWrapper.find('.figcaption').length) {
             $('#indicator-line').css('top', parseInt(sectionWrapper.find('.figcaption')[0].style.top, 10) + 100);
@@ -2288,6 +2290,28 @@ var Section = {
             History.pushState({ type: 'slide-section', url: this.href, direction: this.id }, GoTripXCHelpers.getPageTitle('slide-section', parseInt(id, 10)), '/section/' + id);
             e.preventDefault();
 
+        }).end()
+        .find('.nextSlide').unbind('click').bind('click', function(e) {
+            nextScrollPos = GoTripXCHelpers.getNextScrollPosition(40),
+            duration = nextScrollPos * 1.618;
+            $('html, body').firstScrollable().stop().animate({ scrollTop: $(window).scrollTop() + nextScrollPos }, {
+                duration: duration,
+                easing: 'easeInOutQuad',
+                queue: false
+            });
+
+            e.preventDefault();
+        }).end()
+        .find('.prevSlide').unbind('click').bind('click', function(e) {
+            nextScrollPos = GoTripXCHelpers.getNextScrollPosition(40),
+                duration = nextScrollPos * 1.618;
+            $('html, body').firstScrollable().stop().animate({ scrollTop: $(window).scrollTop() - nextScrollPos }, {
+                duration: duration,
+                easing: 'easeInOutQuad',
+                queue: false
+            });
+
+            e.preventDefault();
         }).end()
         .find('.to-coverflow').bind('click', function(e) {
             History.pushState({ type: 'close-section' }, GoTripXCHelpers.getPageTitle('close-section'), '/');

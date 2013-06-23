@@ -16,6 +16,8 @@
 
     <div id="scene-wrapper">
         <div class="scene" id="scene-1">
+            <a class="slide-nav nextSlide" href="#scene-2"><b>Next Slide</b></a>
+
             <img class="scale" src="/resources/default/img/sections/<?php echo $sectionInfo->alias; ?>/section_1.jpg" />
 
             <div data-align="bottom" data-offset="0" class="figcaption caption-1">
@@ -23,15 +25,22 @@
             </div>
         </div>
 
-        <?php $dataAlign = 'bottom';
+        <?php
+        $countTrips = count($trips);
         foreach($trips as $index => $trip):
             $sceneNum = $index+2; // first index = 0
-            $dataAlign = ($dataAlign == 'bottom')? 'top' : 'bottom';
+            $sceneNumNext = $sceneNum + 1;
+            $sceneNumPrev = $sceneNum - 1;
         ?>
         <div class="scene" id="scene-<?php echo $sceneNum; ?>">
+            <hr class="dotBorder" />
+            <?php if ($sceneNum <= $countTrips) : ?>
+            <a class="slide-nav nextSlide" href="#scene-<?php echo $sceneNumNext; ?>"><b>Next Slide</b></a><?php endif; ?>
+            <a class="slide-nav prevSlide" href="#scene-<?php echo $sceneNumPrev; ?>"><b>Previous Slide</b></a>
+
             <img class="scale" src="/resources/default/img/sections/<?php echo $sectionInfo->alias; ?>/section_<?php echo $sceneNum; ?>.jpg" />
 
-            <div data-align="<?php echo 'bottom';//$dataAlign; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
+            <div data-align="<?php echo 'bottom'; ?>" data-offset="0" class="figcaption caption-<?php echo $sceneNum; ?>">
                 <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
                 <h4><?php echo $trip->title; ?></h4>
                 <div><?php echo $trip->short_description; ?></div>

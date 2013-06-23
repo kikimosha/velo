@@ -597,65 +597,112 @@ a.grayBtn {
     opacity: 0
 }
 
-.section-nav {
+.section-nav, .slide-nav {
     z-index: 3331;
     visibility: hidden;
-    width: 50px;
-    height: 400px;
     position: absolute;
     text-indent: -999em;
-    top: 50%;
     cursor: pointer;
-    margin-top: -200px
 }
-
-.active .section-nav {
+.section-nav {
+    width: 45px;
+    height: 400px;
+    top: 50%;
+    margin-top: -200px;
+}
+.slide-nav {
+    width: 45px;
+    height: 45px;
+    top: auto;
+    margin: auto;
+}
+.active .section-nav,
+.active .slide-nav {
     visibility: visible
 }
-
 #prev {
     left: 0
 }
-
 #next {
     right: 0
 }
 
-.section-nav b {
+.prevSlide {
+    top:0;
+}
+
+.nextSlide {
+    bottom: 0;
+}
+
+.section-nav b, .slide-nav b {
     display: block;
     width: 45px;
     height: 45px;
     position: absolute;
+    background-image: url("../img/desktop/sprite_fx.png");
+    background-repeat: no-repeat;
+    background-color: #DBE0E6;
+    border-radius: 5px;
+}
+.section-nav b {
     top: 50%;
     margin-top: -23px;
-    background: url(../img/desktop/sprite_fx.png) no-repeat
 }
-
+.slide-nav b {
+    top: auto;
+    margin-top:0;
+}
+/*---*/
 #prev b {
-    background-position: -90px 0;
+    background-position: 0 0;
     right: 0
 }
 
 #next b {
-    background-position: -135px 0;
+    background-position: -45px 0;
     left: 0
 }
 
 #prev:hover b {
-    background-position: -90px -45px
+    background-position: 0px -45px
 }
 
 #next:hover b {
-    background-position: -135px -45px
+    background-position: -45px -45px
+}
+/*---*/
+.prevSlide b, .nextSlide b {
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg); /* IE 9 */
+    -webkit-transform: rotate(90deg); /* Safari and Chrome */
+}
+.prevSlide b {
+    background-position: 0px 0;
+    top: 0;
 }
 
+.nextSlide b {
+    background-position: -45px 0;
+    bottom: 0;
+}
+
+.prevSlide:hover b {
+    background-position: 0px -45px
+}
+
+.nextSlide:hover b {
+    background-position: -45px -45px
+}
+
+
 .loading-next-section #prev:hover b {
-    background-position: -90px 0;
+    background-position: 0px 0;
     right: 0
 }
 
 .loading-next-section #next:hover b {
-    background-position: -135px 0;
+    background-position: -45px 0;
     left: 0
 }
 
@@ -669,29 +716,6 @@ a.grayBtn {
     text-transform: uppercase;
     -webkit-font-smoothing: antialiased
 }
-
-/*#section-cords .cords {*/
-    /*display: block;*/
-    /*font-weight: bold;*/
-    /*margin: 0 0 5px*/
-/*}*/
-
-/*#section-cords .no {*/
-    /*display: block;*/
-    /*width: 88px;*/
-    /*height: 97px;*/
-    /*background: url(../img/desktop/sprite_fx.png) no-repeat -192px 0;*/
-    /*text-indent: -999em;*/
-    /*margin: 0 0 10px*/
-/*}*/
-
-/*#section-cords .number {*/
-    /*font: 142px/1 broad, arial;*/
-    /*position: absolute;*/
-    /*top: 2px;*/
-    /*left: 94px;*/
-    /*letter-spacing: 2px*/
-/*}*/
 
 #section-cords .name {
     font: 42px/1 broad, arial;
@@ -724,12 +748,27 @@ a.grayBtn {
     position: relative;
     overflow: hidden;
     height: 100%;
-    width: 100%
+    width: 100%;
+}
+
+.scene hr.dotBorder {
+    background: none repeat scroll 0 0 transparent;
+    border-bottom: medium solid;
+    color: #000000;
+    display: block;
+    height: 2px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: -1px;
+    visibility: visible;
+    width: 100%;
+    z-index: 3330;
 }
 
 .scene img {
     position: relative;
-    vertical-align: top
+    vertical-align: top;
 }
 
 .figcaption {
