@@ -10,7 +10,7 @@
     <div class="quicklinks">
         <a href="#scene-1" title="Top" class="to-top">Наверх</a>
         <a href="/" title="Home" class="to-coverflow">Все секции</a>
-        <a href="javascript:void(0);" title="Calendar" class="to-calendar">Календарь</a>
+        <a href="javascript:void(0);" title="Calendar" class="to-calendar">Календарь туров</a>
     </div>
 
     <div id="indicator-line"></div>
