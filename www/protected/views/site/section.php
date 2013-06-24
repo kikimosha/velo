@@ -8,8 +8,9 @@
     <?php if (!empty($prevId)): ?><a class="section-nav" id="prev" href="<?php echo Yii::app()->request->baseUrl; ?>/section/<?php echo $prevId; ?>"><b>Previous</b></a><?php endif; ?>
 
     <div class="quicklinks">
-        <a href="#scene-1" title="Top" class="to-top">Top</a>
-        <a href="/" title="Home" class="to-coverflow">Home</a>
+        <a href="#scene-1" title="Top" class="to-top">Наверх</a>
+        <a href="/" title="Home" class="to-coverflow">Все секции</a>
+        <a href="javascript:void(0);" title="Calendar" class="to-calendar">Календарь</a>
     </div>
 
     <div id="indicator-line"></div>
@@ -44,7 +45,7 @@
                 <p class="preamble">№ <?php echo $sceneNum - 1; ?></p>
                 <h4><?php echo $trip->title; ?></h4>
                 <div><?php echo $trip->short_description; ?></div>
-                <div class="costTrip"><a href="<?php echo Yii::app()->request->baseUrl . '/trip/' . $trip->id ?>" class="grayBtn">Стоимость »</a></div>
+                <div class="costTrip"><a href="<?php echo Yii::app()->request->baseUrl . '/trip/' . $trip->id ?>" class="grayBtn">Рассчитать стоимость »</a></div>
             </div>
         </div>
         <?php endforeach; ?>

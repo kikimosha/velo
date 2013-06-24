@@ -16,10 +16,17 @@
 
 <section id="section-wrapper"></section>
 
-<div id="popUp">
-    <a class="closePopup" href="#">x</a>
+<div id="popUpOrder">
+    <a class="closePopup" href="javascript:void(0);">x</a>
     <div class="innerPopup">
-        <?php echo $this->renderPartial('order'); ?>
+        <?php // echo $this->renderPartial('order'); ?>
+    </div>
+</div>
+
+<div id="popUpCalendar">
+    <a class="closePopup" href="javascript:void(0);">x</a>
+    <div class="innerPopup">
+        <?php echo $this->renderPartial('calendar'); ?>
     </div>
 </div>
 

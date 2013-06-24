@@ -1055,16 +1055,16 @@ var Trip = {
     order: function() {
 
         GoTripXCHelpers.addOverlay({
-            classname: 'transparent',
-            click: OrderTrip.close
+            classname: 'transparent'//,
+//            click: OrderTrip.close
         });
 
-        $('#popUp').addClass('active').css({
+        $('#popUpOrder').addClass('active').css({
             left: ((Scaling.windowDimensions.width + 270) / 2) - (768 / 2),
             top: (Scaling.windowDimensions.height / 2) - (432 / 2) + $(window).scrollTop()
         });
 
-        $('#popUp a.closePopup').click(OrderTrip.close);
+        $('#popUpOrder a.closePopup').click(OrderTrip.close);
 
     },
 
@@ -1260,7 +1260,6 @@ var GoTrip = {
 
 
     bindEvents: function() {
-
         this.settings.element.bind('mousemove', $.throttle(100, true, function(e) {
             clearTimeout(GoTrip.settings.timer);
             GoTrip.moveCoverFlow(e.pageX - 270);
@@ -1620,44 +1619,37 @@ var GoTrip = {
 
 };
 
+var Calendar = {
+    init: function(){
+        $(".page-offer .page-close").css("opacity", "0").show().delay(300).animate({
+            opacity:1
+        }, 400 );
+    },
+    out: function(){
+        $(".page-offer .page-close").animate({
+            opacity:0
+        }, 100 )
+    },
+    close: function() {
+        $('#popUpCalendar').removeClass('active');
+        GoTripXCHelpers.removeOverlay();
+    }
+};
+
 var OrderTrip = {
 	init: function(){
-		$("#video").css("opacity", "0").show().delay(300).animate({
-			opacity:1
-		}, 400 )
 		$(".page-offer .page-close").css("opacity", "0").show().delay(300).animate({
 			opacity:1
-		}, 400 )
-		$("#youtube").hide();
-		$("#video").bind("click", function(){
-
-        var videoSrc = $("#youtube");
-
-        GoTripXCHelpers.addOverlay({ classname: 'transparent', click: OrderTrip.close });
-
-        $('#popUp').addClass('active').css({
-            left: (Scaling.windowDimensions.width / 2) - (768 / 2),
-            top: (Scaling.windowDimensions.height / 2) - (500 / 2)
-        });
-
-        $("#youtube").show();
-		$("#popUp").html( videoSrc)
-
-    	})
+		}, 400 );
 	},
 	out: function(){
-		$("#video").animate({
-			opacity:0
-		}, 100 )
 		$(".page-offer .page-close").animate({
 			opacity:0
-		}, 100 )
+		}, 100 );
 	},
   	close: function() {
-  		$("#youtube").detach().appendTo("#video");
-        $('#popUp').removeClass('active');
+        $('#popUpOrder').removeClass('active');
         GoTripXCHelpers.removeOverlay();
-		$("#youtube").hide();
     }
 };
 
@@ -2322,6 +2314,22 @@ var Section = {
             Section.scrollToTop();
             e.preventDefault();
         }).end()
+        .find('.to-calendar').bind('click', function() {
+            // hook for init the Calendar
+            $(window).trigger('resize');
+
+            var ppWidth = $('#popUpCalendar .mejs-container').width(),
+                ppHeight = $('#popUpCalendar .mejs-container').height(),
+                iLeft = (Scaling.windowDimensions.width + 270 - ppWidth)/2,
+                iTop = (Scaling.windowDimensions.height - ppHeight)/2 + $(window).scrollTop();
+
+            if (iTop < 10) {iTop = 10;}
+
+            GoTripXCHelpers.addOverlay({classname: 'transparent'});
+            $('#popUpCalendar').addClass('active').css({left: iLeft, top: iTop});
+            $('#popUpCalendar a.closePopup').click(Calendar.close);
+
+        }).end()
         .find('.figcaption a').bind('click', function(e) {
             var link = this.href, id = null, lang = null;
         });
@@ -2509,8 +2517,6 @@ var CoverFlow = {
             e.preventDefault();
         });
 
-        $('#popUp').find('a').bind('click', GoTripXCHelpers.closeMovie);
-
         $(window).bind('resize', $.throttle(100, Scaling.windowResize));
 
         // CoverFlow-key nav, disable on IE until mouseover-bug is fixed
@@ -2630,8 +2636,6 @@ var CoverFlow = {
         //$.preload('#cover-flow img', { onFinish: CoverFlow.playIntro });
 
     }
-
-
 };
 
 

@@ -229,23 +229,26 @@ body {
     position: fixed
 }
 
-#popUp {
+#popUpOrder,
+#popUpCalendar {
     display: none;
     position: absolute;
     z-index: 9998
 }
 
-#popUp.active {
+#popUpOrder.active,
+#popUpCalendar.active {
     display: block
 }
 
-#popUp a {
+#popUpOrder a.closePopup,
+#popUpCalendar a.closePopup {
     background: url(../img/desktop/sprite_fx.png) no-repeat -45px -136px;
     color: #FFF;
     cursor: pointer;
     display: block;
     height: 16px;
-    left: -8px;
+    right: -8px;
     line-height: 11px;
     position: absolute;
     text-align: center;
@@ -581,6 +584,9 @@ a.grayBtn {
 
 .quicklinks .to-top:before {
     background-position: -297px -36px
+}
+.quicklinks .to-calendar:before {
+    background-position: -297px -72px
 }
 
 .quicklinks .to-coverflow:hover:before {
@@ -1491,7 +1497,7 @@ table#trip-services tr.addInfoCost {
 }
 
 .no-generatedcontent .quicklinks .to-coverflow:hover span {
-    background-position: -297px -18px
+    background-position: -297px -18px;
 }
 
 .no-generatedcontent .quicklinks .to-top:hover span {

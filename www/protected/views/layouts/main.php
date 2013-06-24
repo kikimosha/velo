@@ -21,12 +21,15 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/css/style.css">
-    <link rel="stylesheet" href="<?php echo Yii::app()->request->baseUrl; ?>/resources/vendor/fuelux/css/fuelux.css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/css/style.css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/vendor/fuelux/css/fuelux.css">
+    <link rel="stylesheet" href="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/vendor/calendar/calendar.css">
 
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/modernizr-2.0.min.js"></script>
+    <script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/libs/modernizr-2.0.min.js"></script>
 
-</head><body class="loading-coverflow  lang-ru">
+</head>
+
+<body class="loading-coverflow  lang-ru">
 
 <aside id="sidebar">
 
@@ -53,13 +56,13 @@
 <?php echo $content; ?>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/jquery-1.6.2.min.js"><\/script>')</script>
-<script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/json2.js"><\/script>'); }</script>
+<script>window.jQuery || document.write('<script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+<script>if ( typeof window.JSON === 'undefined' ) { document.write('<script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/libs/json2.js"><\/script>'); }</script>
 <!--<script src="../assets/js/script.min.js"></script>-->
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/history.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/libs/libs.js"></script>
-<script src="<?php echo Yii::app()->request->baseUrl; ?>/resources/default/js/script.js"></script>
-
+<script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/vendor/calendar/calendar.js"></script>
+<script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/libs/history.js"></script>
+<script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/libs/libs.js"></script>
+<script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/script.js"></script>
 <script>
     var _gaq=[['_setAccount','UA-41603226-1'],['_trackPageview'],['_trackPageLoadTime']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;

@@ -8,7 +8,7 @@
  */
 
 return array(
-    'title'=>'Please provide your login credential',
+    'title'=>'Order Form',
 
     'elements'=>array(
         'username'=>array(

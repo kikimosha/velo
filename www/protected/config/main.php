@@ -37,7 +37,7 @@ return array(
                 'trip/<id:\d+>' => 'site/index',
                 'api/trip/<id:\d+>' => 'site/trip',
 
-                'order' => 'site/order',
+                'api/calendar/events' => 'calendar/events',
 
                 'admin/section/<id:\d+>' => 'admin/default/section',
 
