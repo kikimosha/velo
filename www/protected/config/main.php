@@ -28,6 +28,10 @@ return array(
                 'gii/<controller:\w+>'=>'gii/<controller>',
                 'gii/<controller:\w+>/<action:\w+>'=>'gii/<controller>/<action>',
 
+                'admin'=>'admin',
+                'admin/<controller:\w+>'=>'admin/<controller>',
+                'admin/<controller:\w+>/<action:\w+>'=>'admin/<controller>/<action>',
+
                 '/page/<alias:\w+>' => 'site/page',
                 '/api/page/<alias:\w+>' => 'site/page',
 
@@ -59,9 +63,13 @@ return array(
     // using Yii::app()->params['paramName']
     'params'=>require(dirname(__FILE__).'/params.php'),
 
+
     // modules
     'modules'=>array(
-        'admin',
+        'admin'=>array(
+            'class'=> 'application.modules.admin.AdminModule',
+            'password' => '123456'
+        ),
         'gii'=>array(
             'class'=>'system.gii.GiiModule',
             'password'=>'dzeta',

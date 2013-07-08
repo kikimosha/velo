@@ -1,6 +1,6 @@
 <?php
 
-class DefaultController extends CController
+class DefaultController extends Controller
 {
     public $layout='/layouts/main';
 
@@ -78,7 +78,3 @@ class DefaultController extends CController
 //        }
 //    }
 //}
-
-
-
-}
