@@ -1,3 +1,4 @@
 /.idea
 /yii
 /www/assets/*
+/www/protected/config/main.php

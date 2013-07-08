@@ -20,7 +20,7 @@ class CalendarController extends Controller
                 "bgcolor" => "red"
             ),
             array(
-                "title" => "Выходные на лошади",
+                "title" => "Выходные на лошади в Крыму",
                 "start" => "6 Jul, 2013 07:00 AM",
                 "end" => "7 Jul, 2013 05:00 PM",
                 "url" => Yii::app()->request->getBaseUrl(true) . "/trip/4",
@@ -36,7 +36,7 @@ class CalendarController extends Controller
                 "bgcolor" => "red"
             ),
             array(
-                "title" => "Выходные на лошади",
+                "title" => "Выходные на лошади в Крыму",
                 "start" => "13 Jul, 2013 07:00 AM",
                 "end" => "14 Jul, 2013 05:00 PM",
                 "url" => Yii::app()->request->getBaseUrl(true) . "/trip/4",
@@ -68,7 +68,7 @@ class CalendarController extends Controller
                 "bgcolor" => "red"
             ),
             array(
-                "title" => "Выходные на лошади",
+                "title" => "Выходные на лошади в Крыму",
                 "start" => "20 Jul, 2013 07:00 AM",
                 "end" => "21 Jul, 2013 05:00 PM",
                 "url" => Yii::app()->request->getBaseUrl(true) . "/trip/4",
@@ -100,7 +100,7 @@ class CalendarController extends Controller
                 "bgcolor" => "red"
             ),
             array(
-                "title" => "Выходные на лошади",
+                "title" => "Выходные на лошади в Крыму",
                 "start" => "27 Jul, 2013 07:00 AM",
                 "end" => "28 Jul, 2013 05:00 PM",
                 "url" => Yii::app()->request->getBaseUrl(true) . "/trip/4",
