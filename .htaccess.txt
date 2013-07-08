@@ -1,0 +1,4 @@
+AuthName "Админка"
+AuthType Basic  
+Require valid-user
+AuthUserFile "C:\_server\home\velo\.htpasswd"
