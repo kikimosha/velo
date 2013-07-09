@@ -34,7 +34,6 @@
             $sceneNumPrev = $sceneNum - 1;
         ?>
         <div class="scene" id="scene-<?php echo $sceneNum; ?>">
-            <hr class="dotBorder" />
             <?php if ($sceneNum <= $countTrips) : ?>
             <a class="slide-nav nextSlide" href="#scene-<?php echo $sceneNumNext; ?>"><b>Next Slide</b></a><?php endif; ?>
             <a class="slide-nav prevSlide" href="#scene-<?php echo $sceneNumPrev; ?>"><b>Previous Slide</b></a>
