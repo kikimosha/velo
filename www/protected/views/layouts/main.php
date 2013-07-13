@@ -38,17 +38,21 @@
     <div class="about">
         <p>Нам часто хочется вырваться за рамки обыденности, и тогда возникают два вопроса: <strong>КУДА?</strong> и <strong>С КЕМ?</strong></p>
         <p>Мы предлагаем Вам познать не только окружающий мир, но и себя. Все наши предложения являются активно – познавательными. Вы не только более детально узнаете историю и достопримечательности нашей страны, увидите собственными глазами её природные и культурные богатства, но и откроете для себя новые увлечения.</p>
-        <p>Туры от Go-Trip – Ваша возможность расширить свои горизонты.</p>
+        <p>Туры от <strong>Go-Trip</strong> – Ваша возможность расширить свои горизонты.</p>
     </div>
 
     <div class="contacts">
-        <div>Телефоны:<br/>
+        <div>Телефоны:<br />
             +38 (066) 147 33 11<br />
             +38 (097) 632 17 84<br />
             +38 (063) 584 24 74
-        </div><br/>
+        </div><br />
         <div>Skype: gotrip.com.ua<br />
         E-mail: info@gotrip.com.ua</div>
+        <br /><div>
+            <a href="http://www.facebook.com/gotrip.com.ua" class="button facebook_button" title="мы на Facebook"></a>
+            <a href="http://vk.com/go_trip" class="button vkontacte_button" title="мы Вконтакте"></a>
+        </div>
     </div>
 
 </aside>

@@ -289,7 +289,7 @@ body {
     left: 30px;
     position: absolute;
     text-indent: -999em;
-    top: 30px;
+    top: 20px;
     width: 200px;
     background: url("../img/logo.png") no-repeat 0 0 transparent;
 }
@@ -301,7 +301,7 @@ body {
 }
 
 #sidebar .about {
-    margin: 150px 35px 5px 33px;
+    margin: 140px 24px 5px 22px;
 }
 #sidebar .about p {
     text-align: justify;
@@ -311,7 +311,7 @@ body {
 }
 
 #sidebar .contacts {
-    margin: 25px 35px 5px 33px;
+    margin: 15px 35px 5px 33px;
     font-weight: bold;
     border-top: medium dotted;
     padding: 10px 0 0 0;
@@ -2136,3 +2136,18 @@ table#trip-services tr.addInfoCost {
 .mejs-controls .mejs-picturecontrols-button {
     background-position: -96px 0
 }
+
+
+.button
+{
+    width:30px;
+    height:30px;
+    display: block;
+    margin: 10px;
+    float: left
+}
+
+.facebook_button { background: url(../img/desktop/facebook_but.png) no-repeat; }
+.vkontacte_button {   background: url(../img/desktop/vkontakte_but.png) no-repeat; }
+.facebook_button:hover {  background-position: bottom; }
+.vkontacte_button:hover {  background-position: bottom; }
