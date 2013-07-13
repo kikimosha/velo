@@ -50,8 +50,8 @@
         <div>Skype: gotrip.com.ua<br />
         E-mail: info@gotrip.com.ua</div>
         <br /><div>
-            <a href="http://www.facebook.com/gotrip.com.ua" class="button facebook_button" title="мы на Facebook"></a>
-            <a href="http://vk.com/go_trip" class="button vkontacte_button" title="мы Вконтакте"></a>
+            <a target="_blank" href="http://www.facebook.com/gotrip.com.ua" class="button facebook_button" title="мы на Facebook"></a>
+            <a target="_blank" href="http://vk.com/go_trip" class="button vkontacte_button" title="мы Вконтакте"></a>
         </div>
     </div>
 
