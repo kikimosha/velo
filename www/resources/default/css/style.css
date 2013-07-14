@@ -544,16 +544,25 @@ a.grayBtn {
 
 .quicklinks {
     position: fixed;
-    top: 20px;
-    right: 22px;
+    top: 0px;
     white-space: nowrap;
     z-index: 3331;
     text-transform: uppercase;
-    -webkit-font-smoothing: antialiased
+    -webkit-font-smoothing: antialiased;
+    height: 50px;
+    width: 100%;
+    background-color:rgba(219, 224, 230, 0.5);
+}
+
+.quicklinks_list {
+    position: inherit;
+    right: 15px;
+    top: 15px;
+    float: right;
 }
 
 .quicklinks a {
-    color: #fff;
+    color: #000;
     margin: 0 0 0 22px;
     padding: 0 0 0 22px;
     cursor: pointer;
@@ -563,9 +572,9 @@ a.grayBtn {
     line-height: 17px
 }
 
-.quicklinks a:hover {
-    color: #000
-}
+/*.quicklinks a:hover {*/
+    /*color: #000*/
+/*}*/
 
 .quicklinks a:before {
     content: "";
@@ -579,23 +588,23 @@ a.grayBtn {
 }
 
 .quicklinks .to-coverflow:before {
-    background-position: -297px 0
+    background-position: -297px -18px
 }
 
 .quicklinks .to-top:before {
-    background-position: -297px -36px
+    background-position: -297px -54px
 }
 .quicklinks .to-calendar:before {
     background-position: -297px -72px
 }
 
-.quicklinks .to-coverflow:hover:before {
-    background-position: -297px -18px
-}
+/*.quicklinks .to-coverflow:hover:before {*/
+    /*background-position: -297px -18px*/
+/*}*/
 
-.quicklinks .to-top:hover:before {
-    background-position: -297px -54px
-}
+/*.quicklinks .to-top:hover:before {*/
+    /*background-position: -297px -54px*/
+/*}*/
 
 .js .quicklinks .to-top {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
@@ -648,7 +657,7 @@ a.grayBtn {
     position: absolute;
     background-image: url("../img/desktop/sprite_fx.png");
     background-repeat: no-repeat;
-    background-color: #DBE0E6;
+    background-color:rgba(219, 224, 230, 0.5);
     border-radius: 5px;
 }
 .section-nav b {
