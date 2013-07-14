@@ -28,7 +28,7 @@
     <script src="<?php echo Yii::app()->request->getBaseUrl(true); ?>/resources/default/js/libs/modernizr-2.0.min.js"></script>
 
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="http://go-trip.com.ua/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo Yii::app()->request->getBaseUrl(true);?>/favicon.ico" type="image/x-icon">
 
 </head>
 
