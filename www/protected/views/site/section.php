@@ -17,7 +17,11 @@
 
     <div id="scene-wrapper">
         <div class="scene" id="scene-1">
+            <?php
+            $countTrips = count($trips);
+            if ($countTrips) : ?>
             <a class="slide-nav nextSlide" href="#scene-2"><b>Next Slide</b></a>
+            <?php endif; ?>
 
             <img class="scale" src="/resources/default/img/sections/<?php echo $sectionInfo->alias; ?>/section_1.jpg" />
 
@@ -27,7 +31,6 @@
         </div>
 
         <?php
-        $countTrips = count($trips);
         foreach($trips as $index => $trip):
             $sceneNum = $index+2; // first index = 0
             $sceneNumNext = $sceneNum + 1;

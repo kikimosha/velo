@@ -648,7 +648,7 @@ a.grayBtn {
     position: absolute;
     background-image: url("../img/desktop/sprite_fx.png");
     background-repeat: no-repeat;
-    background-color: #DBE0E6;
+    background-color:rgba(219, 224, 230, 0.5);
     border-radius: 5px;
 }
 .section-nav b {
