@@ -16,17 +16,17 @@
                             <div style="background-color:#FFB8C4" class="cassandraevent w50 fl mr5 mb10">
                                 &nbsp;
                             </div>
-                            <div class="fl mr5 mb10">Зимний отдых</div>
-                            <div style="background-color:#6F8EE8" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
+<!--                            <div class="fl mr5 mb10">Зимний отдых</div>-->
+<!--                            <div style="background-color:#6F8EE8" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>-->
                             <div class="fl mr5 mb10">Байдарки</div>
-                            <div style="background-color:#E5E86F" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
+                            <div style="background-color:Yellow" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
                             <div class="fl mr5 mb10">Вело</div>
                             <div style="background-color:Red" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
                             <div class="fl mr5 mb10">Вэйки</div>
                             <div style="background-color:Gray" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
                             <div class="fl mr5 mb10">Конные походы</div>
-                            <div style="background-color:Green" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
-                            <div class="fl mr5 mb10">Пешие походы</div>
+<!--                            <div style="background-color:Green" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>-->
+<!--                            <div class="fl mr5 mb10">Пешие походы</div>-->
                             <div style="background-color:#86a723" class="cassandraevent w50 fl mr5 mb10">&nbsp;</div>
                             <div class="fl mr5 mb10">Каяки</div>
                         </div>
